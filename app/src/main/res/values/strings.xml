@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Suraksha</string>
+    <string name="login">Log In</string>
+    <string name="finish">Finish</string>
+    <string name="onboard1">Shake your phone 3 times\nto activate SOS and share\nyour location with your\nemergency contacts.</string>
+    <string name="onboard2">Get instant help from the\nemergency government\nhelpline numbers.</string>
+    <string name="onboard3">Police siren to deter potential\nattackers by creating the\nillusion that the user has\nactivated an alarm or signal.</string>
+    <string name="logo">logo</string>
+    <string name="welcome_back">Hello, Welcome back!\nYou are safe with us.</string>
+    <string name="log_in_to_continue">Log in to continue!</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="new_user_sign_up_now">New User? Sign Up Now!</string>
+    <string name="go">LOG IN!</string>
+    <string name="forget_password">Forgot Password?</string>
+    <string name="title_activity_sign_up">SignUp</string>
+    <string name="welcome">Welcome!\nYou are safe with us.</string>
+    <string name="username">Username</string>
+    <string name="full_name">Full Name</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="city">City/Town</string>
+    <string name="pin_code">Pin Code</string>
+    <string name="age">Age</string>
+    <string name="create_account">Create Account</string>
+    <string name="already_have_an_account_login">Already have an account? Login</string>
+    <string name="state">State</string>
+    <string name="area">Area, Street, Sector, Village</string>
+    <string name="apartment">Flat, House no., Building, Apartment</string>
+    <string name="change_password">Change Password</string>
+    <string name="call_100">Call 100</string>
+
+</resources>

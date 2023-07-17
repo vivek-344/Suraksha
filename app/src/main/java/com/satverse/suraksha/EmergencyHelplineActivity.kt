@@ -1,0 +1,11 @@
+package com.satverse.suraksha
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+
+class EmergencyHelplineActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_emergency_helpline)
+    }
+}
