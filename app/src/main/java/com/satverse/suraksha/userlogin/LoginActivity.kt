@@ -19,13 +19,14 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val LandingPageButton = findViewById<Button>(R.id.go_login)
-        LandingPageButton.setOnClickListener {
+        val landingPageButton = findViewById<Button>(R.id.go_login)
+        landingPageButton.setOnClickListener {
             val intent = Intent(this, LandingPageActivity::class.java)
             startActivity(intent)
         }
     }
 
+    @Deprecated("Deprecated in Java", ReplaceWith("finishAffinity()"))
     override fun onBackPressed() {
         finishAffinity()
     }
