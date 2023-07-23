@@ -18,6 +18,9 @@
         <action
             android:id="@+id/action_splash_to_login"
             app:destination="@id/loginActivity" />
+        <action
+            android:id="@+id/action_splash_to_landingPage"
+            app:destination="@id/landingPageActivity" />
     </fragment>
     <fragment
         android:id="@+id/viewPagerFragment"
@@ -33,4 +36,9 @@
         android:name="com.satverse.suraksha.userlogin.LoginActivity"
         android:label="activity_login"
         tools:layout="@layout/activity_login" />
+    <activity
+        android:id="@+id/landingPageActivity"
+        android:name="com.satverse.suraksha.LandingPageActivity"
+        android:label="activity_landing_page"
+        tools:layout="@layout/activity_landing_page" />
 </navigation>

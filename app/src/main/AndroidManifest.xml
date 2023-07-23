@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Suraksha"
         tools:targetApi="31">
         <activity
+            android:name=".userlogin.ForgotPasswordActivity"
+            android:exported="false"/>
+        <activity
             android:name=".dropdown.EditProfileActivity"
             android:exported="false" />
         <activity
@@ -32,10 +35,12 @@
             android:exported="false" />
         <activity
             android:name=".userlogin.SignUpActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:noHistory="true"/>
         <activity
             android:name=".SplashScreen"
-            android:exported="true">
+            android:exported="true"
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
