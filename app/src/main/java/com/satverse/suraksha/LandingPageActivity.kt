@@ -11,4 +11,9 @@ class LandingPageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_landing_page)
     }
+
+    override fun onBackPressed() {
+
+        finishAffinity()
+    }
 }

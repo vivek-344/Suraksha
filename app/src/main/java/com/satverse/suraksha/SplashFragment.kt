@@ -39,7 +39,7 @@ class SplashFragment : Fragment() {
     }
 
     private fun isUserLoggedIn(): Boolean {
-        val sharedPref = requireActivity().getSharedPreferences("loggedIn", Context.MODE_PRIVATE)
+        val sharedPref = requireActivity().getSharedPreferences("logIn", Context.MODE_PRIVATE)
         return sharedPref.getBoolean("LoggedIn", false)
     }
 

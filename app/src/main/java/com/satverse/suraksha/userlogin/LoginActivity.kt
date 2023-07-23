@@ -79,7 +79,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun isUserLoggedIn() {
-        val sharedPref = getSharedPreferences("loggedIn", Context.MODE_PRIVATE)
+        val sharedPref = getSharedPreferences("logIn", Context.MODE_PRIVATE)
         val editor = sharedPref.edit()
         editor.putBoolean("LoggedIn", true)
         editor.apply()
