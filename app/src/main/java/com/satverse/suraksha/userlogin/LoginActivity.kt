@@ -70,7 +70,7 @@ class LoginActivity : AppCompatActivity() {
 
         catch(e : AppwriteException) {
             runOnUiThread {
-                Toast.makeText(this, "Login Failed!" , Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "$e" , Toast.LENGTH_SHORT).show()
             }
             e.printStackTrace()
         }

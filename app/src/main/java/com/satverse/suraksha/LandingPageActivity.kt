@@ -13,7 +13,6 @@ class LandingPageActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-
         finishAffinity()
     }
 }
