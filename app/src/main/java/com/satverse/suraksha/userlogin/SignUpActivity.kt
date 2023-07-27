@@ -38,8 +38,8 @@ class SignUpActivity : AppCompatActivity() {
                 createUser()
             }
         }
-
     }
+
     private suspend fun createUser() {
         val client = Client(this)
             .setEndpoint("https://cloud.appwrite.io/v1")
@@ -48,11 +48,11 @@ class SignUpActivity : AppCompatActivity() {
 
         val fullName = findViewById<EditText>(R.id.name).text.toString()
         val email = findViewById<EditText>(R.id.email).text.toString()
-        val phoneNumber = findViewById<EditText>(R.id.phone_no).text
-        val age = findViewById<EditText>(R.id.age).text
+        val phoneNumber = findViewById<EditText>(R.id.phone_no).text.toString()
+        val age = findViewById<EditText>(R.id.age).text.toString()
         val apartment = findViewById<EditText>(R.id.apartment).text.toString()
         val area = findViewById<EditText>(R.id.area).text.toString()
-        val pincode = findViewById<EditText>(R.id.pincode).text
+        val pincode = findViewById<EditText>(R.id.pincode).text.toString()
         val city = findViewById<EditText>(R.id.city).text.toString()
         val state = findViewById<EditText>(R.id.state).text.toString()
         val password = findViewById<EditText>(R.id.password).text.toString()
@@ -72,7 +72,7 @@ class SignUpActivity : AppCompatActivity() {
                     "age" to age,
                     "apartment" to apartment,
                     "area" to area,
-                    "pinCode" to pincode,
+                    "pincode" to pincode,
                     "city" to city,
                     "state" to state,
                 ),
@@ -93,11 +93,9 @@ class SignUpActivity : AppCompatActivity() {
             startActivity(intent)
 
             isUserLoggedIn()
-        }
-
-        catch(e : AppwriteException) {
+        } catch (e: AppwriteException) {
             runOnUiThread {
-                Toast.makeText(this, "$e" , Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "$e", Toast.LENGTH_SHORT).show()
             }
             e.printStackTrace()
         }
