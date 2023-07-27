@@ -5,4 +5,5 @@
     <color name="suraksha">#FF0066</color>
     <color name="gray">#222222</color>
     <color name="material_gray">#9e9e9e</color>
+    <color name="transparent">#00FFFFFF</color>
 </resources>
