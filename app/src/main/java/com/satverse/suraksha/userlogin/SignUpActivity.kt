@@ -1,5 +1,6 @@
 package com.satverse.suraksha.userlogin
 
+import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -40,7 +41,13 @@ class SignUpActivity : AppCompatActivity() {
         }
     }
 
+    @Suppress("DEPRECATION")
     private suspend fun createUser() {
+
+        val progressDialog = ProgressDialog(this@SignUpActivity)
+        progressDialog.setMessage("Registering Account...")
+        progressDialog.show()
+
         val client = Client(this)
             .setEndpoint("https://cloud.appwrite.io/v1")
             .setProject("64bb859f2d53d0d44e9c")

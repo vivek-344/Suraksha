@@ -1,5 +1,6 @@
 package com.satverse.suraksha.userlogin
 
+import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -43,7 +44,12 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    @Suppress("DEPRECATION")
     private suspend fun logInUser() {
+
+        val progressDialog = ProgressDialog(this@LoginActivity)
+        progressDialog.setMessage("Logging In...")
+        progressDialog.show()
 
         val client = Client(this)
             .setEndpoint("https://cloud.appwrite.io/v1")
