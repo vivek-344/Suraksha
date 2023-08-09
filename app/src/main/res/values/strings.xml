@@ -42,6 +42,7 @@
     <string name="how_to_use">How to use?</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="log_out">Log out</string>
+    <string name="sos">SOS</string>
     <string-array name="gender_list">
         <item>Male</item>
         <item>Female</item>

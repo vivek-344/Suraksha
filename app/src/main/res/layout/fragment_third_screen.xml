@@ -24,6 +24,7 @@
         android:layout_marginBottom="125dp"
         android:text="@string/onboard3"
         android:textAlignment="center"
+        android:fontFamily="@font/productsans_regular"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

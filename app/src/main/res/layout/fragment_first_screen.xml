@@ -23,6 +23,7 @@
         android:layout_marginTop="25dp"
         android:layout_marginBottom="125dp"
         android:text="@string/onboard1"
+        android:fontFamily="@font/productsans_regular"
         android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"

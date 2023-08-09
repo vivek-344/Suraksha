@@ -9,7 +9,7 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/bar"
         android:layout_width="match_parent"
-        android:layout_height="64dp"
+        android:layout_height="72dp"
         android:background="@color/suraksha"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
@@ -21,7 +21,7 @@
         android:id="@+id/logo"
         android:layout_width="36dp"
         android:layout_height="36dp"
-        android:layout_marginStart="12dp"
+        android:layout_marginStart="16dp"
         android:elevation="4dp"
         app:layout_constraintBottom_toBottomOf="@+id/bar"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,6 +36,7 @@
         android:elevation="4dp"
         android:text="@string/suraksha"
         android:textColor="@color/white"
+        android:fontFamily="@font/productsans_bold"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/bar"
         app:layout_constraintStart_toEndOf="@+id/logo"
@@ -52,27 +53,67 @@
         app:layout_constraintTop_toTopOf="@+id/bar"
         app:srcCompat="@drawable/three_dots" />
 
+    <TextView
+        android:id="@+id/welcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hi_welcome_to_suraksha"
+        android:fontFamily="@font/productsans_light"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bar"
+        app:layout_constraintBottom_toTopOf="@+id/sosButton"/>
+
+    <TextView
+        android:id="@+id/urSafe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:text="@string/stay_fearless"
+        android:fontFamily="@font/productsans_light"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/sosButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/welcome"
+        app:layout_constraintVertical_bias="0.0" />
+
     <ImageView
         android:id="@+id/sosButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.4"
         app:srcCompat="@drawable/send_sos_button" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sos"
+        android:fontFamily="@font/productsans_bold"
+        android:textSize="40sp"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/sosButton"
+        app:layout_constraintEnd_toEndOf="@+id/sosButton"
+        app:layout_constraintStart_toStartOf="@+id/sosButton"
+        app:layout_constraintTop_toTopOf="@+id/sosButton" />
 
     <ImageView
         android:id="@+id/call100Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="40dp"
         android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sosButton"
+        app:layout_constraintTop_toBottomOf="@id/sosButton"
+        app:layout_constraintVertical_bias="0.15"
         app:srcCompat="@drawable/call_100_button" />
 
     <TextView
@@ -80,6 +121,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/call_100"
+        android:fontFamily="@font/productsans_black"
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/call100Button"
@@ -91,88 +133,69 @@
         android:id="@+id/emergencyButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/call100Button"
+        app:layout_constraintTop_toBottomOf="@+id/sosButton"
+        app:layout_constraintVertical_bias="0.6"
         app:srcCompat="@drawable/emergency_helpline_numbers" />
-
-    <ImageView
-        android:id="@+id/sirenButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        app:layout_constraintEnd_toStartOf="@+id/emergencyButton"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/call100Button"
-        app:srcCompat="@drawable/fake_siren_alert" />
-
-    <ImageView
-        android:id="@+id/aboutButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/emergencyButton"
-        app:layout_constraintTop_toBottomOf="@+id/call100Button"
-        app:srcCompat="@drawable/review" />
-
-    <TextView
-        android:id="@+id/welcome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:text="@string/hi_welcome_to_suraksha"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bar" />
-
-    <TextView
-        android:id="@+id/urSafe"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="@string/stay_fearless"
-        android:textSize="12sp"
-        android:gravity="center"
-        app:layout_constraintBottom_toTopOf="@+id/sosButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/welcome"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/fakeSiren"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="@string/fake_siren_alert"
-        android:textSize="11sp"
-        app:layout_constraintEnd_toStartOf="@+id/emergency"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sirenButton" />
 
     <TextView
         android:id="@+id/emergency"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
         android:text="@string/emergency_helpline"
+        android:fontFamily="@font/productsans_regular"
         android:textSize="11sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emergencyButton" />
+        app:layout_constraintEnd_toEndOf="@id/emergencyButton"
+        app:layout_constraintStart_toStartOf="@id/emergencyButton"
+        app:layout_constraintTop_toBottomOf="@+id/emergencyButton"
+        app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:id="@+id/aboutUS"
+    <ImageView
+        android:id="@+id/sirenButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="@string/write_to_us"
+        app:layout_constraintEnd_toStartOf="@+id/emergencyButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/emergencyButton"
+        app:layout_constraintBottom_toBottomOf="@id/emergencyButton"
+        app:srcCompat="@drawable/fake_siren_alert" />
+
+    <TextView
+        android:id="@+id/fakeSiren"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fake_siren_alert"
+        android:fontFamily="@font/productsans_regular"
         android:textSize="11sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/emergency"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emergencyButton"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/aboutButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/emergency"
-        app:layout_constraintTop_toBottomOf="@+id/aboutButton" />
+        app:layout_constraintStart_toEndOf="@id/emergencyButton"
+        app:layout_constraintTop_toTopOf="@+id/emergencyButton"
+        app:layout_constraintBottom_toBottomOf="@id/emergencyButton"
+        app:srcCompat="@drawable/review" />
+
+    <TextView
+        android:id="@+id/aboutUs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/write_to_us"
+        android:fontFamily="@font/productsans_regular"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/emergency"
+        app:layout_constraintTop_toBottomOf="@+id/emergencyButton"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

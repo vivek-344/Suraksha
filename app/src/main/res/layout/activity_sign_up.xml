@@ -47,6 +47,7 @@
             android:layout_height="wrap_content"
             android:lineSpacingExtra="10dp"
             android:text="@string/welcome"
+            android:fontFamily="@font/productsans_medium"
             android:textAlignment="center"
             android:textSize="24sp"
             tools:ignore="TextSizeCheck" />
@@ -64,6 +65,7 @@
                 android:layout_height="34dp"
                 android:layout_gravity="center"
                 android:text="@string/log_in_to_continue"
+                android:fontFamily="@font/productsans_regular"
                 android:textSize="14sp" />
 
             <com.google.android.material.textfield.TextInputLayout
@@ -246,6 +248,7 @@
             android:layout_height="58dp"
             android:backgroundTint="@color/suraksha"
             android:text="@string/create_account"
+            android:fontFamily="@font/productsans_black"
             android:textColor="@color/white"
             android:textSize="14sp"
             tools:ignore="UsingOnClickInXml" />
@@ -269,6 +272,7 @@
                 android:layout_gravity="top|center"
                 android:layout_marginTop="8dp"
                 android:text="@string/already_have_an_account_login"
+                android:fontFamily="@font/productsans_medium"
                 android:textSize="16sp" />
 
         </FrameLayout>
