@@ -62,7 +62,7 @@ class LoginActivity : AppCompatActivity() {
         val users = Account(client)
 
         try {
-            var user = users.createEmailSession(
+            val user = users.createEmailSession(
                 email = email,
                 password = password,
             )
@@ -80,8 +80,9 @@ class LoginActivity : AppCompatActivity() {
             }
             e.printStackTrace()
         }
-
-
+        finally {
+            progressDialog.dismiss()
+        }
     }
 
     private fun isUserLoggedIn() {
@@ -89,5 +90,10 @@ class LoginActivity : AppCompatActivity() {
         val editor = sharedPref.edit()
         editor.putBoolean("LoggedIn", true)
         editor.apply()
+    }
+
+    @Deprecated("Deprecated in Java", ReplaceWith("finishAffinity()"))
+    override fun onBackPressed() {
+        finishAffinity()
     }
 }

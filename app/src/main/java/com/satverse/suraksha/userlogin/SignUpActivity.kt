@@ -10,17 +10,19 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
+import com.google.android.material.textfield.TextInputLayout
 import com.satverse.suraksha.LandingPageActivity
 import com.satverse.suraksha.R
 import io.appwrite.Client
-import io.appwrite.ID
 import io.appwrite.exceptions.AppwriteException
 import io.appwrite.services.Account
 import io.appwrite.services.Databases
 import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
 class SignUpActivity : AppCompatActivity() {
+
     @OptIn(DelicateCoroutinesApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,14 +38,18 @@ class SignUpActivity : AppCompatActivity() {
         val createAccountButton = findViewById<Button>(R.id.create_account)
         createAccountButton.setOnClickListener {
             lifecycleScope.launch {
-                createUser()
+                val createUserJob = async {
+                    createUser()
+                }
+                createUserJob.await()
+
+                logInUser()
             }
         }
     }
 
     @Suppress("DEPRECATION")
     private suspend fun createUser() {
-
         val progressDialog = ProgressDialog(this@SignUpActivity)
         progressDialog.setMessage("Registering Account...")
         progressDialog.show()
@@ -64,14 +70,14 @@ class SignUpActivity : AppCompatActivity() {
         val state = findViewById<EditText>(R.id.state).text.toString()
         val password = findViewById<EditText>(R.id.password).text.toString()
 
-        val users = Account(client)
-        val userData = Databases(client)
+        val validChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.-_"
+        val uID = (1..36).map { validChars.random() }.joinToString("")
 
         try {
-            val document = userData.createDocument(
+            val document = Databases(client).createDocument(
                 databaseId = "64bc1e13ca662cd39b95",
                 collectionId = "64bc1e1e7465e6d3e4c2",
-                documentId = ID.unique(),
+                documentId = uID,
                 data = mapOf(
                     "fullName" to fullName,
                     "email" to email,
@@ -87,8 +93,8 @@ class SignUpActivity : AppCompatActivity() {
 
             Log.d("Appwrite response", document.toString())
 
-            val user = users.create(
-                userId = ID.unique(),
+            val user = Account(client).create(
+                userId = uID,
                 email = email,
                 password = password,
                 name = fullName,
@@ -96,19 +102,59 @@ class SignUpActivity : AppCompatActivity() {
 
             Log.d("Appwrite response", user.toString())
 
-            val intent = Intent(this, LandingPageActivity::class.java)
-            startActivity(intent)
-
-            isUserLoggedIn()
         } catch (e: AppwriteException) {
             runOnUiThread {
                 Toast.makeText(this, "$e", Toast.LENGTH_SHORT).show()
             }
             e.printStackTrace()
         }
+        finally {
+            progressDialog.dismiss()
+        }
     }
 
-    private fun isUserLoggedIn() {
+    @Suppress("DEPRECATION")
+    private suspend fun logInUser() {
+
+        val progressDialog = ProgressDialog(this@SignUpActivity)
+        progressDialog.setMessage("Logging In...")
+        progressDialog.show()
+
+        val client = Client(this)
+            .setEndpoint("https://cloud.appwrite.io/v1")
+            .setProject("64bb859f2d53d0d44e9c")
+            .setSelfSigned(true)
+
+        val email = findViewById<EditText>(R.id.email).text.toString()
+        val password = findViewById<EditText>(R.id.password).text.toString()
+
+        val users = Account(client)
+
+        try {
+            val user = users.createEmailSession(
+                email = email,
+                password = password,
+            )
+            Log.d("Appwrite response", user.toString())
+
+            val intent = Intent(this, LandingPageActivity::class.java)
+            startActivity(intent)
+
+            userLoggedIn()
+        }
+
+        catch(e : AppwriteException) {
+            runOnUiThread {
+                Toast.makeText(this, "$e" , Toast.LENGTH_SHORT).show()
+            }
+            e.printStackTrace()
+        }
+        finally {
+            progressDialog.dismiss()
+        }
+    }
+
+    private fun userLoggedIn() {
         val sharedPref = getSharedPreferences("logIn", Context.MODE_PRIVATE)
         val editor = sharedPref.edit()
         editor.putBoolean("LoggedIn", true)

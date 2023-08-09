@@ -28,5 +28,20 @@
     <string name="apartment">Flat, House no., Building, Apartment</string>
     <string name="change_password">Change Password</string>
     <string name="call_100">Call 100</string>
+    <string name="gender">Gender</string>
+    <string name="name">Name</string>
+    <string name="save_changes">Save Changes</string>
+    <string name="suraksha">SURAKSHA</string>
+    <string name="hi_welcome_to_suraksha">Hi, Welcome to SURAKSHA.</string>
+    <string name="stay_fearless">“Stay fearless and confident with SURAKSHA\n- your personal safety guardian.”</string>
+    <string name="fake_siren_alert">Fake Siren Alert</string>
+    <string name="emergency_helpline">Emergency Helpline</string>
+    <string name="write_to_us">Write to us!</string>
+    <string name="textview">TextView</string>
+    <string-array name="gender_list">
+        <item>Male</item>
+        <item>Female</item>
+        <item>Other</item>
+    </string-array>
 
 </resources>
