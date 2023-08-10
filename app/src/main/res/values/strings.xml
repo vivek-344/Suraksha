@@ -43,6 +43,13 @@
     <string name="edit_profile">Edit Profile</string>
     <string name="log_out">Log out</string>
     <string name="sos">SOS</string>
+    <string name="women_in_distress">Women in Distress</string>
+    <string name="domestic_abuse">Domestic Abuse</string>
+    <string name="police">Police</string>
+    <string name="child_helpline">Child Helpline</string>
+    <string name="ambulance">Ambulance</string>
+    <string name="fire_brigade">Fire Brigade</string>
+    <string name="senior_citizen">Senior Citizen</string>
     <string-array name="gender_list">
         <item>Male</item>
         <item>Female</item>

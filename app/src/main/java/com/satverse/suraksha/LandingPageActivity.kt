@@ -3,6 +3,7 @@ package com.satverse.suraksha
 import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -27,9 +28,21 @@ class LandingPageActivity : AppCompatActivity() {
         setContentView(R.layout.activity_landing_page)
 
         val btnShowPopup: ImageView = findViewById(R.id.menu)
-
         btnShowPopup.setOnClickListener { view ->
             showPopupMenu(view)
+        }
+
+        val policeButton = findViewById<ImageView>(R.id.call100Button)
+        policeButton.setOnClickListener {
+            val intent = Intent(Intent.ACTION_DIAL)
+            intent.data = Uri.parse("tel:100")
+            startActivity(intent)
+        }
+
+        val helplineButton = findViewById<ImageView>(R.id.emergencyButton)
+        helplineButton.setOnClickListener {
+            val intent = Intent(this, EmergencyHelplineActivity::class.java)
+            startActivity(intent)
         }
     }
 

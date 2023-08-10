@@ -42,4 +42,14 @@
         app:layout_constraintStart_toEndOf="@+id/back"
         app:layout_constraintTop_toTopOf="@id/bar" />
 
+    <ImageView
+        android:id="@+id/add_contact"
+        android:layout_width="280dp"
+        android:layout_height="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/bar"
+        app:srcCompat="@drawable/add_contact" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
