@@ -3,16 +3,17 @@ package com.satverse.suraksha
 import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
+import android.media.MediaPlayer
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
-import androidx.appcompat.widget.PopupMenu
 import android.view.View
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
-import androidx.core.app.ActivityCompat.finishAffinity
+import androidx.appcompat.app.AppCompatActivity
+import android.provider.Settings
+import android.telephony.SmsManager
+import androidx.appcompat.widget.PopupMenu
 import androidx.lifecycle.lifecycleScope
 import com.satverse.suraksha.dropdown.EditProfileActivity
 import com.satverse.suraksha.dropdown.EmergencyContactsActivity
@@ -23,6 +24,10 @@ import io.appwrite.services.Account
 import kotlinx.coroutines.launch
 
 class LandingPageActivity : AppCompatActivity() {
+
+    private var mediaPlayer: MediaPlayer? = null
+    private var isSirenPlaying = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_landing_page)
@@ -39,9 +44,28 @@ class LandingPageActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        val sosButton = findViewById<ImageView>(R.id.sosButton)
+        sosButton.setOnClickListener {
+        }
+
+        val sirenButton = findViewById<ImageView>(R.id.sirenButton)
+        sirenButton.setOnClickListener {
+            if (isSirenPlaying) {
+                stopSiren()
+            } else {
+                startSiren()
+            }
+        }
+
         val helplineButton = findViewById<ImageView>(R.id.emergencyButton)
         helplineButton.setOnClickListener {
             val intent = Intent(this, EmergencyHelplineActivity::class.java)
+            startActivity(intent)
+        }
+
+        val aboutUsButton = findViewById<ImageView>(R.id.aboutButton)
+        aboutUsButton.setOnClickListener {
+            val intent = Intent(this, AboutUsActivity::class.java)
             startActivity(intent)
         }
     }
@@ -117,15 +141,43 @@ class LandingPageActivity : AppCompatActivity() {
         }
     }
 
+    @Deprecated("Deprecated in Java", ReplaceWith("finishAffinity()"))
+    override fun onBackPressed() {
+        stopSiren()
+        finishAffinity()
+    }
+
+    private fun startSiren() {
+        mediaPlayer = MediaPlayer.create(this, R.raw.police_siren)
+        mediaPlayer?.start()
+        mediaPlayer?.isLooping = true
+        isSirenPlaying = true
+    }
+
+    private fun stopSiren() {
+        mediaPlayer?.apply {
+            if (isPlaying) {
+                pause()
+                seekTo(0)
+            }
+        }
+        isSirenPlaying = false
+    }
+
+    private fun openSmsSettings() {
+
+        Toast.makeText(this, "Enable SMS Permission!", Toast.LENGTH_LONG).show()
+
+        val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+        val uri = Uri.fromParts("package", packageName, null)
+        intent.data = uri
+        startActivity(intent)
+    }
+
     private fun userLoggedOut() {
         val sharedPref = getSharedPreferences("logIn", Context.MODE_PRIVATE)
         val editor = sharedPref.edit()
         editor.putBoolean("LoggedIn", false)
         editor.apply()
-    }
-
-    @Deprecated("Deprecated in Java", ReplaceWith("finishAffinity()"))
-    override fun onBackPressed() {
-        finishAffinity()
     }
 }

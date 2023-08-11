@@ -79,7 +79,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        android:src="@drawable/emergency_button"
+                        android:src="@drawable/background"
                         tools:ignore="SpeakableTextPresentCheck" />
 
                     <ImageView
@@ -139,7 +139,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        android:src="@drawable/emergency_button"
+                        android:src="@drawable/background"
                         tools:ignore="SpeakableTextPresentCheck" />
 
                     <ImageView
@@ -199,7 +199,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        android:src="@drawable/emergency_button"
+                        android:src="@drawable/background"
                         tools:ignore="SpeakableTextPresentCheck" />
 
                     <ImageView
@@ -259,7 +259,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        android:src="@drawable/emergency_button"
+                        android:src="@drawable/background"
                         tools:ignore="SpeakableTextPresentCheck" />
 
                     <ImageView
@@ -319,7 +319,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        android:src="@drawable/emergency_button"
+                        android:src="@drawable/background"
                         tools:ignore="SpeakableTextPresentCheck" />
 
                     <ImageView
@@ -379,7 +379,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        android:src="@drawable/emergency_button"
+                        android:src="@drawable/background"
                         tools:ignore="SpeakableTextPresentCheck" />
 
                     <ImageView
@@ -441,7 +441,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        android:src="@drawable/emergency_button"
+                        android:src="@drawable/background"
                         tools:ignore="SpeakableTextPresentCheck" />
 
                     <ImageView
