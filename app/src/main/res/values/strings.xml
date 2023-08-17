@@ -61,6 +61,18 @@
     <string name="vivek_344">\@vivek-344</string>
     <string name="satyamsharma17">\@satyamsharma17</string>
     <string name="shreya_shukla">Shreya Shukla</string>
+    <string name="website">Website</string>
+    <string name="linkedin">LinkedIn</string>
+    <string name="instructions">Instructions</string>
+    <string name="email_sent">Almost there!\nWe\'ve sent you a verification email.</string>
+    <string name="verify_email">You need to verify your email address to log into Suraksha App.</string>
+    <string name="email_verified">Your email is being verified\.\.\.</string>
+    <string name="verification">Verification</string>
+    <string name="enter_email">Enter your Email ID to receive reset link!</string>
+    <string name="send_reset_link">Send Reset Link!</string>
+    <string name="enter_new_password">Enter new password!</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="new_password">New password</string>
     <string-array name="gender_list">
         <item>Male</item>
         <item>Female</item>

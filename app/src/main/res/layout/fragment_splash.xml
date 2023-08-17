@@ -7,7 +7,6 @@
     tools:context=".SplashFragment"
     android:background="@color/suraksha">
 
-
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="wrap_content"

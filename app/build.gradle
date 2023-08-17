@@ -47,4 +47,5 @@ dependencies {
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.21'
     implementation("io.appwrite:sdk-for-android:2.0.0")
     implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'com.airbnb.android:lottie:6.1.0'
 }

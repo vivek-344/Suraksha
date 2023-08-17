@@ -5,10 +5,12 @@
     <queries>
         <intent>
             <action android:name="android.intent.action.VIEW" />
+
             <data android:scheme="http" />
         </intent>
         <intent>
             <action android:name="android.intent.action.VIEW" />
+
             <data android:scheme="https" />
         </intent>
     </queries>
@@ -31,11 +33,43 @@
         android:theme="@style/Theme.Suraksha"
         tools:targetApi="31">
         <activity
+            android:name=".userlogin.ResetPasswordActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="https" />
+                <data android:scheme="http" />
+                <data android:host="localhost" />
+                <data android:pathPattern="/resetpassword" />
+            </intent-filter>
+
+        </activity>
+        <activity
+            android:name=".userlogin.VerifyEmailActivity"
+            android:exported="false" />
+        <activity
             android:name=".AboutUsActivity"
             android:exported="false" />
         <activity
             android:name=".userlogin.EmailVerificationActivity"
-            android:exported="false" />
+            android:exported="true"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="https" />
+                <data android:scheme="http" />
+                <data android:host="localhost" />
+                <data android:pathPattern="/suraksha" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".userlogin.ForgotPasswordActivity"
             android:exported="false" />

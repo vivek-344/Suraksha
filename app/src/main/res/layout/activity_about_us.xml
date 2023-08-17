@@ -230,7 +230,7 @@
                 android:elevation="12dp"
                 android:fontFamily="@font/productsans_black"
                 android:textColor="@color/gray"
-                android:text="@string/github"
+                android:text="@string/website"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/github_image"
@@ -854,7 +854,7 @@
                             android:layout_height="18dp"
                             android:elevation="12dp"
                             android:scaleType="fitXY"
-                            android:src="@drawable/x_logo"/>
+                            android:src="@drawable/linkedin"/>
 
                     </androidx.cardview.widget.CardView>
 
@@ -862,7 +862,7 @@
                         android:id="@+id/shtwitter_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/twitter"
+                        android:text="@string/linkedin"
                         android:fontFamily="@font/productsans_black"
                         android:textColor="@color/gray"
                         android:elevation="12dp"

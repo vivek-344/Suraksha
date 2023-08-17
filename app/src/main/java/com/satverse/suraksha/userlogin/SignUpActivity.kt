@@ -1,7 +1,6 @@
 package com.satverse.suraksha.userlogin
 
 import android.app.ProgressDialog
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,20 +9,16 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
-import com.google.android.material.textfield.TextInputLayout
-import com.satverse.suraksha.LandingPageActivity
 import com.satverse.suraksha.R
 import io.appwrite.Client
 import io.appwrite.exceptions.AppwriteException
 import io.appwrite.services.Account
 import io.appwrite.services.Databases
-import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
 class SignUpActivity : AppCompatActivity() {
 
-    @OptIn(DelicateCoroutinesApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
@@ -137,10 +132,12 @@ class SignUpActivity : AppCompatActivity() {
             )
             Log.d("Appwrite response", user.toString())
 
-            val intent = Intent(this, LandingPageActivity::class.java)
-            startActivity(intent)
+            users.createVerification(url = "https://localhost/suraksha")
 
-            userLoggedIn()
+            Toast.makeText(this, "Verify your Email!" , Toast.LENGTH_SHORT).show()
+
+//            val intent = Intent(this, EmailVerificationActivity::class.java)
+//            startActivity(intent)
         }
 
         catch(e : AppwriteException) {
@@ -152,12 +149,5 @@ class SignUpActivity : AppCompatActivity() {
         finally {
             progressDialog.dismiss()
         }
-    }
-
-    private fun userLoggedIn() {
-        val sharedPref = getSharedPreferences("logIn", Context.MODE_PRIVATE)
-        val editor = sharedPref.edit()
-        editor.putBoolean("LoggedIn", true)
-        editor.apply()
     }
 }

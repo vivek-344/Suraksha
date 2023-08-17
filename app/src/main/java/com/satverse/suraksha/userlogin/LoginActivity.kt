@@ -13,7 +13,6 @@ import androidx.lifecycle.lifecycleScope
 import com.satverse.suraksha.LandingPageActivity
 import com.satverse.suraksha.R
 import io.appwrite.Client
-import io.appwrite.ID
 import io.appwrite.exceptions.AppwriteException
 import io.appwrite.services.Account
 import kotlinx.coroutines.launch
@@ -68,10 +67,23 @@ class LoginActivity : AppCompatActivity() {
             )
             Log.d("Appwrite response", user.toString())
 
-            val intent = Intent(this, LandingPageActivity::class.java)
-            startActivity(intent)
+            val response = users.get()
+            val isEmailVerified = response.emailVerification
 
-            isUserLoggedIn()
+            if (isEmailVerified) {
+                val intent = Intent(this, LandingPageActivity::class.java)
+                startActivity(intent)
+
+                isUserLoggedIn()
+            }
+            else {
+                users.createVerification(url = "https://localhost/suraksha")
+
+                Toast.makeText(this, "Verify your Email!" , Toast.LENGTH_SHORT).show()
+
+                val intent = Intent(this, VerifyEmailActivity::class.java)
+                startActivity(intent)
+            }
         }
 
         catch(e : AppwriteException) {

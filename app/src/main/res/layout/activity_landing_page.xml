@@ -53,33 +53,6 @@
         app:layout_constraintTop_toTopOf="@+id/bar"
         app:srcCompat="@drawable/three_dots" />
 
-    <TextView
-        android:id="@+id/welcome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hi_welcome_to_suraksha"
-        android:fontFamily="@font/productsans_light"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bar"
-        app:layout_constraintBottom_toTopOf="@+id/sosButton"/>
-
-    <TextView
-        android:id="@+id/urSafe"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:gravity="center"
-        android:text="@string/stay_fearless"
-        android:fontFamily="@font/productsans_light"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toTopOf="@+id/sosButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/welcome"
-        app:layout_constraintVertical_bias="0.0" />
-
     <ImageView
         android:id="@+id/sosButton"
         android:layout_width="wrap_content"

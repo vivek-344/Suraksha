@@ -134,11 +134,10 @@ class EditProfileActivity : AppCompatActivity() {
                     )
                 )
 
-                val landingPageIntent = Intent(this@EditProfileActivity, LandingPageActivity::class.java)
+                val landingPageIntent = Intent(this@EditProfileActivity, EditProfileActivity::class.java)
                 startActivity(landingPageIntent)
                 finish()
             }
-
             runOnUiThread {
                 Toast.makeText(this, "Profile Updated!" , Toast.LENGTH_SHORT).show()
             }
