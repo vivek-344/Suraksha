@@ -6,15 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".onboarding.screens.SecondScreen">
 
-    <pl.droidsonroids.gif.GifImageView
-        android:id="@+id/onboard2_gif"
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/onboard2"
         android:layout_width="400dp"
         android:layout_height="400dp"
         android:layout_marginTop="75dp"
-        android:src="@drawable/onboard2"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/call"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         android:id="@+id/onboard2_text"
@@ -29,6 +31,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/onboard2_gif" />
+        app:layout_constraintTop_toBottomOf="@+id/onboard2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 
 class SplashFragment : Fragment() {
@@ -20,12 +21,12 @@ class SplashFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_splash, container, false)
     }
 
-    @Deprecated("Deprecated in Java")
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        onBoardingFinished = onBoardingFinished()
 
         Handler().postDelayed({
-            // Check if the fragment is still attached and has a valid FragmentManager
             if (isAdded) {
                 val navController = findNavController()
                 if (onBoardingFinished) {

@@ -56,15 +56,15 @@ class SignUpActivity : AppCompatActivity() {
             .setProject("64bb859f2d53d0d44e9c")
             .setSelfSigned(true)
 
-        val fullName = findViewById<EditText>(R.id.name).text.toString()
-        val email = findViewById<EditText>(R.id.email).text.toString()
-        val phoneNumber = findViewById<EditText>(R.id.phone_no).text.toString()
-        val age = findViewById<EditText>(R.id.age).text.toString()
-        val apartment = findViewById<EditText>(R.id.apartment).text.toString()
-        val area = findViewById<EditText>(R.id.area).text.toString()
-        val pincode = findViewById<EditText>(R.id.pincode).text.toString()
-        val city = findViewById<EditText>(R.id.city).text.toString()
-        val state = findViewById<EditText>(R.id.state).text.toString()
+        val fullName = findViewById<EditText>(R.id.name).text.toString().trim()
+        val email = findViewById<EditText>(R.id.email).text.toString().trim()
+        val phoneNumber = findViewById<EditText>(R.id.phone_no).text.toString().trim()
+        val age = findViewById<EditText>(R.id.age).text.toString().trim()
+        val apartment = findViewById<EditText>(R.id.apartment).text.toString().trim()
+        val area = findViewById<EditText>(R.id.area).text.toString().trim()
+        val pincode = findViewById<EditText>(R.id.pincode).text.toString().trim()
+        val city = findViewById<EditText>(R.id.city).text.toString().trim()
+        val state = findViewById<EditText>(R.id.state).text.toString().trim()
         val password = findViewById<EditText>(R.id.password).text.toString()
 
         val validChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.-_"
@@ -122,7 +122,7 @@ class SignUpActivity : AppCompatActivity() {
             .setProject("64bb859f2d53d0d44e9c")
             .setSelfSigned(true)
 
-        val email = findViewById<EditText>(R.id.email).text.toString()
+        val email = findViewById<EditText>(R.id.email).text.toString().trim()
         val password = findViewById<EditText>(R.id.password).text.toString()
 
         val users = Account(client)

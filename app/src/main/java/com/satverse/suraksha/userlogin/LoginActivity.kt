@@ -55,7 +55,7 @@ class LoginActivity : AppCompatActivity() {
             .setProject("64bb859f2d53d0d44e9c")
             .setSelfSigned(true)
 
-        val email = findViewById<EditText>(R.id.email).text.toString()
+        val email = findViewById<EditText>(R.id.email).text.toString().trim()
         val password = findViewById<EditText>(R.id.password).text.toString()
 
         val users = Account(client)

@@ -35,14 +35,14 @@ class ForgotPasswordActivity : AppCompatActivity() {
             .setProject("64bb859f2d53d0d44e9c")
             .setSelfSigned(true)
 
-        val email = findViewById<EditText>(R.id.email).text.toString()
+        val email = findViewById<EditText>(R.id.email).text.toString().trim()
 
         val users = Account(client)
 
         try {
             users.createRecovery(email = email, url = "https://localhost/resetpassword")
 
-            Toast.makeText(this@ForgotPasswordActivity, "Email has been sent!", Toast.LENGTH_LONG).show()
+            Toast.makeText(this@ForgotPasswordActivity, "Reset link has been sent!", Toast.LENGTH_LONG).show()
 
             val intent = Intent(this@ForgotPasswordActivity, LoginActivity::class.java)
             startActivity(intent)
