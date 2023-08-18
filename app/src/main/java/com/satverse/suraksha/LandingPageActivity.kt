@@ -76,13 +76,6 @@ class LandingPageActivity : AppCompatActivity() {
 
         popupMenu.setOnMenuItemClickListener { item: MenuItem ->
             when (item.itemId) {
-                R.id.emergencyContacts -> {
-
-                    val intent = Intent(this, EmergencyContactsActivity::class.java)
-                    startActivity(intent)
-
-                    true
-                }
                 R.id.howToUse -> {
 
                     val intent = Intent(this, HowToUseActivity::class.java)

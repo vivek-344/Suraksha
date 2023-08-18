@@ -79,7 +79,7 @@ class LoginActivity : AppCompatActivity() {
             else {
                 users.createVerification(url = "https://localhost/suraksha")
 
-                Toast.makeText(this, "Verify your Email!" , Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Verify your email!" , Toast.LENGTH_SHORT).show()
 
                 val intent = Intent(this, VerifyEmailActivity::class.java)
                 startActivity(intent)

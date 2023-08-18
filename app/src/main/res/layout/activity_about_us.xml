@@ -142,7 +142,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/app_info"
         app:layout_constraintStart_toStartOf="@+id/app_info"
         app:layout_constraintTop_toBottomOf="@+id/about"
-        app:layout_constraintEnd_toStartOf="@id/github">
+        app:layout_constraintEnd_toStartOf="@id/website">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
@@ -198,7 +198,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/github"
+        android:id="@+id/website"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:cardBackgroundColor="@android:color/transparent"
@@ -211,19 +211,30 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/github_image"
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                android:elevation="12dp"
-                app:srcCompat="@drawable/github_sign"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/website_image_card"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="3dp"
+                app:cardBackgroundColor="@color/black"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/github_text"/>
+                app:layout_constraintEnd_toStartOf="@id/website_text">
+
+                <ImageView
+                    android:id="@+id/website_image"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_margin="2dp"
+                    android:elevation="12dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/trans_shield"/>
+
+            </androidx.cardview.widget.CardView>
 
             <TextView
-                android:id="@+id/github_text"
+                android:id="@+id/website_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
@@ -233,11 +244,11 @@
                 android:text="@string/website"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/github_image"
+                app:layout_constraintStart_toEndOf="@id/website_image_card"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/githubButton"
+                android:id="@+id/websiteButton"
                 android:layout_width="match_parent"
                 android:layout_height="18dp"
                 android:background="@color/transparent"
@@ -256,7 +267,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:cardBackgroundColor="@android:color/transparent"
-        app:layout_constraintStart_toEndOf="@id/github"
+        app:layout_constraintStart_toEndOf="@id/website"
         app:layout_constraintTop_toBottomOf="@id/about"
         app:layout_constraintBottom_toBottomOf="@id/app_info"
         app:layout_constraintEnd_toEndOf="@id/app_info">
@@ -308,10 +319,11 @@
     <ScrollView
         android:id="@+id/developers"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="331dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/app_info">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
@@ -321,15 +333,15 @@
                 android:id="@+id/developed_by"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/developed_by"
-                android:fontFamily="@font/productsans_black"
-                android:textSize="18sp"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="14dp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:fontFamily="@font/productsans_black"
+                android:text="@string/developed_by"
+                android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintHorizontal_bias="0.0">
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
             </TextView>
 
@@ -338,15 +350,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                app:cardCornerRadius="16dp"
-                android:layout_marginTop="8dp"
                 android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginBottom="4dp"
+                app:cardCornerRadius="16dp"
                 app:layout_constraintBottom_toTopOf="@id/about_satyam"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/developed_by" >
+                app:layout_constraintTop_toBottomOf="@id/developed_by">
 
                 <ImageView
                     android:id="@+id/vbackground"
@@ -354,7 +366,7 @@
                     android:layout_height="96dp"
                     android:elevation="12dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/background"/>
+                    android:src="@drawable/background" />
 
             </androidx.cardview.widget.CardView>
 
@@ -363,13 +375,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                app:cardCornerRadius="8dp"
                 android:layout_marginEnd="24dp"
+                app:cardCornerRadius="8dp"
                 app:layout_constraintBottom_toBottomOf="@id/about_vivek"
                 app:layout_constraintEnd_toEndOf="@id/about_vivek"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="@id/about_vivek"
-                app:layout_constraintTop_toTopOf="@id/about_vivek"
-                app:layout_constraintHorizontal_bias="1.0">
+                app:layout_constraintTop_toTopOf="@id/about_vivek">
 
                 <ImageView
                     android:id="@+id/vivek_image"
@@ -377,7 +389,7 @@
                     android:layout_height="64dp"
                     android:elevation="12dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/vivek"/>
+                    android:src="@drawable/vivek" />
 
             </androidx.cardview.widget.CardView>
 
@@ -385,48 +397,48 @@
                 android:id="@+id/vivek_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/vivek"
-                android:elevation="12dp"
-                android:fontFamily="@font/productsans_black"
-                android:textColor="@color/gray"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
+                android:elevation="12dp"
+                android:fontFamily="@font/productsans_black"
+                android:text="@string/vivek"
+                android:textColor="@color/gray"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@id/about_vivek"
                 app:layout_constraintEnd_toEndOf="@id/about_vivek"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@id/about_vivek"
                 app:layout_constraintTop_toTopOf="@id/about_vivek"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintVertical_bias="0.0"/>
+                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
                 android:id="@+id/vivek_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/vivek_344"
-                android:elevation="12dp"
-                android:fontFamily="@font/productsans_italic"
-                android:textColor="@color/gray"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="2dp"
+                android:elevation="12dp"
+                android:fontFamily="@font/productsans_italic"
+                android:text="@string/vivek_344"
+                android:textColor="@color/gray"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@id/about_vivek"
                 app:layout_constraintEnd_toEndOf="@id/about_vivek"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@id/about_vivek"
                 app:layout_constraintTop_toBottomOf="@id/vivek_name"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintVertical_bias="0.0"/>
+                app:layout_constraintVertical_bias="0.0" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/vtwitter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:cardBackgroundColor="@android:color/transparent"
                 android:layout_marginBottom="4dp"
+                app:cardBackgroundColor="@android:color/transparent"
                 app:layout_constraintBottom_toBottomOf="@+id/about_vivek"
+                app:layout_constraintEnd_toStartOf="@id/vgithub"
                 app:layout_constraintStart_toStartOf="@+id/about_vivek"
-                app:layout_constraintTop_toBottomOf="@+id/vivek_id"
-                app:layout_constraintEnd_toStartOf="@id/vgithub">
+                app:layout_constraintTop_toBottomOf="@+id/vivek_id">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="wrap_content"
@@ -437,10 +449,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:cardCornerRadius="3dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/vtwitter_text">
+                        app:layout_constraintEnd_toStartOf="@id/vtwitter_text"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
                         <ImageView
                             android:id="@+id/vtwitter_icon"
@@ -448,7 +460,7 @@
                             android:layout_height="18dp"
                             android:elevation="12dp"
                             android:scaleType="fitXY"
-                            android:src="@drawable/x_logo"/>
+                            android:src="@drawable/x_logo" />
 
                     </androidx.cardview.widget.CardView>
 
@@ -456,11 +468,11 @@
                         android:id="@+id/vtwitter_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/twitter"
-                        android:fontFamily="@font/productsans_black"
-                        android:textColor="@color/gray"
-                        android:elevation="12dp"
                         android:layout_marginStart="4dp"
+                        android:elevation="12dp"
+                        android:fontFamily="@font/productsans_black"
+                        android:text="@string/twitter"
+                        android:textColor="@color/gray"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/vtwitter_image"
@@ -485,12 +497,12 @@
                 android:id="@+id/vgithub"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:cardBackgroundColor="@android:color/transparent"
                 android:layout_marginBottom="4dp"
-                app:layout_constraintStart_toStartOf="@id/about_vivek"
-                app:layout_constraintTop_toBottomOf="@id/vivek_id"
+                app:cardBackgroundColor="@android:color/transparent"
                 app:layout_constraintBottom_toBottomOf="@id/about_vivek"
-                app:layout_constraintEnd_toEndOf="@id/about_vivek">
+                app:layout_constraintEnd_toEndOf="@id/about_vivek"
+                app:layout_constraintStart_toStartOf="@id/about_vivek"
+                app:layout_constraintTop_toBottomOf="@id/vivek_id">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="wrap_content"
@@ -501,11 +513,11 @@
                         android:layout_width="18dp"
                         android:layout_height="18dp"
                         android:elevation="12dp"
-                        app:srcCompat="@drawable/github_sign"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/vgithub_text"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/vgithub_text"/>
+                        app:srcCompat="@drawable/github_sign" />
 
                     <TextView
                         android:id="@+id/vgithub_text"
@@ -514,8 +526,8 @@
                         android:layout_marginStart="4dp"
                         android:elevation="12dp"
                         android:fontFamily="@font/productsans_black"
-                        android:textColor="@color/gray"
                         android:text="@string/github"
+                        android:textColor="@color/gray"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/vgithub_image"
@@ -541,15 +553,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                app:cardCornerRadius="16dp"
-                android:layout_marginTop="8dp"
                 android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginBottom="4dp"
+                app:cardCornerRadius="16dp"
                 app:layout_constraintBottom_toTopOf="@id/about_shreya"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/about_vivek" >
+                app:layout_constraintTop_toBottomOf="@id/about_vivek">
 
                 <ImageView
                     android:id="@+id/sbackground"
@@ -557,7 +569,7 @@
                     android:layout_height="96dp"
                     android:elevation="12dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/background"/>
+                    android:src="@drawable/background" />
 
             </androidx.cardview.widget.CardView>
 
@@ -566,13 +578,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                app:cardCornerRadius="8dp"
                 android:layout_marginEnd="24dp"
+                app:cardCornerRadius="8dp"
                 app:layout_constraintBottom_toBottomOf="@id/about_satyam"
                 app:layout_constraintEnd_toEndOf="@id/about_satyam"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="@id/about_satyam"
-                app:layout_constraintTop_toTopOf="@id/about_satyam"
-                app:layout_constraintHorizontal_bias="1.0">
+                app:layout_constraintTop_toTopOf="@id/about_satyam">
 
                 <ImageView
                     android:id="@+id/satyam_image"
@@ -580,7 +592,7 @@
                     android:layout_height="64dp"
                     android:elevation="12dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/satyam"/>
+                    android:src="@drawable/satyam" />
 
             </androidx.cardview.widget.CardView>
 
@@ -588,89 +600,90 @@
                 android:id="@+id/satyam_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/satyam_sharma"
-                android:elevation="12dp"
-                android:fontFamily="@font/productsans_black"
-                android:textColor="@color/gray"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
+                android:elevation="12dp"
+                android:fontFamily="@font/productsans_black"
+                android:text="@string/satyam_sharma"
+                android:textColor="@color/gray"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@id/about_satyam"
                 app:layout_constraintEnd_toEndOf="@id/about_satyam"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@id/about_satyam"
                 app:layout_constraintTop_toTopOf="@id/about_satyam"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintVertical_bias="0.0"/>
+                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
                 android:id="@+id/satyam_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/satyamsharma17"
-                android:elevation="12dp"
-                android:fontFamily="@font/productsans_italic"
-                android:textColor="@color/gray"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="2dp"
+                android:elevation="12dp"
+                android:fontFamily="@font/productsans_italic"
+                android:text="@string/satyamsharma17"
+                android:textColor="@color/gray"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@id/about_satyam"
                 app:layout_constraintEnd_toEndOf="@id/about_satyam"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@id/about_satyam"
                 app:layout_constraintTop_toBottomOf="@id/satyam_name"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintVertical_bias="0.0"/>
+                app:layout_constraintVertical_bias="0.0" />
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/stwitter"
+                android:id="@+id/slinkedin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:cardBackgroundColor="@android:color/transparent"
                 android:layout_marginBottom="4dp"
+                app:cardBackgroundColor="@android:color/transparent"
                 app:layout_constraintBottom_toBottomOf="@+id/about_satyam"
+                app:layout_constraintEnd_toStartOf="@id/sgithub"
                 app:layout_constraintStart_toStartOf="@+id/about_satyam"
-                app:layout_constraintTop_toBottomOf="@+id/satyam_id"
-                app:layout_constraintEnd_toStartOf="@id/sgithub">
+                app:layout_constraintTop_toBottomOf="@+id/satyam_id">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/stwitter_image"
+                        android:id="@+id/slinkedin_image"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        app:cardBackgroundColor="@android:color/transparent"
                         app:cardCornerRadius="3dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/stwitter_text">
+                        app:layout_constraintEnd_toStartOf="@id/slinkedin_text"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
                         <ImageView
-                            android:id="@+id/stwitter_icon"
+                            android:id="@+id/slinkedin_icon"
                             android:layout_width="18dp"
                             android:layout_height="18dp"
                             android:elevation="12dp"
                             android:scaleType="fitXY"
-                            android:src="@drawable/x_logo"/>
+                            android:src="@drawable/linkedin" />
 
                     </androidx.cardview.widget.CardView>
 
                     <TextView
-                        android:id="@+id/stwitter_text"
+                        android:id="@+id/slinkedin_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/twitter"
-                        android:fontFamily="@font/productsans_black"
-                        android:textColor="@color/gray"
-                        android:elevation="12dp"
                         android:layout_marginStart="4dp"
+                        android:elevation="12dp"
+                        android:fontFamily="@font/productsans_black"
+                        android:text="@string/linkedin"
+                        android:textColor="@color/gray"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/stwitter_image"
+                        app:layout_constraintStart_toEndOf="@id/slinkedin_image"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <Button
-                        android:id="@+id/satyamTwitterButton"
+                        android:id="@+id/satyamLinkedinButton"
                         android:layout_width="match_parent"
                         android:layout_height="18dp"
                         android:background="@color/transparent"
@@ -688,12 +701,12 @@
                 android:id="@+id/sgithub"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:cardBackgroundColor="@android:color/transparent"
                 android:layout_marginBottom="4dp"
-                app:layout_constraintStart_toStartOf="@id/about_satyam"
-                app:layout_constraintTop_toBottomOf="@id/satyam_id"
+                app:cardBackgroundColor="@android:color/transparent"
                 app:layout_constraintBottom_toBottomOf="@id/about_satyam"
-                app:layout_constraintEnd_toEndOf="@id/about_satyam">
+                app:layout_constraintEnd_toEndOf="@id/about_satyam"
+                app:layout_constraintStart_toStartOf="@id/about_satyam"
+                app:layout_constraintTop_toBottomOf="@id/satyam_id">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="wrap_content"
@@ -704,11 +717,11 @@
                         android:layout_width="18dp"
                         android:layout_height="18dp"
                         android:elevation="12dp"
-                        app:srcCompat="@drawable/github_sign"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/sgithub_text"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/sgithub_text"/>
+                        app:srcCompat="@drawable/github_sign" />
 
                     <TextView
                         android:id="@+id/sgithub_text"
@@ -717,8 +730,8 @@
                         android:layout_marginStart="4dp"
                         android:elevation="12dp"
                         android:fontFamily="@font/productsans_black"
-                        android:textColor="@color/gray"
                         android:text="@string/github"
+                        android:textColor="@color/gray"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/sgithub_image"
@@ -744,15 +757,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                app:cardCornerRadius="16dp"
-                android:layout_marginTop="8dp"
                 android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginBottom="4dp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:cardCornerRadius="16dp"
+                app:layout_constraintBottom_toTopOf="@id/about_yash"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/about_satyam" >
+                app:layout_constraintTop_toBottomOf="@id/about_satyam">
 
                 <ImageView
                     android:id="@+id/shbackground"
@@ -760,7 +773,7 @@
                     android:layout_height="96dp"
                     android:elevation="12dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/background"/>
+                    android:src="@drawable/background" />
 
             </androidx.cardview.widget.CardView>
 
@@ -769,13 +782,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                app:cardCornerRadius="8dp"
                 android:layout_marginEnd="24dp"
+                app:cardCornerRadius="8dp"
                 app:layout_constraintBottom_toBottomOf="@id/about_shreya"
                 app:layout_constraintEnd_toEndOf="@id/about_shreya"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="@id/about_shreya"
-                app:layout_constraintTop_toTopOf="@id/about_shreya"
-                app:layout_constraintHorizontal_bias="1.0">
+                app:layout_constraintTop_toTopOf="@id/about_shreya">
 
                 <ImageView
                     android:id="@+id/shreya_image"
@@ -783,7 +796,7 @@
                     android:layout_height="64dp"
                     android:elevation="12dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/satyam"/>
+                    android:src="@drawable/shreya" />
 
             </androidx.cardview.widget.CardView>
 
@@ -791,89 +804,90 @@
                 android:id="@+id/shreya_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/shreya_shukla"
-                android:elevation="12dp"
-                android:fontFamily="@font/productsans_black"
-                android:textColor="@color/gray"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
+                android:elevation="12dp"
+                android:fontFamily="@font/productsans_black"
+                android:text="@string/shreya_shukla"
+                android:textColor="@color/gray"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@id/about_shreya"
                 app:layout_constraintEnd_toEndOf="@id/about_shreya"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@id/about_shreya"
                 app:layout_constraintTop_toTopOf="@id/about_shreya"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintVertical_bias="0.0"/>
+                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
                 android:id="@+id/shreya_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/satyamsharma17"
-                android:elevation="12dp"
-                android:fontFamily="@font/productsans_italic"
-                android:textColor="@color/gray"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="2dp"
+                android:elevation="12dp"
+                android:fontFamily="@font/productsans_italic"
+                android:text="@string/shreya984"
+                android:textColor="@color/gray"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@id/about_shreya"
                 app:layout_constraintEnd_toEndOf="@id/about_shreya"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@id/about_shreya"
                 app:layout_constraintTop_toBottomOf="@id/shreya_name"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintVertical_bias="0.0"/>
+                app:layout_constraintVertical_bias="0.0" />
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/shtwitter"
+                android:id="@+id/shlinkedin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:cardBackgroundColor="@android:color/transparent"
                 android:layout_marginBottom="4dp"
+                app:cardBackgroundColor="@android:color/transparent"
                 app:layout_constraintBottom_toBottomOf="@+id/about_shreya"
+                app:layout_constraintEnd_toStartOf="@id/shgithub"
                 app:layout_constraintStart_toStartOf="@+id/about_shreya"
-                app:layout_constraintTop_toBottomOf="@+id/shreya_id"
-                app:layout_constraintEnd_toStartOf="@id/shgithub">
+                app:layout_constraintTop_toBottomOf="@+id/shreya_id">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/shtwitter_image"
+                        android:id="@+id/shlinkedin_image"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        app:cardBackgroundColor="@android:color/transparent"
                         app:cardCornerRadius="3dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/shtwitter_text">
+                        app:layout_constraintEnd_toStartOf="@id/shlinkedin_text"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
                         <ImageView
-                            android:id="@+id/shtwitter_icon"
+                            android:id="@+id/shlinkedin_icon"
                             android:layout_width="18dp"
                             android:layout_height="18dp"
                             android:elevation="12dp"
                             android:scaleType="fitXY"
-                            android:src="@drawable/linkedin"/>
+                            android:src="@drawable/linkedin" />
 
                     </androidx.cardview.widget.CardView>
 
                     <TextView
-                        android:id="@+id/shtwitter_text"
+                        android:id="@+id/shlinkedin_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/linkedin"
-                        android:fontFamily="@font/productsans_black"
-                        android:textColor="@color/gray"
-                        android:elevation="12dp"
                         android:layout_marginStart="4dp"
+                        android:elevation="12dp"
+                        android:fontFamily="@font/productsans_black"
+                        android:text="@string/linkedin"
+                        android:textColor="@color/gray"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/shtwitter_image"
+                        app:layout_constraintStart_toEndOf="@id/shlinkedin_image"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <Button
-                        android:id="@+id/shreyaTwitterButton"
+                        android:id="@+id/shreyaLinkedinButton"
                         android:layout_width="match_parent"
                         android:layout_height="18dp"
                         android:background="@color/transparent"
@@ -891,12 +905,12 @@
                 android:id="@+id/shgithub"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:cardBackgroundColor="@android:color/transparent"
                 android:layout_marginBottom="4dp"
-                app:layout_constraintStart_toStartOf="@id/about_shreya"
-                app:layout_constraintTop_toBottomOf="@id/shreya_id"
+                app:cardBackgroundColor="@android:color/transparent"
                 app:layout_constraintBottom_toBottomOf="@id/about_shreya"
-                app:layout_constraintEnd_toEndOf="@id/about_shreya">
+                app:layout_constraintEnd_toEndOf="@id/about_shreya"
+                app:layout_constraintStart_toStartOf="@id/about_shreya"
+                app:layout_constraintTop_toBottomOf="@id/shreya_id">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="wrap_content"
@@ -907,11 +921,11 @@
                         android:layout_width="18dp"
                         android:layout_height="18dp"
                         android:elevation="12dp"
-                        app:srcCompat="@drawable/github_sign"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/shgithub_text"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/shgithub_text"/>
+                        app:srcCompat="@drawable/github_sign" />
 
                     <TextView
                         android:id="@+id/shgithub_text"
@@ -920,8 +934,8 @@
                         android:layout_marginStart="4dp"
                         android:elevation="12dp"
                         android:fontFamily="@font/productsans_black"
-                        android:textColor="@color/gray"
                         android:text="@string/github"
+                        android:textColor="@color/gray"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/shgithub_image"
@@ -929,6 +943,208 @@
 
                     <Button
                         android:id="@+id/shreyaGitHubButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="18dp"
+                        android:background="@color/transparent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/about_yash"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="4dp"
+                app:cardCornerRadius="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/about_shreya">
+
+                <ImageView
+                    android:id="@+id/yashbackground"
+                    android:layout_width="match_parent"
+                    android:layout_height="96dp"
+                    android:elevation="12dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/background" />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/yash"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="24dp"
+                app:cardCornerRadius="8dp"
+                app:layout_constraintBottom_toBottomOf="@id/about_yash"
+                app:layout_constraintEnd_toEndOf="@id/about_yash"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@id/about_yash"
+                app:layout_constraintTop_toTopOf="@id/about_yash">
+
+                <ImageView
+                    android:id="@+id/yash_image"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:elevation="12dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/yash" />
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/yash_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:elevation="12dp"
+                android:fontFamily="@font/productsans_black"
+                android:text="@string/yash_darbar"
+                android:textColor="@color/gray"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@id/about_yash"
+                app:layout_constraintEnd_toEndOf="@id/about_yash"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@id/about_yash"
+                app:layout_constraintTop_toTopOf="@id/about_yash"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/yash_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="2dp"
+                android:elevation="12dp"
+                android:fontFamily="@font/productsans_italic"
+                android:text="@string/yashdarbar"
+                android:textColor="@color/gray"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@id/about_yash"
+                app:layout_constraintEnd_toEndOf="@id/about_yash"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@id/about_yash"
+                app:layout_constraintTop_toBottomOf="@id/yash_name"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/yashtwitter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:layout_constraintBottom_toBottomOf="@+id/about_yash"
+                app:layout_constraintEnd_toStartOf="@id/yashgithub"
+                app:layout_constraintStart_toStartOf="@+id/about_yash"
+                app:layout_constraintTop_toBottomOf="@+id/yash_id">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/yashtwitter_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="3dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/yashtwitter_text"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:id="@+id/yashtwitter_icon"
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:elevation="12dp"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/x_logo" />
+
+                    </androidx.cardview.widget.CardView>
+
+                    <TextView
+                        android:id="@+id/yashtwitter_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:elevation="12dp"
+                        android:fontFamily="@font/productsans_black"
+                        android:text="@string/twitter"
+                        android:textColor="@color/gray"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/yashtwitter_image"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <Button
+                        android:id="@+id/yashTwitterButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="18dp"
+                        android:background="@color/transparent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/yashgithub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:layout_constraintBottom_toBottomOf="@id/about_yash"
+                app:layout_constraintEnd_toEndOf="@id/about_yash"
+                app:layout_constraintStart_toStartOf="@id/about_yash"
+                app:layout_constraintTop_toBottomOf="@id/yash_id">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/yashgithub_image"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:elevation="12dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/yashgithub_text"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/github_sign" />
+
+                    <TextView
+                        android:id="@+id/yashgithub_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:elevation="12dp"
+                        android:fontFamily="@font/productsans_black"
+                        android:text="@string/github"
+                        android:textColor="@color/gray"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/yashgithub_image"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <Button
+                        android:id="@+id/yashGitHubButton"
                         android:layout_width="match_parent"
                         android:layout_height="18dp"
                         android:background="@color/transparent"

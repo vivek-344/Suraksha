@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.satverse.suraksha.userlogin
 
 import android.app.ProgressDialog
@@ -132,22 +134,21 @@ class SignUpActivity : AppCompatActivity() {
             )
             Log.d("Appwrite response", user.toString())
 
-            users.createVerification(url = "https://localhost/suraksha")
+            val verificationResponse = users.createVerification(url = "https://localhost/suraksha")
 
-            Toast.makeText(this, "Verify your Email!" , Toast.LENGTH_SHORT).show()
+            Log.d("Verification response", verificationResponse.toString())
 
-//            val intent = Intent(this, EmailVerificationActivity::class.java)
-//            startActivity(intent)
-        }
+            val intent = Intent(this@SignUpActivity, VerifyEmailActivity::class.java)
+            startActivity(intent)
 
-        catch(e : AppwriteException) {
+        } catch(e : AppwriteException) {
             runOnUiThread {
                 Toast.makeText(this, "$e" , Toast.LENGTH_SHORT).show()
             }
             e.printStackTrace()
-        }
-        finally {
+        } finally {
             progressDialog.dismiss()
         }
+
     }
 }

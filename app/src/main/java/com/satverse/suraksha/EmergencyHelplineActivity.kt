@@ -11,6 +11,12 @@ class EmergencyHelplineActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_emergency_helpline)
 
+        val back = findViewById<ImageView>(R.id.back)
+        back.setOnClickListener {
+            val Intent = Intent(this@EmergencyHelplineActivity, LandingPageActivity::class.java)
+            startActivity(Intent)
+        }
+
         val emergencyButtons = mapOf(
             R.id.womenButton to "1091",
             R.id.abuseButton to "181",

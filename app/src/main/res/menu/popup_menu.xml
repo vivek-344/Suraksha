@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/emergencyContacts"
-        android:title="@string/emergency_contacts" />
-    <item
         android:id="@+id/howToUse"
         android:title="@string/how_to_use" />
     <item

@@ -25,7 +25,7 @@
     <string name="already_have_an_account_login">Already have an account? Login</string>
     <string name="state">State</string>
     <string name="area">Area, Street, Sector, Village</string>
-    <string name="apartment">Flat, House no., Building, Apartment</string>
+    <string name="apartment">Flat, House, Building, Apartment</string>
     <string name="change_password">Change Password</string>
     <string name="call_100">Call 100</string>
     <string name="gender">Gender</string>
@@ -36,7 +36,7 @@
     <string name="stay_fearless">“Stay fearless and confident with SURAKSHA\n- your personal safety guardian.”</string>
     <string name="fake_siren_alert">Fake Siren Alert</string>
     <string name="emergency_helpline">Emergency Helpline</string>
-    <string name="about_us">About Us!</string>
+    <string name="about_us">About Us</string>
     <string name="textview">TextView</string>
     <string name="emergency_contacts">Emergency Contacts</string>
     <string name="how_to_use">How to use?</string>
@@ -73,6 +73,9 @@
     <string name="enter_new_password">Enter new password!</string>
     <string name="confirm_password">Confirm password</string>
     <string name="new_password">New password</string>
+    <string name="shreya984">\@shreya984</string>
+    <string name="yash_darbar">Yash Darbar</string>
+    <string name="yashdarbar">\@yashdarbar</string>
     <string-array name="gender_list">
         <item>Male</item>
         <item>Female</item>

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.textfield.TextInputEditText
@@ -21,6 +22,12 @@ class EditProfileActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_profile)
+
+        val back = findViewById<ImageView>(R.id.back)
+        back.setOnClickListener {
+            val Intent = Intent(this@EditProfileActivity, LandingPageActivity::class.java)
+            startActivity(Intent)
+        }
 
         lifecycleScope.launch {
             fetchData()
