@@ -132,7 +132,7 @@ class AboutUsActivity : AppCompatActivity() {
 
         val satyamTwitter = findViewById<Button>(R.id.satyamLinkedinButton)
         satyamTwitter.setOnClickListener {
-            val url = "https://www.linkedin.com/in/iamsatyam17"
+            val url = "https://linkedin.com/in/iamsatyam17"
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
 
             if (intent.resolveActivity(packageManager) != null) {
@@ -168,7 +168,7 @@ class AboutUsActivity : AppCompatActivity() {
 
         val shreyaTwitter = findViewById<Button>(R.id.shreyaLinkedinButton)
         shreyaTwitter.setOnClickListener {
-            val url = "https://www.linkedin.com/in/shreya-shukla-8b87a3231"
+            val url = "https://linkedin.com/in/shreya-shukla-8b87a3231"
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
 
             if (intent.resolveActivity(packageManager) != null) {

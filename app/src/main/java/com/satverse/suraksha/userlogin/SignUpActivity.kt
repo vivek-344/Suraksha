@@ -146,7 +146,6 @@ class SignUpActivity : AppCompatActivity() {
                 Toast.makeText(this, "$e" , Toast.LENGTH_SHORT).show()
             }
             e.printStackTrace()
-        } finally {
             progressDialog.dismiss()
         }
 
