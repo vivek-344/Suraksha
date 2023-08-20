@@ -12,7 +12,6 @@ import androidx.lifecycle.lifecycleScope
 import com.google.android.material.textfield.TextInputEditText
 import com.satverse.suraksha.LandingPageActivity
 import com.satverse.suraksha.R
-import com.satverse.suraksha.userlogin.ForgotPasswordActivity
 import io.appwrite.Client
 import io.appwrite.services.Account
 import io.appwrite.services.Databases

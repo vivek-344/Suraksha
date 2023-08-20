@@ -53,6 +53,33 @@
         app:layout_constraintTop_toTopOf="@+id/bar"
         app:srcCompat="@drawable/three_dots" />
 
+    <TextView
+        android:id="@+id/welcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/productsans_regular"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bar"
+        app:layout_constraintBottom_toTopOf="@+id/sosButton"
+        app:layout_constraintVertical_bias="0.4"/>
+
+    <TextView
+        android:id="@+id/urSafe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:gravity="center"
+        android:text="@string/stay_fearless"
+        android:fontFamily="@font/productsans_light"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/sosButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/welcome"
+        app:layout_constraintVertical_bias="0.0" />
+
     <ImageView
         android:id="@+id/sosButton"
         android:layout_width="wrap_content"
@@ -87,13 +114,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/sosButton"
         app:layout_constraintVertical_bias="0.15"
-        app:srcCompat="@drawable/call_100_button" />
+        app:srcCompat="@drawable/emergency_contacts_button" />
 
     <TextView
-        android:id="@+id/call100"
+        android:id="@+id/emergency_contacts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/call_100"
+        android:text="@string/emergency_contacts"
         android:fontFamily="@font/productsans_black"
         android:textColor="@color/white"
         android:textSize="16sp"
@@ -118,10 +145,10 @@
         android:id="@+id/emergency"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="6dp"
         android:fontFamily="@font/productsans_regular"
         android:text="@string/emergency_helpline"
-        android:textSize="11sp"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="@id/emergencyButton"
         app:layout_constraintStart_toStartOf="@id/emergencyButton"
         app:layout_constraintTop_toBottomOf="@+id/emergencyButton" />
@@ -141,10 +168,10 @@
         android:id="@+id/fakeSiren"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="6dp"
         android:fontFamily="@font/productsans_regular"
         android:text="@string/fake_siren_alert"
-        android:textSize="11sp"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/emergency"
         app:layout_constraintHorizontal_bias="0.55"
@@ -167,10 +194,10 @@
         android:id="@+id/aboutUs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="6dp"
         android:fontFamily="@font/productsans_regular"
         android:text="@string/about_us"
-        android:textSize="11sp"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/emergency"
