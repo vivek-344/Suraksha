@@ -273,10 +273,9 @@ class LandingPageActivity : AppCompatActivity() {
                 return data.data["fullName"].toString().trim()
             }
         } catch (e: Exception) {
-            Log.e("EditProfileActivity", "Error while listing sessions", e)
+            Log.e("LandingPageActivity", "Error while fetching user's name", e)
         }
 
         return "User"
     }
-
 }

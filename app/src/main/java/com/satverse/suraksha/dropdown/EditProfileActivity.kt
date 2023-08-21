@@ -59,12 +59,7 @@ class EditProfileActivity : AppCompatActivity() {
                 Toast.makeText(this, "Invalid Pin Code", Toast.LENGTH_SHORT).show()
             } else {
                 lifecycleScope.launch {
-                    val updateProfileJob = async {
-                        updateProfile()
-                    }
-                    updateProfileJob.await()
-
-                    refetchData()
+                    updateProfile()
                 }
             }
         }
@@ -186,65 +181,6 @@ class EditProfileActivity : AppCompatActivity() {
             Log.e("EditProfileActivity", "Error while updating profile", e)
         } finally {
             progressDialog.dismiss()
-        }
-    }
-
-    private suspend fun refetchData() {
-        val nameEditText = findViewById<TextInputEditText>(R.id.name)
-        val emailEditText = findViewById<TextInputEditText>(R.id.email)
-        val phoneEditText = findViewById<TextInputEditText>(R.id.phone_no)
-        val ageEditText = findViewById<TextInputEditText>(R.id.age)
-        val apartmentEditText = findViewById<TextInputEditText>(R.id.apartment)
-        val areaEditText = findViewById<TextInputEditText>(R.id.area)
-        val pincodeEditText = findViewById<TextInputEditText>(R.id.pincode)
-        val cityEditText = findViewById<TextInputEditText>(R.id.city)
-        val stateEditText = findViewById<TextInputEditText>(R.id.state)
-
-        val client = Client(this)
-            .setEndpoint("https://cloud.appwrite.io/v1")
-            .setProject("64bb859f2d53d0d44e9c")
-            .setSelfSigned(true)
-
-        val account = Account(client)
-        val userDatabase = Databases(client)
-
-        try {
-            val userData = account.listSessions()
-            val userId = userData.sessions.firstOrNull()?.userId
-
-            if (userId != null) {
-                val data = userDatabase.getDocument(
-                    databaseId = "64bc1e13ca662cd39b95",
-                    collectionId = "64bc1e1e7465e6d3e4c2",
-                    documentId = userId
-                )
-
-                val fullName = data.data["fullName"].toString().trim()
-                val email = data.data["email"].toString().trim()
-                val phoneNumberString = data.data["phoneNumber"].toString().trim()
-                val ageString = data.data["age"].toString().trim()
-                val apartment = data.data["apartment"].toString().trim()
-                val area = data.data["area"].toString().trim()
-                val pincodeString = data.data["pincode"].toString().trim()
-                val city = data.data["city"].toString().trim()
-                val state = data.data["state"].toString().trim()
-
-                val age = ageString.toDouble().toLong().toString()
-                val phoneNumber = phoneNumberString.toDouble().toLong().toString()
-                val pincode = pincodeString.toDouble().toLong().toString()
-
-                nameEditText.setText(fullName)
-                emailEditText.setText(email)
-                phoneEditText.setText(phoneNumber)
-                ageEditText.setText(age)
-                apartmentEditText.setText(apartment)
-                areaEditText.setText(area)
-                pincodeEditText.setText(pincode)
-                cityEditText.setText(city)
-                stateEditText.setText(state)
-            }
-        } catch (e: Exception) {
-            Log.e("EditProfileActivity", "Error while listing sessions", e)
         }
     }
 
