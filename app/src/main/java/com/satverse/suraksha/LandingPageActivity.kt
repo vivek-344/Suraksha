@@ -67,6 +67,7 @@ class LandingPageActivity : AppCompatActivity() {
 
             // Start the typing animation
             startTypingAnimation(welcomeTextView, welcomeMessage)
+            isOnCreateRunning = false  // Set the flag to true
         }
 
         val backgroundService = Intent(
@@ -134,7 +135,6 @@ class LandingPageActivity : AppCompatActivity() {
             val intent = Intent(this, AboutUsActivity::class.java)
             startActivity(intent)
         }
-        isOnCreateRunning = false // Set the flag to false when onCreate completes
     }
 
     override fun onResume() {
