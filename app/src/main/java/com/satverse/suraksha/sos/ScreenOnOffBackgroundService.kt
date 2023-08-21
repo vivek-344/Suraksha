@@ -4,8 +4,10 @@ import android.app.Service
 import android.content.BroadcastReceiver
 import android.content.Intent
 import android.content.IntentFilter
+import android.media.MediaPlayer
 import android.os.IBinder
 import android.util.Log
+
 
 /**
  * Services :- Services in Android are a special component that facilitates an application to run in the background in order
@@ -14,13 +16,13 @@ import android.util.Log
  * A service is started when an application component, such as an activity, starts it by calling startService().
  */
 class ScreenOnOffBackgroundService : Service() {
+    var mediaPlayer: MediaPlayer? = null
     /**
      * BroadcastReceiver :- Broadcast in android is the system-wide events that can occur when the device starts,
      * when a message is received on the device or when incoming calls are received, or when a device goes to airplane mode,
      * etc. Broadcast Receivers are used to respond to these system-wide events.
      */
     var screenOnOffReceiver: BroadcastReceiver? = null
-    private val myBlog = "http://www.cs.dartmouth.edu/~campbell/cs65/cs65.html"
     /**
      * IBinder :- Base interface for a remotable object, the core part of a lightweight remote procedure call mechanism designed for
      * high performance when performing in-process and cross-process calls.
@@ -75,31 +77,6 @@ class ScreenOnOffBackgroundService : Service() {
 
         // Register the broadcast receiver with the intent filter object.
         registerReceiver(screenOnOffReceiver, intentFilter)
-
-
-//        // Send Notification
-//        String notificationTitle = "Demo of Notification!";
-//        String notificationText = "Course Website";
-//        Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(myBlog));
-//        @SuppressLint("WrongConstant") PendingIntent pendingIntent
-//                = PendingIntent.getActivity(getBaseContext(),
-//                0, myIntent,
-//                Intent.FLAG_ACTIVITY_NEW_TASK);
-//
-//
-//
-//
-//        Notification notification = new Notification.Builder(this)
-//                .setContentTitle(notificationTitle)
-//                .setContentText(notificationText).setSmallIcon(R.mipmap.ic_launcher)
-//                .setContentIntent(pendingIntent).build();
-//        NotificationManager notificationManager =
-//                (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-//        notification.flags = notification.flags
-//                | Notification.FLAG_ONGOING_EVENT;
-//        notification.flags |= Notification.FLAG_AUTO_CANCEL;
-//
-//        notificationManager.notify(0, notification);
         Log.d(
             ScreenOnOffReceiver.SCREEN_TOGGLE_TAG,
             "Service onCreate: screenOnOffReceiver is registered."
@@ -107,6 +84,7 @@ class ScreenOnOffBackgroundService : Service() {
     }
 
     override fun onDestroy() {
+        mediaPlayer!!.stop()
         super.onDestroy()
 
         // Unregister screenOnOffReceiver when destroy.

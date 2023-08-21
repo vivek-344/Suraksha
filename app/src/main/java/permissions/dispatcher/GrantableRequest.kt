@@ -1,5 +1,5 @@
-package permissions.dispatcher;
+package permissions.dispatcher
 
-public interface GrantableRequest extends PermissionRequest {
-    void grant();
+interface GrantableRequest : PermissionRequest {
+    fun grant()
 }

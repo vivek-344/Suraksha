@@ -28,7 +28,4 @@ class ContactModel(val id: Int, initialName: String, initialPhoneNo: String) {
         return contactName
     }
 
-    fun setName(name: String) {
-        this.contactName = name
-    }
 }

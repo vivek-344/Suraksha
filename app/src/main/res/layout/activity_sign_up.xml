@@ -118,7 +118,8 @@
                     android:id="@+id/phone_no"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:maxLength="10"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -136,7 +137,8 @@
                     android:id="@+id/age"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:maxLength="2" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -190,7 +192,8 @@
                     android:id="@+id/pincode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:maxLength="6" />
 
             </com.google.android.material.textfield.TextInputLayout>
 

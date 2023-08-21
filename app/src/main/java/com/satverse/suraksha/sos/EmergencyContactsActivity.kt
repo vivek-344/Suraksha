@@ -5,6 +5,7 @@ import android.app.ActivityManager
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -17,14 +18,17 @@ import android.widget.ImageView
 import android.widget.ListView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.satverse.suraksha.sos.contacts.CustomAdapter
 import com.satverse.suraksha.R
 import com.satverse.suraksha.sos.contacts.ContactModel
+import com.satverse.suraksha.sos.contacts.CustomAdapter
 import com.satverse.suraksha.sos.contacts.DbHelper
 import com.satverse.suraksha.sos.shake.ReactivateService
 import com.satverse.suraksha.sos.shake.SensorService
 
 class EmergencyContactsActivity : AppCompatActivity() {
+
+    var mediaPlayer: MediaPlayer? = null
+
     private var button: ImageView? = null
     private var listView: ListView? = null
     private var db: DbHelper? = null
@@ -34,6 +38,11 @@ class EmergencyContactsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_emergency_contacts)
+
+        val back = findViewById<ImageView>(R.id.back)
+        back.setOnClickListener {
+            onBackPressed()
+        }
 
         val pm = getSystemService(Context.POWER_SERVICE) as PowerManager
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -162,5 +171,11 @@ class EmergencyContactsActivity : AppCompatActivity() {
     companion object {
         private const val IGNORE_BATTERY_OPTIMIZATION_REQUEST = 1002
         private const val PICK_CONTACT = 1
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun onBackPressed() {
+        mediaPlayer?.stop()
+        super.onBackPressed()
     }
 }

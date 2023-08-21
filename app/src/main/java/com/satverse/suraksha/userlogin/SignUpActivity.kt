@@ -1,5 +1,3 @@
-@file:Suppress("DEPRECATION")
-
 package com.satverse.suraksha.userlogin
 
 import android.app.ProgressDialog
@@ -7,9 +5,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.util.Log.i
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.lifecycleScope
 import com.satverse.suraksha.R
 import io.appwrite.Client
@@ -34,13 +34,36 @@ class SignUpActivity : AppCompatActivity() {
 
         val createAccountButton = findViewById<Button>(R.id.create_account)
         createAccountButton.setOnClickListener {
-            lifecycleScope.launch {
-                val createUserJob = async {
-                    createUser()
-                }
-                createUserJob.await()
+            createAccountButton.setOnClickListener {
+                val emailEditText = findViewById<EditText>(R.id.email)
+                val phoneNumberEditText = findViewById<EditText>(R.id.phone_no)
+                val pincodeEditText = findViewById<EditText>(R.id.pincode)
+                val ageEditText = findViewById<EditText>(R.id.age)
 
-                logInUser()
+                val email = emailEditText.text.toString().trim()
+                val phoneNumber = phoneNumberEditText.text.toString().trim()
+                val ageText = ageEditText.text.toString().trim()
+                val age = ageText.toIntOrNull()
+                val pincode = pincodeEditText.text.toString().trim()
+
+                if (!isValidEmail(email)) {
+                    Toast.makeText(this, "Invalid Email!", Toast.LENGTH_SHORT).show()
+                } else if (age == null || age !in 5..99) {
+                    Toast.makeText(this, "Invalid Age (5 to 99 only)", Toast.LENGTH_SHORT).show()
+                } else if (phoneNumber.length < 10) {
+                    Toast.makeText(this, "Invalid Phone Number", Toast.LENGTH_SHORT).show()
+                } else if (pincode.length < 6) {
+                    Toast.makeText(this, "Invalid Pin Code", Toast.LENGTH_SHORT).show()
+                } else {
+                    lifecycleScope.launch {
+                        val createUserJob = async {
+                            createUser()
+                        }
+                        createUserJob.await()
+
+                        logInUser()
+                    }
+                }
             }
         }
     }
@@ -104,8 +127,7 @@ class SignUpActivity : AppCompatActivity() {
                 Toast.makeText(this, "$e", Toast.LENGTH_SHORT).show()
             }
             e.printStackTrace()
-        }
-        finally {
+        } finally {
             progressDialog.dismiss()
         }
     }
@@ -134,20 +156,25 @@ class SignUpActivity : AppCompatActivity() {
             )
             Log.d("Appwrite response", user.toString())
 
-            val verificationResponse = users.createVerification(url = "https://localhost/suraksha")
+            val verificationResponse =
+                users.createVerification(url = "https://localhost/suraksha")
 
             Log.d("Verification response", verificationResponse.toString())
 
             val intent = Intent(this@SignUpActivity, VerifyEmailActivity::class.java)
             startActivity(intent)
 
-        } catch(e : AppwriteException) {
+        } catch (e: AppwriteException) {
             runOnUiThread {
-                Toast.makeText(this, "$e" , Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "$e", Toast.LENGTH_SHORT).show()
             }
             e.printStackTrace()
             progressDialog.dismiss()
         }
+    }
 
+    fun isValidEmail(email: String): Boolean {
+        val emailRegex = Regex(getString(R.string.email_check))
+        return email.matches(emailRegex)
     }
 }

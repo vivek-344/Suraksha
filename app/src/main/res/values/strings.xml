@@ -82,4 +82,5 @@
     <string name="add_emergency_contact">Add Emergency Contact</string>
     <string name="phone">Phone</string>
     <string name="google_maps_api_key">AIzaSyD1o_WmNskKB8qjN8LE_IlTzfJmu86IIok</string>
+    <string name="email_check">^[A-Za-z0-9+_.-]+@([A-Za-z0-9.-]+\\.[A-Za-z]{2,})$</string>
 </resources>

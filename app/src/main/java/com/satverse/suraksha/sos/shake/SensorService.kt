@@ -9,6 +9,7 @@ import android.content.pm.PackageManager
 import android.hardware.Sensor
 import android.hardware.SensorManager
 import android.location.Location
+import android.location.LocationManager
 import android.os.*
 import android.telephony.SmsManager
 import androidx.annotation.RequiresApi
@@ -24,6 +25,9 @@ class SensorService : Service() {
     private lateinit var mAccelerometer: Sensor
     private lateinit var mShakeDetector: ShakeDetector
     private lateinit var fusedLocationClient: FusedLocationProviderClient
+
+    // Declare a variable to track GPS availability
+    private var isGpsEnabled = false
 
     override fun onBind(intent: Intent): IBinder? {
         return null
@@ -51,14 +55,27 @@ class SensorService : Service() {
             override fun onShake(count: Int) {
                 if (count == 3) {
                     vibrate()
-                    fusedLocationClient = LocationServices.getFusedLocationProviderClient(this@SensorService)
-                    fusedLocationClient.lastLocation.addOnSuccessListener { location ->
-                        if (location != null) {
-                            sendEmergencySMS(location)
-                        } else {
-                            sendEmergencySMSWithoutLocation()
-                        }
-                    }.addOnFailureListener {
+                    val locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+                    isGpsEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+                    if (isGpsEnabled) {
+                        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this@SensorService)
+                        val locationRequest = LocationRequest.create()
+                            .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
+                            .setNumUpdates(1)
+                            .setInterval(1000)
+
+                        fusedLocationClient.requestLocationUpdates(locationRequest, object : LocationCallback() {
+                            override fun onLocationResult(locationResult: LocationResult) {
+                                val location = locationResult.lastLocation
+                                if (location != null) {
+                                    sendEmergencySMS(location)
+                                } else {
+                                    sendEmergencySMSWithoutLocation()
+                                }
+                                fusedLocationClient.removeLocationUpdates(this)
+                            }
+                        }, Looper.getMainLooper())
+                    } else {
                         sendEmergencySMSWithoutLocation()
                     }
                 }
@@ -100,7 +117,6 @@ class SensorService : Service() {
                     vibrator.vibrate(500)
                 }
             }
-
         })
 
         mSensorManager.registerListener(

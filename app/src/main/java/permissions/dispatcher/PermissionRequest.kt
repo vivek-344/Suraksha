@@ -1,11 +1,10 @@
-package permissions.dispatcher;
+package permissions.dispatcher
 
 /**
- * Interface used by {@link OnShowRationale} methods to allow for continuation
+ * Interface used by [OnShowRationale] methods to allow for continuation
  * or cancellation of a permission request.
  */
-public interface PermissionRequest {
-    void proceed();
-
-    void cancel();
+interface PermissionRequest {
+    fun proceed()
+    fun cancel()
 }

@@ -1,15 +1,15 @@
 package com.satverse.suraksha
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.media.MediaPlayer
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.provider.Settings
+import android.os.Handler
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
@@ -21,18 +21,13 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
-import com.google.android.material.textfield.TextInputEditText
-import com.satverse.suraksha.AboutUsActivity
-import com.satverse.suraksha.EmergencyHelplineActivity
-import com.satverse.suraksha.R
+import com.satverse.suraksha.R.id.emergency_button
 import com.satverse.suraksha.dropdown.EditProfileActivity
 import com.satverse.suraksha.dropdown.HowToUseActivity
 import com.satverse.suraksha.sos.EmergencyContactsActivity
 import com.satverse.suraksha.sos.ScreenOnOffBackgroundService
-import com.satverse.suraksha.sos.ScreenOnOffReceiver
 import com.satverse.suraksha.userlogin.LoginActivity
 import io.appwrite.Client
-import io.appwrite.models.User
 import io.appwrite.services.Account
 import io.appwrite.services.Databases
 import kotlinx.coroutines.launch
@@ -42,32 +37,33 @@ class LandingPageActivity : AppCompatActivity() {
     private var mediaPlayer: MediaPlayer? = null
     private var isSirenPlaying = false
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_landing_page)
 
         lifecycleScope.launch {
-            val name = fetchData()
+            val name = fetchName()
+            val firstName = getFirstName(name)
             val welcomeTextView = findViewById<TextView>(R.id.welcome)
-            val welcomeMessage = "Hello, $name!"
-            welcomeTextView.text = welcomeMessage
-        }
+            val welcomeMessage = "Hello, $firstName!"
 
+            // Start the typing animation
+            startTypingAnimation(welcomeTextView, welcomeMessage)
+        }
 
         val backgroundService = Intent(
             applicationContext,
             ScreenOnOffBackgroundService::class.java
         )
+
         startService(backgroundService)
-        Log.d(ScreenOnOffReceiver.SCREEN_TOGGLE_TAG, "Activity onCreate")
+
         val permissionCheck =
             ContextCompat.checkSelfPermission(this@LandingPageActivity, Manifest.permission.SEND_SMS)
         if (permissionCheck != PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(
                 this@LandingPageActivity,
                 Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(
-                this@LandingPageActivity,
-                Manifest.permission.CALL_PHONE
             ) != PackageManager.PERMISSION_GRANTED
         ) {
             ActivityCompat.requestPermissions(
@@ -76,8 +72,6 @@ class LandingPageActivity : AppCompatActivity() {
                     Manifest.permission.SEND_SMS,
                     Manifest.permission.ACCESS_FINE_LOCATION,
                     Manifest.permission.ACCESS_COARSE_LOCATION,
-                    Manifest.permission.CAMERA,
-                    Manifest.permission.CALL_PHONE,
                     Manifest.permission.READ_CONTACTS
                 ),
                 0
@@ -93,8 +87,8 @@ class LandingPageActivity : AppCompatActivity() {
             showPopupMenu(view)
         }
 
-        val policeButton = findViewById<ImageView>(R.id.call100Button)
-        policeButton.setOnClickListener {
+        val emergencyButton = findViewById<ImageView>(emergency_button)
+        emergencyButton.setOnClickListener {
             val Intent = Intent(this@LandingPageActivity, EmergencyContactsActivity::class.java)
             startActivity(Intent)
         }
@@ -112,7 +106,7 @@ class LandingPageActivity : AppCompatActivity() {
             }
         }
 
-        val helplineButton = findViewById<ImageView>(R.id.emergencyButton)
+        val helplineButton = findViewById<ImageView>(R.id.helplineButton)
         helplineButton.setOnClickListener {
             val intent = Intent(this, EmergencyHelplineActivity::class.java)
             startActivity(intent)
@@ -123,6 +117,26 @@ class LandingPageActivity : AppCompatActivity() {
             val intent = Intent(this, AboutUsActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    private fun startTypingAnimation(textView: TextView, text: String) {
+        val delayMillis = 100L // Delay between each character reveal
+        val typingSpeed = 50L // Speed of typing animation
+
+        val handler = Handler()
+        var index = 0
+
+        val runnable = object : Runnable {
+            override fun run() {
+                if (index <= text.length) {
+                    textView.text = text.substring(0, index)
+                    index++
+                    handler.postDelayed(this, typingSpeed)
+                }
+            }
+        }
+
+        handler.postDelayed(runnable, delayMillis)
     }
 
     private fun showPopupMenu(view: View) {
@@ -150,6 +164,10 @@ class LandingPageActivity : AppCompatActivity() {
                     lifecycleScope.launch {
                         logOut()
                     }
+
+                    stopSiren()
+
+                    mediaPlayer!!.stop()
 
                     userLoggedOut()
 
@@ -183,6 +201,10 @@ class LandingPageActivity : AppCompatActivity() {
         } catch (e: Exception) {
             runOnUiThread {
                 Toast.makeText(this, "$e", Toast.LENGTH_SHORT).show()
+
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+                finish()
             }
         } finally {
             progressDialog.dismiss()
@@ -192,6 +214,7 @@ class LandingPageActivity : AppCompatActivity() {
     @Deprecated("Deprecated in Java", ReplaceWith("finishAffinity()"))
     override fun onBackPressed() {
         stopSiren()
+        mediaPlayer!!.stop()
         finishAffinity()
     }
 
@@ -212,16 +235,6 @@ class LandingPageActivity : AppCompatActivity() {
         isSirenPlaying = false
     }
 
-    private fun openSmsSettings() {
-
-        Toast.makeText(this, "Enable SMS Permission!", Toast.LENGTH_LONG).show()
-
-        val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-        val uri = Uri.fromParts("package", packageName, null)
-        intent.data = uri
-        startActivity(intent)
-    }
-
     private fun userLoggedOut() {
         val sharedPref = getSharedPreferences("logIn", Context.MODE_PRIVATE)
         val editor = sharedPref.edit()
@@ -229,25 +242,41 @@ class LandingPageActivity : AppCompatActivity() {
         editor.apply()
     }
 
-    private suspend fun fetchData(): String {
+    private fun getFirstName(fullName: String): String {
+        val parts = fullName.split(" ")
+        if (parts.isNotEmpty()) {
+            return parts[0]
+        }
+        return fullName
+    }
+
+    private suspend fun fetchName(): String {
         val client = Client(this)
             .setEndpoint("https://cloud.appwrite.io/v1")
             .setProject("64bb859f2d53d0d44e9c")
             .setSelfSigned(true)
 
         val account = Account(client)
+        val userDatabase = Databases(client)
 
         try {
-            val userData = account.get()
+            val userData = account.listSessions()
+            val userId = userData.sessions.firstOrNull()?.userId
 
-            val name = userData.name
+            if (userId != null) {
+                val data = userDatabase.getDocument(
+                    databaseId = "64bc1e13ca662cd39b95",
+                    collectionId = "64bc1e1e7465e6d3e4c2",
+                    documentId = userId
+                )
 
-            return name
-
+                return data.data["fullName"].toString().trim()
+            }
         } catch (e: Exception) {
             Log.e("EditProfileActivity", "Error while listing sessions", e)
         }
 
         return "User"
     }
+
 }

@@ -2,20 +2,28 @@ package com.satverse.suraksha
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.media.MediaPlayer
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 
 class AboutUsActivity : AppCompatActivity() {
+
+    var mediaPlayer: MediaPlayer? = null
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_about_us)
+
+        val back = findViewById<ImageView>(R.id.back)
+        back.setOnClickListener {
+            onBackPressed()
+        }
 
         fun openURL(url: String) {
             val uri = Uri.parse(url)
@@ -33,10 +41,6 @@ class AboutUsActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(this, "No application available to handle the request", Toast.LENGTH_SHORT).show()
             }
-        }
-
-        findViewById<ImageView>(R.id.back).setOnClickListener {
-            startActivity(Intent(this@AboutUsActivity, LandingPageActivity::class.java))
         }
 
         findViewById<ImageView>(R.id.logo_image).setOnClickListener {
@@ -98,5 +102,10 @@ class AboutUsActivity : AppCompatActivity() {
         findViewById<Button>(R.id.yashGitHubButton).setOnClickListener {
             openURL("https://www.github.com/yashdarbar")
         }
+    }
+
+    override fun onBackPressed() {
+        mediaPlayer!!.stop()
+        super.onBackPressed()
     }
 }

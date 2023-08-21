@@ -1,20 +1,23 @@
 package com.satverse.suraksha
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.content.Intent
+import android.media.MediaPlayer
 import android.net.Uri
+import android.os.Bundle
 import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
 
 class EmergencyHelplineActivity : AppCompatActivity() {
+
+    var mediaPlayer: MediaPlayer? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_emergency_helpline)
 
         val back = findViewById<ImageView>(R.id.back)
         back.setOnClickListener {
-            val Intent = Intent(this@EmergencyHelplineActivity, LandingPageActivity::class.java)
-            startActivity(Intent)
+            onBackPressed()
         }
 
         val emergencyButtons = mapOf(
@@ -35,5 +38,10 @@ class EmergencyHelplineActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         }
+    }
+
+    override fun onBackPressed() {
+        mediaPlayer?.stop()
+        super.onBackPressed()
     }
 }

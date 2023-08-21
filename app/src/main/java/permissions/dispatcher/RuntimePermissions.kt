@@ -1,14 +1,8 @@
-package permissions.dispatcher;
-
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+package permissions.dispatcher
 
 /**
- * Register an <code>Activity</code> or <code>Fragment</code> to handle permissions.
+ * Register an `Activity` or `Fragment` to handle permissions.
  */
-@Target(ElementType.TYPE)
-@Retention(RetentionPolicy.CLASS)
-public @interface RuntimePermissions {
-}
+@Target(AnnotationTarget.CLASS)
+@Retention(AnnotationRetention.BINARY)
+annotation class RuntimePermissions 

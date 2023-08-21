@@ -1,17 +1,12 @@
-package permissions.dispatcher;
-
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+package permissions.dispatcher
 
 /**
  * Register some methods which permissions are needed.
  */
-@Target(ElementType.METHOD)
-@Retention(RetentionPolicy.CLASS)
-public @interface NeedsPermission {
-    String[] value();
-
-    int maxSdkVersion() default 0;
-}
+@Target(
+    AnnotationTarget.FUNCTION,
+    AnnotationTarget.PROPERTY_GETTER,
+    AnnotationTarget.PROPERTY_SETTER
+)
+@Retention(AnnotationRetention.BINARY)
+annotation class NeedsPermission(vararg val value: String, val maxSdkVersion: Int = 0)

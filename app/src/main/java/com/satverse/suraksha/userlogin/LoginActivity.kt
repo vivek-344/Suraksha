@@ -9,6 +9,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat.finishAffinity
+import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.lifecycleScope
 import com.satverse.suraksha.LandingPageActivity
 import com.satverse.suraksha.R
@@ -35,10 +37,16 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+
         val landingPageButton = findViewById<Button>(R.id.go_login)
         landingPageButton.setOnClickListener {
-            lifecycleScope.launch {
-                logInUser()
+            val email = findViewById<EditText>(R.id.email).text.toString().trim()
+            if (isValidEmail(email)) {
+                lifecycleScope.launch {
+                    logInUser()
+                }
+            } else {
+                Toast.makeText(this, "Invalid Email!", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -88,9 +96,8 @@ class LoginActivity : AppCompatActivity() {
 
         catch(e : AppwriteException) {
             runOnUiThread {
-                Toast.makeText(this, "$e" , Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Invalid credentials!" , Toast.LENGTH_SHORT).show()
             }
-            e.printStackTrace()
         }
         finally {
             progressDialog.dismiss()
@@ -102,6 +109,11 @@ class LoginActivity : AppCompatActivity() {
         val editor = sharedPref.edit()
         editor.putBoolean("LoggedIn", true)
         editor.apply()
+    }
+
+    fun isValidEmail(email: String): Boolean {
+        val emailRegex = Regex(getString(R.string.email_check))
+        return email.matches(emailRegex)
     }
 
     @Deprecated("Deprecated in Java", ReplaceWith("finishAffinity()"))
