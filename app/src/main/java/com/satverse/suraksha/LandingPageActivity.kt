@@ -3,8 +3,10 @@ package com.satverse.suraksha
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.ProgressDialog
+import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.media.MediaPlayer
 import android.os.Build
@@ -34,13 +36,28 @@ import kotlinx.coroutines.launch
 
 class LandingPageActivity : AppCompatActivity() {
 
+
+    // Boolean flag to track if onCreate is running
+    private var isOnCreateRunning = false
     private var mediaPlayer: MediaPlayer? = null
     private var isSirenPlaying = false
 
-    @SuppressLint("MissingInflatedId")
+    @SuppressLint("MissingInflatedId", "UnspecifiedRegisterReceiverFlag")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        isOnCreateRunning = true  // Set the flag to true
         setContentView(R.layout.activity_landing_page)
+
+        val emergencyContactsDestroyedReceiver = object : BroadcastReceiver() {
+            override fun onReceive(context: Context?, intent: Intent?) {
+                if (intent?.action == "emergency_contacts_destroyed") {
+                    stopSiren()
+                }
+            }
+        }
+
+        val intentFilter = IntentFilter("emergency_contacts_destroyed")
+        registerReceiver(emergencyContactsDestroyedReceiver, intentFilter)
 
         lifecycleScope.launch {
             val name = fetchName()
@@ -116,6 +133,22 @@ class LandingPageActivity : AppCompatActivity() {
         aboutUsButton.setOnClickListener {
             val intent = Intent(this, AboutUsActivity::class.java)
             startActivity(intent)
+        }
+        isOnCreateRunning = false // Set the flag to false when onCreate completes
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (!isOnCreateRunning) {
+            lifecycleScope.launch {
+                val name = fetchName()
+                val firstName = getFirstName(name)
+                val welcomeTextView = findViewById<TextView>(R.id.welcome)
+                val welcomeMessage = "Hello, $firstName!"
+
+                // Start the typing animation
+                startTypingAnimation(welcomeTextView, welcomeMessage)
+            }
         }
     }
 
@@ -277,5 +310,10 @@ class LandingPageActivity : AppCompatActivity() {
         }
 
         return "User"
+    }
+
+    override fun onDestroy() {
+        mediaPlayer?.stop()
+        super.onDestroy()
     }
 }

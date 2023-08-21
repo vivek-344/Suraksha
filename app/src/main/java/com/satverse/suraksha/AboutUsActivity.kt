@@ -104,8 +104,9 @@ class AboutUsActivity : AppCompatActivity() {
         }
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
-        mediaPlayer!!.stop()
+        mediaPlayer?.stop()
         super.onBackPressed()
     }
 }

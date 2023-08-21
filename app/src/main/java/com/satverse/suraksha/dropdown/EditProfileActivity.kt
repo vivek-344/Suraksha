@@ -23,7 +23,6 @@ import kotlinx.coroutines.launch
 
 class EditProfileActivity : AppCompatActivity() {
 
-    var mediaPlayer: MediaPlayer? = null
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,8 +30,7 @@ class EditProfileActivity : AppCompatActivity() {
 
         val back = findViewById<ImageView>(R.id.back)
         back.setOnClickListener {
-            val Intent = Intent(this@EditProfileActivity, LandingPageActivity::class.java)
-            startActivity(Intent)
+            onBackPressed()
         }
 
         lifecycleScope.launch {
@@ -182,11 +180,5 @@ class EditProfileActivity : AppCompatActivity() {
         } finally {
             progressDialog.dismiss()
         }
-    }
-
-    @Deprecated("Deprecated in Java", ReplaceWith("finishAffinity()"))
-    override fun onBackPressed() {
-        val Intent = Intent(this@EditProfileActivity, LandingPageActivity::class.java)
-        startActivity(Intent)
     }
 }

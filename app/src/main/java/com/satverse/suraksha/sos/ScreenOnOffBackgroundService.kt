@@ -84,7 +84,7 @@ class ScreenOnOffBackgroundService : Service() {
     }
 
     override fun onDestroy() {
-        mediaPlayer!!.stop()
+        mediaPlayer?.stop()
         super.onDestroy()
 
         // Unregister screenOnOffReceiver when destroy.

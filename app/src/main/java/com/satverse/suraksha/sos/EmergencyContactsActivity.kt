@@ -18,6 +18,7 @@ import android.widget.ImageView
 import android.widget.ListView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat.startActivityForResult
 import com.satverse.suraksha.R
 import com.satverse.suraksha.sos.contacts.ContactModel
 import com.satverse.suraksha.sos.contacts.CustomAdapter
@@ -95,6 +96,8 @@ class EmergencyContactsActivity : AppCompatActivity() {
         broadcastIntent.setClass(this, ReactivateService::class.java)
         sendBroadcast(broadcastIntent)
         super.onDestroy()
+        val intent = Intent("emergency_contacts_destroyed")
+        sendBroadcast(intent)
     }
 
     override fun onRequestPermissionsResult(
@@ -171,11 +174,5 @@ class EmergencyContactsActivity : AppCompatActivity() {
     companion object {
         private const val IGNORE_BATTERY_OPTIMIZATION_REQUEST = 1002
         private const val PICK_CONTACT = 1
-    }
-
-    @Deprecated("Deprecated in Java")
-    override fun onBackPressed() {
-        mediaPlayer?.stop()
-        super.onBackPressed()
     }
 }
