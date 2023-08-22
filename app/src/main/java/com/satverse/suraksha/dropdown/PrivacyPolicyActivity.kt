@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.widget.ImageView
 import com.satverse.suraksha.R
 
-class PrivacyPolicy : AppCompatActivity() {
+class PrivacyPolicyActivity : AppCompatActivity() {
 
     var mediaPlayer: MediaPlayer? = null
     @SuppressLint("MissingInflatedId")

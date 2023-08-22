@@ -3,10 +3,8 @@ package com.satverse.suraksha
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.ProgressDialog
-import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.media.MediaPlayer
 import android.os.Build
@@ -26,7 +24,7 @@ import androidx.lifecycle.lifecycleScope
 import com.satverse.suraksha.R.id.emergency_button
 import com.satverse.suraksha.dropdown.EditProfileActivity
 import com.satverse.suraksha.dropdown.HowToUseActivity
-import com.satverse.suraksha.dropdown.PrivacyPolicy
+import com.satverse.suraksha.dropdown.PrivacyPolicyActivity
 import com.satverse.suraksha.sos.EmergencyContactsActivity
 import com.satverse.suraksha.sos.ScreenOnOffBackgroundService
 import com.satverse.suraksha.sos.contacts.DbHelper
@@ -216,7 +214,7 @@ class LandingPageActivity : AppCompatActivity() {
                     true
                 }
                 R.id.privacyPolicy -> {
-                    val intent = Intent(this, PrivacyPolicy::class.java)
+                    val intent = Intent(this, PrivacyPolicyActivity::class.java)
                     startActivity(intent)
                     true
                 }

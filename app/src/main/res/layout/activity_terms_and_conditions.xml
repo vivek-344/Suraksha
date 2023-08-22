@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".dropdown.PrivacyPolicyActivity">
+    tools:context=".userlogin.TermsAndConditionsActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/bar"
@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:elevation="4dp"
-        android:text="Privacy Policy"
+        android:text="Terms &amp; Conditions"
         android:textColor="@color/white"
         android:fontFamily="@font/productsans_medium"
         android:textSize="20sp"
@@ -61,7 +61,7 @@
                 android:id="@+id/instruction"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Privacy Policy"
+                android:text="Terms &amp; Conditions"
                 android:fontFamily="@font/productsans_black"
                 android:textSize="20sp"
                 android:layout_marginTop="16dp"

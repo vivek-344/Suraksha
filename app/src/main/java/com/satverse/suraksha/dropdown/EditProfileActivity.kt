@@ -51,7 +51,7 @@ class EditProfileActivity : AppCompatActivity() {
 
             if (phoneNumber.length < 10) {
                 Toast.makeText(this, "Invalid Phone Number", Toast.LENGTH_SHORT).show()
-            } else if (age == null || age !in 5..99) {
+            } else if (age == null || age !in 13..99) {
                 Toast.makeText(this, "Invalid Age (5 to 99 only)", Toast.LENGTH_SHORT).show()
             } else if (pincode.length < 6) {
                 Toast.makeText(this, "Invalid Pin Code", Toast.LENGTH_SHORT).show()
