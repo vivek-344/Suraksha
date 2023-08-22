@@ -45,7 +45,7 @@ class LandingPageActivity : AppCompatActivity() {
     private var isSirenPlaying = false
     private var sirenGIF: GifDrawable? = null
 
-    @SuppressLint("MissingInflatedId", "UnspecifiedRegisterReceiverFlag")
+    @SuppressLint("MissingInflatedId", "UnspecifiedRegisterReceiverFlag", "CutPasteId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         isOnCreateRunning = true
@@ -68,17 +68,6 @@ class LandingPageActivity : AppCompatActivity() {
         } else {
             sirenGIF?.pause()
         }
-
-        val emergencyContactsDestroyedReceiver = object : BroadcastReceiver() {
-            override fun onReceive(context: Context?, intent: Intent?) {
-                if (intent?.action == "emergency_contacts_destroyed") {
-                    stopSiren()
-                }
-            }
-        }
-
-        val intentFilter = IntentFilter("emergency_contacts_destroyed")
-        registerReceiver(emergencyContactsDestroyedReceiver, intentFilter)
 
         val backgroundService = Intent(applicationContext, ScreenOnOffBackgroundService::class.java)
         startService(backgroundService)
@@ -281,6 +270,7 @@ class LandingPageActivity : AppCompatActivity() {
         mediaPlayer?.start()
         mediaPlayer?.isLooping = true
         isSirenPlaying = true
+        sirenGIF?.start()
     }
 
     private fun stopSiren() {
@@ -290,6 +280,7 @@ class LandingPageActivity : AppCompatActivity() {
                 seekTo(0)
             }
         }
+        sirenGIF?.pause()
         isSirenPlaying = false
     }
 
