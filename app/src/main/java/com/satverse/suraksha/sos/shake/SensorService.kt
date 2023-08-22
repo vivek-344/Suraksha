@@ -16,6 +16,7 @@ import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import com.google.android.gms.location.*
+import com.google.android.gms.location.FusedLocationProviderClient
 import com.satverse.suraksha.R
 import com.satverse.suraksha.sos.contacts.ContactModel
 import com.satverse.suraksha.sos.contacts.DbHelper

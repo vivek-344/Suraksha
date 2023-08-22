@@ -34,7 +34,7 @@
     <string name="suraksha">SURAKSHA</string>
     <string name="hi_welcome_to_suraksha">Hi, Welcome to SURAKSHA.</string>
     <string name="stay_fearless">“Stay fearless and confident with Suraksha\n- your personal safety guardian.”</string>
-    <string name="fake_siren_alert">Fake Siren</string>
+    <string name="fake_siren">Fake Siren</string>
     <string name="emergency_helpline">Emergency Helpline</string>
     <string name="about_us">About Us</string>
     <string name="textview">TextView</string>
@@ -83,4 +83,16 @@
     <string name="phone">Phone</string>
     <string name="google_maps_api_key">AIzaSyD1o_WmNskKB8qjN8LE_IlTzfJmu86IIok</string>
     <string name="email_check">^[A-Za-z0-9+_.-]+@([A-Za-z0-9.-]+\\.[A-Za-z]{2,})$</string>
+    <string name="configuring_emergency_contacts_instruction">• Navigate to \'Emergency Contacts\'. \n• Add up to 5 trusted contacts. \n•Ensure they are informed and understand their role.</string>
+    <string name="configuring_emergency_contacts">1. Configuring Emergency Contacts</string>
+    <string name="sos_activation">2. SOS Activation</string>
+    <string name="sos_activation_instruction">• Press the SOS button to activate shake-to-alert. \n• For emergencies, shake your device more than five times to send an alert. \n• To deactivate, open Suraksha and click the SOS button again.</string>
+    <string name="fake_siren_alert">3. Fake Siren Alert</string>
+    <string name="fake_siren_alert_instruction">• Click \'Fake Siren Alert\' to emit a loud siren. \n• Click again or deactivate to stop the sound.</string>
+    <string name="emergency_helplines">4. Emergency Helplines</string>
+    <string name="emergency_helplines_instruction">• Go to \'Emergency Helplines\'. \n• Browse and tap on a helpline number to call immediately.</string>
+    <string name="continuous_safety_feature">5. Continuous Safety Feature</string>
+    <string name="continuous_safety_feature_instruction">• After activating SOS, a notification appears indicating the active safety mode. \n• This works even if the app is in the background.</string>
+    <string name="best_practices">6. Best Practices</string>
+    <string name="best_practices_instruction">• Always be familiar with the app’s layout. \n• Keep the GPS active for precise location sharing. \n• Regularly update Suraksha for the latest features.</string>
 </resources>
