@@ -56,7 +56,7 @@ class SensorService : Service() {
         mShakeDetector.setOnShakeListener(object : ShakeDetector.OnShakeListener {
             @SuppressLint("MissingPermission")
             override fun onShake(count: Int) {
-                if (isShakeDetectionEnabled && count == 3) {
+                if (isShakeDetectionEnabled && count == 5) {
                     vibrate()
                     val locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
                     isGpsEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
