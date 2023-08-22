@@ -117,7 +117,7 @@ class LandingPageActivity : AppCompatActivity() {
             }
         }
 
-        val sirenButton = findViewById<ImageView>(R.id.sirenButton)
+        val sirenButton = findViewById<ImageView>(R.id.siren)
         sirenButton.setOnClickListener {
             if (isSirenPlaying) {
                 stopSiren()

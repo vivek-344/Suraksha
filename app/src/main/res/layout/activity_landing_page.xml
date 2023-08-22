@@ -165,16 +165,25 @@
         app:layout_constraintStart_toStartOf="@id/helplineButton"
         app:layout_constraintTop_toBottomOf="@+id/helplineButton" />
 
-    <ImageView
+    <androidx.cardview.widget.CardView
         android:id="@+id/sirenButton"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:elevation="4dp"
+        android:layout_gravity="center"
+        app:cardCornerRadius="40dp"
         app:layout_constraintEnd_toStartOf="@+id/helplineButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/helplineButton"
-        app:layout_constraintBottom_toBottomOf="@id/helplineButton"
-        app:srcCompat="@drawable/landing_page_buttons" />
+        app:layout_constraintBottom_toBottomOf="@id/helplineButton">
+
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/siren"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/emergency_siren"/>
+
+    </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/fakeSiren"
@@ -182,7 +191,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
         android:fontFamily="@font/productsans_regular"
-        android:text="@string/fake_siren"
+        android:text="@string/fake_siren_alert"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/sirenButton"
@@ -244,17 +253,6 @@
         app:layout_constraintStart_toStartOf="@+id/aboutButton"
         app:layout_constraintTop_toTopOf="@+id/aboutButton"
         app:srcCompat="@drawable/shadow" />
-
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:elevation="12dp"
-        app:layout_constraintBottom_toBottomOf="@+id/sirenButton"
-        app:layout_constraintEnd_toEndOf="@+id/sirenButton"
-        app:layout_constraintStart_toStartOf="@+id/sirenButton"
-        app:layout_constraintTop_toTopOf="@+id/sirenButton"
-        app:srcCompat="@drawable/fake_siren_alert" />
 
     <ImageView
         android:id="@+id/imageView6"
