@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.util.Log
+import androidx.core.content.ContextCompat
 
 class ReactivateService : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
@@ -12,10 +13,7 @@ class ReactivateService : BroadcastReceiver() {
 
         val serviceIntent = Intent(context, SensorService::class.java)
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            context.startForegroundService(serviceIntent)
-        } else {
-            context.startService(serviceIntent)
-        }
+        // Always start the service as a foreground service
+        ContextCompat.startForegroundService(context, serviceIntent)
     }
 }

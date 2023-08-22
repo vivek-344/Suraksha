@@ -8,72 +8,34 @@ import android.media.MediaPlayer
 import android.os.IBinder
 import android.util.Log
 
-
-/**
- * Services :- Services in Android are a special component that facilitates an application to run in the background in order
- * to perform long-running operation tasks. The prime aim of a service is to ensure that the application remains
- * active in the background so that the user can operate multiple applications at the same time.
- * A service is started when an application component, such as an activity, starts it by calling startService().
- */
 class ScreenOnOffBackgroundService : Service() {
     var mediaPlayer: MediaPlayer? = null
-    /**
-     * BroadcastReceiver :- Broadcast in android is the system-wide events that can occur when the device starts,
-     * when a message is received on the device or when incoming calls are received, or when a device goes to airplane mode,
-     * etc. Broadcast Receivers are used to respond to these system-wide events.
-     */
+
     var screenOnOffReceiver: BroadcastReceiver? = null
-    /**
-     * IBinder :- Base interface for a remotable object, the core part of a lightweight remote procedure call mechanism designed for
-     * high performance when performing in-process and cross-process calls.
-     * This interface describes the abstract protocol for interacting with a remotable object.
-     * Do not implement this interface directly, instead extend from Binder.
-     * blog link :- https://developer.android.com/reference/android/os/IBinder.
-     */
-    /**
-     * A bound service is the server in a client-server interface.
-     * It allows components (such as activities) to bind to the service, send requests, receive responses,
-     * and perform interprocess communication (IPC).
-     * blog link :- https://developer.android.com/guide/components/bound-services.
-     */
-    /**
-     * onBind() :- A bound service is an implementation of the Service class that allows other applications to bind to it
-     * and interact with it. To provide binding for a service, onBind() callback method must be implemented.
-     * This method returns an IBinder object that defines the programming interface that clients can use to interact with
-     * the service.
-     */
+
     override fun onBind(intent: Intent): IBinder? {
         return null
     }
 
-    /**
-     * onStartCommand():- it is called every time a client starts the service using startService(Intent intent) .
-     * This means that onStartCommand() can get called multiple times.
-     * You should do the things in this method that are needed each time a client requests something from your service.
-     */
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
         return super.onStartCommand(intent, flags, startId)
     }
 
     override fun onCreate() {
         super.onCreate()
-        /**
-         * IntentFilter :- Implicit intent uses the intent filter to serve the user request.
-         * The intent filter specifies the types of intents that an activity, service, or broadcast receiver can
-         * respond. Generally intent filters are declared in the Android manifest file.
-         */
-        // Create an IntentFilter instance.
-        val intentFilter = IntentFilter()
+        val intentFilter = IntentFilter().apply {
+            addAction(Intent.ACTION_SCREEN_ON)
+            addAction(Intent.ACTION_SCREEN_OFF)
+            priority = 100
+        }
 
-        // Add network connectivity change action.
-        intentFilter.addAction("android.intent.action.SCREEN_ON")
-        intentFilter.addAction("android.intent.action.SCREEN_OFF")
-
-        // Set broadcast receiver priority.
-        intentFilter.priority = 100
-        // Create a network change broadcast receiver.
-        screenOnOffReceiver = ScreenOnOffReceiver()
-
+//        val intentFilter = IntentFilter()
+//
+//        intentFilter.addAction("android.intent.action.SCREEN_ON")
+//        intentFilter.addAction("android.intent.action.SCREEN_OFF")
+//
+//        intentFilter.priority = 100
+//        screenOnOffReceiver = ScreenOnOffReceiver()
 
         // Register the broadcast receiver with the intent filter object.
         registerReceiver(screenOnOffReceiver, intentFilter)

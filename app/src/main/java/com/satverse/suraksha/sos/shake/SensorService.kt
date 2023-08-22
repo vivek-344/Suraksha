@@ -25,15 +25,17 @@ class SensorService : Service() {
     private lateinit var mAccelerometer: Sensor
     private lateinit var mShakeDetector: ShakeDetector
     private lateinit var fusedLocationClient: FusedLocationProviderClient
-
-    // Declare a variable to track GPS availability
     private var isGpsEnabled = false
+    private var isServiceRunning = false // Track service state
+    private var isShakeDetectionEnabled = false // Track shake detection state
 
     override fun onBind(intent: Intent): IBinder? {
         return null
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        // Set the flag to indicate that the service is running
+        isServiceRunning = true
         return START_STICKY
     }
 
@@ -53,7 +55,7 @@ class SensorService : Service() {
         mShakeDetector.setOnShakeListener(object : ShakeDetector.OnShakeListener {
             @SuppressLint("MissingPermission")
             override fun onShake(count: Int) {
-                if (count == 3) {
+                if (isShakeDetectionEnabled && count == 3) {
                     vibrate()
                     val locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
                     isGpsEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
@@ -124,8 +126,27 @@ class SensorService : Service() {
             mAccelerometer,
             SensorManager.SENSOR_DELAY_UI
         )
+
+        // Enable shake detection
+        enableShakeDetection()
     }
 
+    private fun enableShakeDetection() {
+        isShakeDetectionEnabled = true // Enable shake detection
+    }
+
+    private fun disableShakeDetection() {
+        isShakeDetectionEnabled = false // Disable shake detection
+    }
+
+    companion object {
+        /*
+        * Shake detection configuration constants
+        */
+        private const val SHAKE_THRESHOLD_GRAVITY = 2.7f
+        private const val SHAKE_SLOP_TIME_MS = 500
+        private const val SHAKE_COUNT_RESET_TIME_MS = 3000
+    }
     @RequiresApi(Build.VERSION_CODES.O)
     private fun startMyOwnForeground() {
         val channelId = "MyServiceChannel"
@@ -148,10 +169,13 @@ class SensorService : Service() {
     }
 
     override fun onDestroy() {
-        val broadcastIntent = Intent()
-        broadcastIntent.action = "restartservice"
-        broadcastIntent.setClass(this, ReactivateService::class.java)
-        sendBroadcast(broadcastIntent)
+        disableShakeDetection() // Disable shake detection when the service is destroyed
+        // Set the flag to indicate that the service is no longer running
+        isServiceRunning = false
+//        val broadcastIntent = Intent()
+//        broadcastIntent.action = "restartservice"
+//        broadcastIntent.setClass(this, ReactivateService::class.java)
+//        sendBroadcast(broadcastIntent)
         super.onDestroy()
     }
 }

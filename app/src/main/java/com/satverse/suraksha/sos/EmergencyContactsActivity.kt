@@ -18,17 +18,12 @@ import android.widget.ImageView
 import android.widget.ListView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat.startActivityForResult
 import com.satverse.suraksha.R
 import com.satverse.suraksha.sos.contacts.ContactModel
 import com.satverse.suraksha.sos.contacts.CustomAdapter
 import com.satverse.suraksha.sos.contacts.DbHelper
-import com.satverse.suraksha.sos.shake.ReactivateService
-import com.satverse.suraksha.sos.shake.SensorService
 
 class EmergencyContactsActivity : AppCompatActivity() {
-
-    var mediaPlayer: MediaPlayer? = null
 
     private var button: ImageView? = null
     private var listView: ListView? = null
@@ -52,11 +47,6 @@ class EmergencyContactsActivity : AppCompatActivity() {
             }
         }
 
-        val intent = Intent(this, SensorService::class.java)
-        if (!isMyServiceRunning(SensorService::class.java)) {
-            startService(intent)
-        }
-
         button = findViewById(R.id.add_contact)
         listView = findViewById<View>(R.id.ListView) as ListView
         db = DbHelper(this)
@@ -78,23 +68,7 @@ class EmergencyContactsActivity : AppCompatActivity() {
         }
     }
 
-    private fun isMyServiceRunning(serviceClass: Class<*>): Boolean {
-        val manager = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-        for (service in manager.getRunningServices(Int.MAX_VALUE)) {
-            if (serviceClass.name == service.service.className) {
-                Log.i("Service status", "Running")
-                return true
-            }
-        }
-        Log.i("Service status", "Not running")
-        return false
-    }
-
     override fun onDestroy() {
-        val broadcastIntent = Intent()
-        broadcastIntent.action = "restartservice"
-        broadcastIntent.setClass(this, ReactivateService::class.java)
-        sendBroadcast(broadcastIntent)
         super.onDestroy()
         val intent = Intent("emergency_contacts_destroyed")
         sendBroadcast(intent)

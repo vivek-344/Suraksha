@@ -28,6 +28,7 @@ import com.satverse.suraksha.dropdown.EditProfileActivity
 import com.satverse.suraksha.dropdown.HowToUseActivity
 import com.satverse.suraksha.sos.EmergencyContactsActivity
 import com.satverse.suraksha.sos.ScreenOnOffBackgroundService
+import com.satverse.suraksha.sos.shake.SensorService
 import com.satverse.suraksha.userlogin.LoginActivity
 import io.appwrite.Client
 import io.appwrite.services.Account
@@ -113,6 +114,7 @@ class LandingPageActivity : AppCompatActivity() {
 
         val sosButton = findViewById<ImageView>(R.id.sosButton)
         sosButton.setOnClickListener {
+            toggleSensorService() // Use the toggleSensorService function to start/stop SensorService
         }
 
         val sirenButton = findViewById<ImageView>(R.id.sirenButton)
@@ -134,6 +136,20 @@ class LandingPageActivity : AppCompatActivity() {
         aboutUsButton.setOnClickListener {
             val intent = Intent(this, AboutUsActivity::class.java)
             startActivity(intent)
+        }
+    }
+
+    private fun toggleSensorService() {
+        val intent = Intent(this, SensorService::class.java)
+
+        if (isServiceRunning()) {
+            // If the service is running, stop it
+            stopService(intent)
+            servicePaused()
+        } else {
+            // If the service is not running, start it
+            ContextCompat.startForegroundService(this, intent)
+            serviceRunning()
         }
     }
 
@@ -312,8 +328,35 @@ class LandingPageActivity : AppCompatActivity() {
         return "User"
     }
 
+    private fun isServiceRunning(): Boolean {
+        val sharedPref = getSharedPreferences("ShakeService", Context.MODE_PRIVATE)
+        return sharedPref.getBoolean("Running", false)
+    }
+
+    private fun serviceRunning() {
+        val sharedPref = getSharedPreferences("ShakeService", Context.MODE_PRIVATE)
+        val editor = sharedPref.edit()
+        editor.putBoolean("Running", true)
+        editor.apply()
+    }
+
+    private fun servicePaused() {
+        val sharedPref = getSharedPreferences("ShakeService", Context.MODE_PRIVATE)
+        val editor = sharedPref.edit()
+        editor.putBoolean("Running", false)
+        editor.apply()
+    }
+
     override fun onDestroy() {
         mediaPlayer?.stop()
+//        isSensorServiceRunning = false
+//        val stopServiceIntent = Intent(this, SensorService::class.java)
+//        stopService(stopServiceIntent)
+//        val broadcastIntent = Intent()
+//        broadcastIntent.action = "restartservice"
+//        broadcastIntent.setClass(this, ReactivateService::class.java)
+//        sendBroadcast(broadcastIntent)
+//        Log.d("Reactivate Service", broadcastIntent.toString())
         super.onDestroy()
     }
 }
