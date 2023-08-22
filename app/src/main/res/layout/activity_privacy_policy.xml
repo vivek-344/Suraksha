@@ -58,16 +58,305 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/instruction"
+                android:id="@+id/instruction_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Privacy Policy"
+                android:text="Last Updated: 23.08.2023"
                 android:fontFamily="@font/productsans_black"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:layout_marginTop="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/contact_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/productsans_medium"
+                android:layout_marginTop="16dp"
+                android:textAlignment="center"
+                android:layout_marginRight="32dp"
+                android:layout_marginLeft="32dp"
+                android:textSize="16sp"
+                android:text="Introduction"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/instruction_date" />
+
+            <TextView
+                android:id="@+id/suraksha_introduction"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/productsans_regular"
+                android:layout_marginTop="4dp"
+                android:textSize="14sp"
+                android:layout_marginRight="32dp"
+                android:layout_marginLeft="32dp"
+                android:text="@string/suraksha_introduction"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/contact_header" />
+
+            <TextView
+                android:id="@+id/data_we_collect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/productsans_medium"
+                android:layout_marginTop="12dp"
+                android:textSize="16sp"
+                android:layout_marginRight="32dp"
+                android:layout_marginLeft="32dp"
+                android:text="@string/data_we_collect"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/suraksha_introduction" />
+
+            <TextView
+                android:id="@+id/data_we_collect_instruction"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/productsans_regular"
+                android:layout_marginTop="4dp"
+                android:textSize="14sp"
+                android:layout_marginRight="32dp"
+                android:layout_marginLeft="32dp"
+                android:text="@string/data_we_collect_instruction"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/data_we_collect" />
+
+            <TextView
+                android:id="@+id/how_we_use_your_data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/productsans_medium"
+                android:layout_marginTop="12dp"
+                android:textSize="16sp"
+                android:layout_marginRight="32dp"
+                android:layout_marginLeft="32dp"
+                android:text="@string/how_we_use_use_your_data"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/data_we_collect_instruction" />
+
+            <TextView
+                android:id="@+id/how_do_we_use_your_data_instruction"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/productsans_regular"
+                android:layout_marginTop="4dp"
+                android:textSize="14sp"
+                android:layout_marginRight="32dp"
+                android:layout_marginLeft="32dp"
+                android:text="@string/how_do_we_use_your_data_instruction"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/how_we_use_your_data" />
+
+            <TextView
+                android:id="@+id/data_sharing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/productsans_medium"
+                android:layout_marginTop="12dp"
+                android:textSize="16sp"
+                android:layout_marginRight="32dp"
+                android:layout_marginLeft="32dp"
+                android:text="@string/data_sharing"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/how_do_we_use_your_data_instruction" />
+
+            <TextView
+                android:id="@+id/data_sharing_instruction"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/productsans_regular"
+                android:layout_marginTop="4dp"
+                android:textSize="14sp"
+                android:layout_marginRight="32dp"
+                android:layout_marginLeft="32dp"
+                android:text="@string/data_sharing_instruction"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/data_sharing" />
+            <TextView
+                android:id="@+id/data_security"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/productsans_medium"
+                android:layout_marginTop="12dp"
+                android:textSize="16sp"
+                android:layout_marginRight="32dp"
+                android:layout_marginLeft="32dp"
+                android:text="@string/data_security"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/data_sharing_instruction" />
+
+            <TextView
+                android:id="@+id/data_security_instruction"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/productsans_regular"
+                android:layout_marginTop="4dp"
+                android:textSize="14sp"
+                android:layout_marginRight="32dp"
+                android:layout_marginLeft="32dp"
+                android:text="@string/data_security_instruction"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/data_security" />
+            <TextView
+                android:id="@+id/data_retention"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/productsans_medium"
+                android:layout_marginTop="12dp"
+                android:textSize="16sp"
+                android:layout_marginRight="32dp"
+                android:layout_marginLeft="32dp"
+                android:text="@string/data_retention"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/data_security_instruction" />
+
+            <TextView
+                android:id="@+id/data_retention_instruction"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/productsans_regular"
+                android:layout_marginTop="4dp"
+                android:textSize="14sp"
+                android:layout_marginRight="32dp"
+                android:layout_marginLeft="32dp"
+                android:text="@string/data_retention_instruction"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/data_retention" />
+            <TextView
+                android:id="@+id/your_rights"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/productsans_medium"
+                android:layout_marginTop="12dp"
+                android:textSize="16sp"
+                android:layout_marginRight="32dp"
+                android:layout_marginLeft="32dp"
+                android:text="@string/your_rights"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/data_retention_instruction" />
+
+            <TextView
+                android:id="@+id/your_rights_instruction"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/productsans_regular"
+                android:layout_marginTop="4dp"
+                android:textSize="14sp"
+                android:layout_marginRight="32dp"
+                android:layout_marginLeft="32dp"
+                android:text="@string/your_rights_instruction"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/your_rights" />
+            <TextView
+                android:id="@+id/changes_to_the_privacy_policy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/productsans_medium"
+                android:layout_marginTop="12dp"
+                android:textSize="16sp"
+                android:layout_marginRight="32dp"
+                android:layout_marginLeft="32dp"
+                android:text="@string/changes_to_the_privacy_policy"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/your_rights_instruction" />
+
+            <TextView
+                android:id="@+id/changes_to_the_privacy_policy_instruction"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/productsans_regular"
+                android:layout_marginTop="4dp"
+                android:textSize="14sp"
+                android:layout_marginRight="32dp"
+                android:layout_marginLeft="32dp"
+                android:text="@string/changes_to_the_privacy_policy_instruction"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/changes_to_the_privacy_policy" />
+
+
+            <TextView
+                android:id="@+id/contact_us"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/productsans_medium"
+                android:layout_marginTop="12dp"
+                android:textSize="16sp"
+                android:layout_marginRight="32dp"
+                android:layout_marginLeft="32dp"
+                android:text="@string/contact_us"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/changes_to_the_privacy_policy_instruction" />
+
+            <TextView
+                android:id="@+id/contact_us_instruction"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/productsans_regular"
+                android:layout_marginTop="4dp"
+                android:textSize="14sp"
+                android:layout_marginRight="32dp"
+                android:layout_marginLeft="32dp"
+                android:text="@string/contact_us_instruction"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/contact_us" />
+
+            <TextView
+                android:id="@+id/conclusion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/productsans_medium"
+                android:layout_marginTop="12dp"
+                android:textSize="16sp"
+                android:layout_marginRight="32dp"
+                android:layout_marginLeft="32dp"
+                android:text="@string/conclusion"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/contact_us_instruction" />
+
+            <TextView
+                android:id="@+id/conclusion_instruction"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/productsans_regular"
+                android:layout_marginTop="4dp"
+                android:textSize="14sp"
+                android:layout_marginBottom="18dp"
+                android:layout_marginRight="32dp"
+                android:layout_marginLeft="32dp"
+                android:text="@string/conclusion_instruction"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/conclusion" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

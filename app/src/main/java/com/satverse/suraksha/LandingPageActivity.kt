@@ -36,6 +36,8 @@ import io.appwrite.services.Databases
 import kotlinx.coroutines.launch
 import pl.droidsonroids.gif.GifDrawable
 import pl.droidsonroids.gif.GifImageView
+import android.media.AudioManager
+import android.view.KeyEvent
 
 class LandingPageActivity : AppCompatActivity() {
 
@@ -43,6 +45,7 @@ class LandingPageActivity : AppCompatActivity() {
     private var mediaPlayer: MediaPlayer? = null
     private var isSirenPlaying = false
     private var sirenGIF: GifDrawable? = null
+    private lateinit var audioManager: AudioManager
 
     @SuppressLint("MissingInflatedId", "UnspecifiedRegisterReceiverFlag", "CutPasteId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,9 +53,15 @@ class LandingPageActivity : AppCompatActivity() {
         isOnCreateRunning = true
         setContentView(R.layout.activity_landing_page)
 
+        audioManager = getSystemService(Context.AUDIO_SERVICE) as AudioManager
+
+        mediaPlayer = MediaPlayer.create(this, R.raw.police_siren)
+        mediaPlayer?.isLooping = true
+
         val imageView = findViewById<ImageView>(R.id.sosImage)
         val sosTextView = findViewById<TextView>(R.id.sosText)
         sirenGIF = findViewById<GifImageView>(R.id.siren).drawable as GifDrawable
+        sirenGIF?.pause()
 
         if (isServiceRunning()) {
             imageView.visibility = View.VISIBLE
@@ -60,12 +69,6 @@ class LandingPageActivity : AppCompatActivity() {
         } else {
             imageView.visibility = View.GONE
             sosTextView.text = getString(R.string.sos)
-        }
-
-        if (mediaPlayer?.isPlaying == false) {
-            sirenGIF?.start()
-        } else {
-            sirenGIF?.pause()
         }
 
         val backgroundService = Intent(applicationContext, ScreenOnOffBackgroundService::class.java)
@@ -269,15 +272,31 @@ class LandingPageActivity : AppCompatActivity() {
         finishAffinity()
     }
 
+    override fun dispatchKeyEvent(event: KeyEvent?): Boolean {
+        when (event?.keyCode) {
+            KeyEvent.KEYCODE_VOLUME_UP, KeyEvent.KEYCODE_VOLUME_DOWN -> {
+                if (isSirenPlaying) {
+                    return true
+                }
+            }
+        }
+        return super.dispatchKeyEvent(event)
+    }
+
     private fun startSiren() {
-        mediaPlayer = MediaPlayer.create(this, R.raw.police_siren)
+        audioManager.isSpeakerphoneOn = true
+        audioManager.setMode(AudioManager.MODE_IN_COMMUNICATION)
+
+        val maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC)
+        audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, maxVolume, 0)
+
         mediaPlayer?.start()
-        mediaPlayer?.isLooping = true
         isSirenPlaying = true
         sirenGIF?.start()
     }
 
     private fun stopSiren() {
+
         mediaPlayer?.apply {
             if (isPlaying) {
                 pause()
@@ -352,6 +371,7 @@ class LandingPageActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
+        mediaPlayer?.release()
         mediaPlayer?.stop()
         super.onDestroy()
     }

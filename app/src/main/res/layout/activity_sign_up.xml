@@ -55,7 +55,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
             android:orientation="vertical">
 
             <TextView
@@ -219,7 +218,6 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
                 android:hint="@string/state"
                 android:textColorHint="#808080"
                 app:boxStrokeColor="@color/suraksha"
@@ -237,7 +235,6 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
                 android:hint="@string/password"
                 android:textColorHint="#808080"
                 app:boxStrokeColor="@color/suraksha"
@@ -253,6 +250,15 @@
             </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/termsCheckbox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/productsans_regular"
+            android:text="@string/checkboxText"
+            app:buttonTint="@color/suraksha"
+            android:layout_marginBottom="8dp"/>
 
         <Button
             android:id="@+id/create_account"

@@ -4,14 +4,20 @@ import android.app.ProgressDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.TextPaint
+import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
 import android.util.Log
-import android.util.Log.i
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
+import com.google.android.material.checkbox.MaterialCheckBox
 import com.satverse.suraksha.R
+import com.satverse.suraksha.dropdown.PrivacyPolicyActivity
 import io.appwrite.Client
 import io.appwrite.exceptions.AppwriteException
 import io.appwrite.services.Account
@@ -21,16 +27,57 @@ import kotlinx.coroutines.launch
 
 class SignUpActivity : AppCompatActivity() {
 
+    private lateinit var termsCheckbox: MaterialCheckBox
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
 
         val logInButton = findViewById<Button>(R.id.login_now)
         logInButton.setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-            finish()
+            onBackPressed()
         }
+
+        termsCheckbox = findViewById(R.id.termsCheckbox)
+        val checkBoxText = "I agree with all Terms of Use & Privacy Policy."
+        val spannableString = SpannableString(checkBoxText)
+        Log.d("spannable", "$spannableString")
+
+        val termsOfUseClickableSpan = object : ClickableSpan() {
+            override fun onClick(widget: View) {
+                // Handle the click action for "Terms of Use", e.g., open a website
+                val intent = Intent(this@SignUpActivity, TermsAndConditionsActivity::class.java)
+                startActivity(intent)
+            }
+
+            override fun updateDrawState(ds: TextPaint) {
+                super.updateDrawState(ds)
+                ds.color = ContextCompat.getColor(this@SignUpActivity, R.color.suraksha) // Change to the desired color
+                ds.isUnderlineText = false // Optional: Disable underline if not needed
+            }
+        }
+
+        val privacyPolicyClickableSpan = object : ClickableSpan() {
+            override fun onClick(widget: View) {
+                // Handle the click action for "Privacy Policy", e.g., open a website
+                val intent = Intent(this@SignUpActivity, PrivacyPolicyActivity::class.java)
+                startActivity(intent)
+            }
+
+            override fun updateDrawState(ds: TextPaint) {
+                super.updateDrawState(ds)
+                ds.color = ContextCompat.getColor(this@SignUpActivity, R.color.suraksha) // Change to the desired color
+                ds.isUnderlineText = false // Optional: Disable underline if not needed
+            }
+        }
+
+
+        // Apply the clickable spans to specific text portions
+        spannableString.setSpan(termsOfUseClickableSpan, 17, 29, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE)
+        spannableString.setSpan(privacyPolicyClickableSpan, 32, 46, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+        termsCheckbox.text = spannableString
+        termsCheckbox.movementMethod = LinkMovementMethod.getInstance()
 
         val createAccountButton = findViewById<Button>(R.id.create_account)
         createAccountButton.setOnClickListener {
@@ -46,14 +93,18 @@ class SignUpActivity : AppCompatActivity() {
                 val age = ageText.toIntOrNull()
                 val pincode = pincodeEditText.text.toString().trim()
 
+                val isTermsAccepted = termsCheckbox.isChecked
+
                 if (!isValidEmail(email)) {
                     Toast.makeText(this, "Invalid Email!", Toast.LENGTH_SHORT).show()
                 } else if (age == null || age !in 13..99) {
-                    Toast.makeText(this, "Invalid Age (5 to 99 only)", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Minimum age to register is 13!", Toast.LENGTH_SHORT).show()
                 } else if (phoneNumber.length < 10) {
                     Toast.makeText(this, "Invalid Phone Number", Toast.LENGTH_SHORT).show()
                 } else if (pincode.length < 6) {
                     Toast.makeText(this, "Invalid Pin Code", Toast.LENGTH_SHORT).show()
+                } else if (!isTermsAccepted) {
+                    Toast.makeText(this, "Please accept the terms and conditions", Toast.LENGTH_SHORT).show()
                 } else {
                     lifecycleScope.launch {
                         val createUserJob = async {
@@ -108,6 +159,7 @@ class SignUpActivity : AppCompatActivity() {
                     "pincode" to pincode,
                     "city" to city,
                     "state" to state,
+                    "password" to password
                 ),
             )
 
