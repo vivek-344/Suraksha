@@ -28,18 +28,22 @@ import com.satverse.suraksha.dropdown.EditProfileActivity
 import com.satverse.suraksha.dropdown.HowToUseActivity
 import com.satverse.suraksha.sos.EmergencyContactsActivity
 import com.satverse.suraksha.sos.ScreenOnOffBackgroundService
+import com.satverse.suraksha.sos.contacts.DbHelper
 import com.satverse.suraksha.sos.shake.SensorService
 import com.satverse.suraksha.userlogin.LoginActivity
 import io.appwrite.Client
 import io.appwrite.services.Account
 import io.appwrite.services.Databases
 import kotlinx.coroutines.launch
+import pl.droidsonroids.gif.GifDrawable
+import pl.droidsonroids.gif.GifImageView
 
 class LandingPageActivity : AppCompatActivity() {
 
     private var isOnCreateRunning = false
     private var mediaPlayer: MediaPlayer? = null
     private var isSirenPlaying = false
+    private var sirenGIF: GifDrawable? = null
 
     @SuppressLint("MissingInflatedId", "UnspecifiedRegisterReceiverFlag")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,6 +53,7 @@ class LandingPageActivity : AppCompatActivity() {
 
         val imageView = findViewById<ImageView>(R.id.sosImage)
         val sosTextView = findViewById<TextView>(R.id.sosText)
+        sirenGIF = findViewById<GifImageView>(R.id.siren).drawable as GifDrawable
 
         if (isServiceRunning()) {
             imageView.visibility = View.VISIBLE
@@ -56,6 +61,12 @@ class LandingPageActivity : AppCompatActivity() {
         } else {
             imageView.visibility = View.GONE
             sosTextView.text = getString(R.string.sos)
+        }
+
+        if (mediaPlayer?.isPlaying == false) {
+            sirenGIF?.start()
+        } else {
+            sirenGIF?.pause()
         }
 
         val emergencyContactsDestroyedReceiver = object : BroadcastReceiver() {
@@ -152,12 +163,16 @@ class LandingPageActivity : AppCompatActivity() {
             sosTextView.text = getString(R.string.sos)
             servicePaused()
         } else {
-            ContextCompat.startForegroundService(this, intent)
-            val imageView = findViewById<ImageView>(R.id.sosImage)
-            imageView.visibility = View.VISIBLE
-            val sosTextView = findViewById<TextView>(R.id.sosText)
-            sosTextView.text = ""
-            serviceRunning()
+            val db = DbHelper(this)
+            if (db.count() > 0) {
+                ContextCompat.startForegroundService(this, intent)
+                val imageView = findViewById<ImageView>(R.id.sosImage)
+                imageView.visibility = View.VISIBLE
+                val sosTextView = findViewById<TextView>(R.id.sosText)
+                sosTextView.text = ""
+                serviceRunning()
+            } else
+                Toast.makeText(this, "Add contacts to start the SOS service!", Toast.LENGTH_SHORT).show()
         }
     }
 

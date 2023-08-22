@@ -25,7 +25,6 @@ class CustomAdapter(
         val convertView = convertView
             ?: LayoutInflater.from(context).inflate(R.layout.item_user, parent, false)
 
-        val linearLayout: LinearLayout = convertView.findViewById(R.id.linear)
         val tvName: TextView = convertView.findViewById(R.id.tvName)
         val tvPhone: TextView = convertView.findViewById(R.id.tvPhone)
         val ivDelete: ImageView = convertView.findViewById(R.id.ivDelete)
