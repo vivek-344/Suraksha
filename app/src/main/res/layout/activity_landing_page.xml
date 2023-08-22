@@ -182,7 +182,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
         android:fontFamily="@font/productsans_regular"
-        android:text="@string/fake_siren_alert"
+        android:text="@string/fake_siren"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/sirenButton"

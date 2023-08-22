@@ -29,7 +29,7 @@
         app:srcCompat="@drawable/chevron_left" />
 
     <TextView
-        android:id="@+id/suraksha"
+        android:id="@+id/howToUse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
@@ -42,15 +42,211 @@
         app:layout_constraintStart_toEndOf="@+id/back"
         app:layout_constraintTop_toTopOf="@id/bar" />
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="72dp"
+        android:layout_marginBottom="18dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
     <TextView
         android:id="@+id/instruction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/instructions"
-        android:fontFamily="@font/productsans_bold"
+        android:fontFamily="@font/productsans_black"
+        android:textSize="20sp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/bar" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <!-- 1. Configuring Emergency Contacts -->
+    <TextView
+        android:id="@+id/contact_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/productsans_medium"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginLeft="32dp"
+        android:textSize="16sp"
+        android:text="@string/configuring_emergency_contacts"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/instruction" />
+
+    <TextView
+        android:id="@+id/contact_instruction"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/productsans_regular"
+        android:layout_marginTop="4dp"
+        android:textSize="14sp"
+        android:layout_marginRight="32dp"
+        android:layout_marginLeft="32dp"
+        android:text="@string/configuring_emergency_contacts_instruction"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/contact_header" />
+
+    <!-- 2. SOS Activation -->
+    <TextView
+        android:id="@+id/sos_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/productsans_medium"
+        android:layout_marginTop="18dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginLeft="32dp"
+        android:textSize="16sp"
+        android:text="@string/sos_activation"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/contact_instruction" />
+
+    <TextView
+        android:id="@+id/sos_instruction"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/sos_activation_instruction"
+        app:layout_constraintStart_toStartOf="parent"
+        android:fontFamily="@font/productsans_regular"
+        android:layout_marginTop="4dp"
+        android:textSize="14sp"
+        android:layout_marginRight="32dp"
+        android:layout_marginLeft="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sos_header" />
+
+    <!-- 3. Fake Siren Alert -->
+    <TextView
+        android:id="@+id/siren_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fake_siren_alert"
+        android:fontFamily="@font/productsans_medium"
+        android:layout_marginTop="18dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginLeft="32dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sos_instruction" />
+
+    <TextView
+        android:id="@+id/siren_instruction"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/productsans_regular"
+        android:layout_marginTop="4dp"
+        android:layout_marginRight="32dp"
+        android:textSize="14sp"
+        android:layout_marginLeft="32dp"
+        android:text="@string/fake_siren_alert_instruction"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/siren_header" />
+
+    <!-- 4. Emergency Helplines -->
+    <TextView
+        android:id="@+id/helpline_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/productsans_medium"
+        android:layout_marginTop="18dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginLeft="32dp"
+        android:textSize="16sp"
+        android:text="@string/emergency_helplines"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/siren_instruction" />
+
+    <TextView
+        android:id="@+id/helpline_instruction"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/productsans_regular"
+        android:layout_marginTop="4dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginLeft="32dp"
+        android:textSize="14sp"
+        android:text="@string/emergency_helplines_instruction"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/helpline_header" />
+
+    <!-- 5. Continuous Safety Feature -->
+    <TextView
+        android:id="@+id/background_safety_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/productsans_medium"
+        android:layout_marginTop="18dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginLeft="32dp"
+        android:textSize="16sp"
+        android:text="@string/continuous_safety_feature"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/helpline_instruction" />
+
+    <TextView
+        android:id="@+id/background_safety_instruction"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/productsans_regular"
+        android:layout_marginTop="4dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginLeft="32dp"
+        android:textSize="14sp"
+        android:text="@string/continuous_safety_feature_instruction"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/background_safety_header" />
+
+    <!-- 6. Best Practices -->
+    <TextView
+        android:id="@+id/tips_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/best_practices"
+        android:fontFamily="@font/productsans_medium"
+        android:layout_marginTop="18dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginLeft="32dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/background_safety_instruction" />
+
+            <TextView
+                android:id="@+id/tips_instruction"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginRight="32dp"
+                android:fontFamily="@font/productsans_regular"
+                android:text="@string/best_practices_instruction"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tips_header" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
