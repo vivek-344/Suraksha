@@ -26,6 +26,7 @@ import androidx.lifecycle.lifecycleScope
 import com.satverse.suraksha.R.id.emergency_button
 import com.satverse.suraksha.dropdown.EditProfileActivity
 import com.satverse.suraksha.dropdown.HowToUseActivity
+import com.satverse.suraksha.dropdown.PrivacyPolicy
 import com.satverse.suraksha.sos.EmergencyContactsActivity
 import com.satverse.suraksha.sos.ScreenOnOffBackgroundService
 import com.satverse.suraksha.sos.contacts.DbHelper
@@ -211,6 +212,11 @@ class LandingPageActivity : AppCompatActivity() {
                 }
                 R.id.editProfile -> {
                     val intent = Intent(this, EditProfileActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.privacyPolicy -> {
+                    val intent = Intent(this, PrivacyPolicy::class.java)
                     startActivity(intent)
                     true
                 }
