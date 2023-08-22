@@ -16,10 +16,10 @@ import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
+import android.widget.PopupMenu
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.PopupMenu
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
@@ -37,8 +37,6 @@ import kotlinx.coroutines.launch
 
 class LandingPageActivity : AppCompatActivity() {
 
-
-    // Boolean flag to track if onCreate is running
     private var isOnCreateRunning = false
     private var mediaPlayer: MediaPlayer? = null
     private var isSirenPlaying = false
@@ -46,8 +44,19 @@ class LandingPageActivity : AppCompatActivity() {
     @SuppressLint("MissingInflatedId", "UnspecifiedRegisterReceiverFlag")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        isOnCreateRunning = true  // Set the flag to true
+        isOnCreateRunning = true
         setContentView(R.layout.activity_landing_page)
+
+        val imageView = findViewById<ImageView>(R.id.sosImage)
+        val sosTextView = findViewById<TextView>(R.id.sosText)
+
+        if (isServiceRunning()) {
+            imageView.visibility = View.VISIBLE
+            sosTextView.text = ""
+        } else {
+            imageView.visibility = View.GONE
+            sosTextView.text = getString(R.string.sos)
+        }
 
         val emergencyContactsDestroyedReceiver = object : BroadcastReceiver() {
             override fun onReceive(context: Context?, intent: Intent?) {
@@ -60,26 +69,10 @@ class LandingPageActivity : AppCompatActivity() {
         val intentFilter = IntentFilter("emergency_contacts_destroyed")
         registerReceiver(emergencyContactsDestroyedReceiver, intentFilter)
 
-        lifecycleScope.launch {
-            val name = fetchName()
-            val firstName = getFirstName(name)
-            val welcomeTextView = findViewById<TextView>(R.id.welcome)
-            val welcomeMessage = "Hello, $firstName!"
-
-            // Start the typing animation
-            startTypingAnimation(welcomeTextView, welcomeMessage)
-            isOnCreateRunning = false  // Set the flag to true
-        }
-
-        val backgroundService = Intent(
-            applicationContext,
-            ScreenOnOffBackgroundService::class.java
-        )
-
+        val backgroundService = Intent(applicationContext, ScreenOnOffBackgroundService::class.java)
         startService(backgroundService)
 
-        val permissionCheck =
-            ContextCompat.checkSelfPermission(this@LandingPageActivity, Manifest.permission.SEND_SMS)
+        val permissionCheck = ContextCompat.checkSelfPermission(this@LandingPageActivity, Manifest.permission.SEND_SMS)
         if (permissionCheck != PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(
                 this@LandingPageActivity,
                 Manifest.permission.ACCESS_FINE_LOCATION
@@ -108,13 +101,20 @@ class LandingPageActivity : AppCompatActivity() {
 
         val emergencyButton = findViewById<ImageView>(emergency_button)
         emergencyButton.setOnClickListener {
-            val Intent = Intent(this@LandingPageActivity, EmergencyContactsActivity::class.java)
-            startActivity(Intent)
+            val intent = Intent(this@LandingPageActivity, EmergencyContactsActivity::class.java)
+            startActivity(intent)
         }
 
         val sosButton = findViewById<ImageView>(R.id.sosButton)
         sosButton.setOnClickListener {
-            toggleSensorService() // Use the toggleSensorService function to start/stop SensorService
+            toggleSensorService()
+            if (isServiceRunning()) {
+                imageView.visibility = View.VISIBLE
+                sosTextView.text = ""
+            } else {
+                imageView.visibility = View.GONE
+                sosTextView.text = getString(R.string.sos)
+            }
         }
 
         val sirenButton = findViewById<ImageView>(R.id.sirenButton)
@@ -137,18 +137,26 @@ class LandingPageActivity : AppCompatActivity() {
             val intent = Intent(this, AboutUsActivity::class.java)
             startActivity(intent)
         }
+
+        isOnCreateRunning = false
     }
 
     private fun toggleSensorService() {
         val intent = Intent(this, SensorService::class.java)
 
         if (isServiceRunning()) {
-            // If the service is running, stop it
             stopService(intent)
+            val imageView = findViewById<ImageView>(R.id.sosImage)
+            imageView.visibility = View.GONE
+            val sosTextView = findViewById<TextView>(R.id.sosText)
+            sosTextView.text = getString(R.string.sos)
             servicePaused()
         } else {
-            // If the service is not running, start it
             ContextCompat.startForegroundService(this, intent)
+            val imageView = findViewById<ImageView>(R.id.sosImage)
+            imageView.visibility = View.VISIBLE
+            val sosTextView = findViewById<TextView>(R.id.sosText)
+            sosTextView.text = ""
             serviceRunning()
         }
     }
@@ -161,16 +169,14 @@ class LandingPageActivity : AppCompatActivity() {
                 val firstName = getFirstName(name)
                 val welcomeTextView = findViewById<TextView>(R.id.welcome)
                 val welcomeMessage = "Hello, $firstName!"
-
-                // Start the typing animation
                 startTypingAnimation(welcomeTextView, welcomeMessage)
             }
         }
     }
 
     private fun startTypingAnimation(textView: TextView, text: String) {
-        val delayMillis = 100L // Delay between each character reveal
-        val typingSpeed = 50L // Speed of typing animation
+        val delayMillis = 100L
+        val typingSpeed = 50L
 
         val handler = Handler()
         var index = 0
@@ -195,31 +201,22 @@ class LandingPageActivity : AppCompatActivity() {
         popupMenu.setOnMenuItemClickListener { item: MenuItem ->
             when (item.itemId) {
                 R.id.howToUse -> {
-
                     val intent = Intent(this, HowToUseActivity::class.java)
                     startActivity(intent)
-
                     true
                 }
                 R.id.editProfile -> {
-
                     val intent = Intent(this, EditProfileActivity::class.java)
                     startActivity(intent)
-
                     true
                 }
                 R.id.logOut -> {
-
                     lifecycleScope.launch {
                         logOut()
                     }
-
                     stopSiren()
-
-                    mediaPlayer!!.stop()
-
+                    mediaPlayer?.stop()
                     userLoggedOut()
-
                     true
                 }
                 else -> false
@@ -246,11 +243,9 @@ class LandingPageActivity : AppCompatActivity() {
 
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
-
         } catch (e: Exception) {
             runOnUiThread {
                 Toast.makeText(this, "$e", Toast.LENGTH_SHORT).show()
-
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
                 finish()
@@ -260,10 +255,9 @@ class LandingPageActivity : AppCompatActivity() {
         }
     }
 
-    @Deprecated("Deprecated in Java", ReplaceWith("finishAffinity()"))
     override fun onBackPressed() {
         stopSiren()
-        mediaPlayer!!.stop()
+        mediaPlayer?.stop()
         finishAffinity()
     }
 
@@ -349,14 +343,6 @@ class LandingPageActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         mediaPlayer?.stop()
-//        isSensorServiceRunning = false
-//        val stopServiceIntent = Intent(this, SensorService::class.java)
-//        stopService(stopServiceIntent)
-//        val broadcastIntent = Intent()
-//        broadcastIntent.action = "restartservice"
-//        broadcastIntent.setClass(this, ReactivateService::class.java)
-//        sendBroadcast(broadcastIntent)
-//        Log.d("Reactivate Service", broadcastIntent.toString())
         super.onDestroy()
     }
 }
