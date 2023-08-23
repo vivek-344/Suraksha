@@ -58,16 +58,16 @@ class LandingPageActivity : AppCompatActivity() {
         mediaPlayer = MediaPlayer.create(this, R.raw.police_siren)
         mediaPlayer?.isLooping = true
 
-        val imageView = findViewById<ImageView>(R.id.sosImage)
+        val sosImageView = findViewById<ImageView>(R.id.sosImage)
         val sosTextView = findViewById<TextView>(R.id.sosText)
         sirenGIF = findViewById<GifImageView>(R.id.siren).drawable as GifDrawable
         sirenGIF?.pause()
 
         if (isServiceRunning()) {
-            imageView.visibility = View.VISIBLE
+            sosImageView.visibility = View.VISIBLE
             sosTextView.text = ""
         } else {
-            imageView.visibility = View.GONE
+            sosImageView.visibility = View.GONE
             sosTextView.text = getString(R.string.sos)
         }
 
@@ -111,10 +111,10 @@ class LandingPageActivity : AppCompatActivity() {
         sosButton.setOnClickListener {
             toggleSensorService()
             if (isServiceRunning()) {
-                imageView.visibility = View.VISIBLE
+                sosImageView.visibility = View.VISIBLE
                 sosTextView.text = ""
             } else {
-                imageView.visibility = View.GONE
+                sosImageView.visibility = View.GONE
                 sosTextView.text = getString(R.string.sos)
             }
         }
@@ -157,6 +157,7 @@ class LandingPageActivity : AppCompatActivity() {
             val db = DbHelper(this)
             if (db.count() > 0) {
                 ContextCompat.startForegroundService(this, intent)
+                Toast.makeText(this, "Service activated!", Toast.LENGTH_SHORT).show()
                 val imageView = findViewById<ImageView>(R.id.sosImage)
                 imageView.visibility = View.VISIBLE
                 val sosTextView = findViewById<TextView>(R.id.sosText)
@@ -177,6 +178,15 @@ class LandingPageActivity : AppCompatActivity() {
                 val welcomeMessage = "Hello, $firstName!"
                 startTypingAnimation(welcomeTextView, welcomeMessage)
             }
+        }
+
+        val sosImageView = findViewById<ImageView>(R.id.sosImage)
+        val sosTextView = findViewById<TextView>(R.id.sosText)
+
+        val db = DbHelper(this)
+        if (db.count() == 0) {
+            sosImageView.visibility = View.GONE
+            sosTextView.text = getString(R.string.sos)
         }
     }
 
