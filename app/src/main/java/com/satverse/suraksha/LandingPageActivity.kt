@@ -182,9 +182,12 @@ class LandingPageActivity : AppCompatActivity() {
 
         val sosImageView = findViewById<ImageView>(R.id.sosImage)
         val sosTextView = findViewById<TextView>(R.id.sosText)
+        val intent = Intent(this, SensorService::class.java)
 
         val db = DbHelper(this)
         if (db.count() == 0) {
+            stopService(intent)
+            servicePaused()
             sosImageView.visibility = View.GONE
             sosTextView.text = getString(R.string.sos)
         }
@@ -266,10 +269,7 @@ class LandingPageActivity : AppCompatActivity() {
             startActivity(intent)
         } catch (e: Exception) {
             runOnUiThread {
-                Toast.makeText(this, "$e", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, LoginActivity::class.java)
-                startActivity(intent)
-                finish()
+                Toast.makeText(this, "Error while logging out!", Toast.LENGTH_SHORT).show()
             }
         } finally {
             progressDialog.dismiss()
