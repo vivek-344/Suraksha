@@ -6,6 +6,7 @@ import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.location.LocationManager
 import android.media.MediaPlayer
 import android.os.Build
 import android.os.Bundle
@@ -37,7 +38,11 @@ import kotlinx.coroutines.launch
 import pl.droidsonroids.gif.GifDrawable
 import pl.droidsonroids.gif.GifImageView
 import android.media.AudioManager
+import android.net.ConnectivityManager
 import android.view.KeyEvent
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
 
 class LandingPageActivity : AppCompatActivity() {
 
@@ -46,6 +51,7 @@ class LandingPageActivity : AppCompatActivity() {
     private var isSirenPlaying = false
     private var sirenGIF: GifDrawable? = null
     private lateinit var audioManager: AudioManager
+    private lateinit var adView: AdView
 
     @SuppressLint("MissingInflatedId", "UnspecifiedRegisterReceiverFlag", "CutPasteId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -140,11 +146,22 @@ class LandingPageActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        MobileAds.initialize(this) {
+            adView = findViewById(R.id.adView)
+
+            val adRequest = AdRequest.Builder().build()
+            adView.loadAd(adRequest)
+        }
+
         isOnCreateRunning = false
     }
 
     private fun toggleSensorService() {
         val intent = Intent(this, SensorService::class.java)
+
+        val locationEnabled = isLocationEnabled()
+        val internetConnected = isInternetConnected()
+        val boolean = locationEnabled && internetConnected
 
         if (isServiceRunning()) {
             stopService(intent)
@@ -158,6 +175,8 @@ class LandingPageActivity : AppCompatActivity() {
             if (db.count() > 0) {
                 ContextCompat.startForegroundService(this, intent)
                 Toast.makeText(this, "Service activated!", Toast.LENGTH_SHORT).show()
+                if (!boolean)
+                    Toast.makeText(this, "Turn on location and internet to send SOS message with location!", Toast.LENGTH_LONG).show()
                 val imageView = findViewById<ImageView>(R.id.sosImage)
                 imageView.visibility = View.VISIBLE
                 val sosTextView = findViewById<TextView>(R.id.sosText)
@@ -378,6 +397,18 @@ class LandingPageActivity : AppCompatActivity() {
         val editor = sharedPref.edit()
         editor.putBoolean("Running", false)
         editor.apply()
+    }
+
+    private fun isLocationEnabled(): Boolean {
+        val locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) ||
+                locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
+    }
+
+    private fun isInternetConnected(): Boolean {
+        val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetworkInfo = connectivityManager.activeNetworkInfo
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected
     }
 
     override fun onDestroy() {
