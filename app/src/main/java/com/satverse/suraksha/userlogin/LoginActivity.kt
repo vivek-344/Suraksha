@@ -9,11 +9,10 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat.finishAffinity
-import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.lifecycleScope
 import com.satverse.suraksha.LandingPageActivity
 import com.satverse.suraksha.R
+import com.satverse.suraksha.sos.contacts.DbHelper
 import io.appwrite.Client
 import io.appwrite.exceptions.AppwriteException
 import io.appwrite.services.Account
@@ -76,6 +75,10 @@ class LoginActivity : AppCompatActivity() {
             Log.d("Appwrite response", user.toString())
 
             val response = users.get()
+
+            val name = response.name
+            DbHelper.UserData.name = getFirstName(name)
+
             val isEmailVerified = response.emailVerification
 
             if (isEmailVerified) {
@@ -119,5 +122,13 @@ class LoginActivity : AppCompatActivity() {
     @Deprecated("Deprecated in Java", ReplaceWith("finishAffinity()"))
     override fun onBackPressed() {
         finishAffinity()
+    }
+
+    private fun getFirstName(fullName: String): String {
+        val parts = fullName.split(" ")
+        if (parts.isNotEmpty()) {
+            return parts[0]
+        }
+        return fullName
     }
 }

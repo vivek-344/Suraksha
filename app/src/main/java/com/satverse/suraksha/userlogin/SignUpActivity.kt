@@ -18,6 +18,7 @@ import androidx.lifecycle.lifecycleScope
 import com.google.android.material.checkbox.MaterialCheckBox
 import com.satverse.suraksha.R
 import com.satverse.suraksha.dropdown.PrivacyPolicyActivity
+import com.satverse.suraksha.sos.contacts.DbHelper
 import io.appwrite.Client
 import io.appwrite.exceptions.AppwriteException
 import io.appwrite.services.Account
@@ -86,7 +87,9 @@ class SignUpActivity : AppCompatActivity() {
                 val phoneNumberEditText = findViewById<EditText>(R.id.phone_no)
                 val pincodeEditText = findViewById<EditText>(R.id.pincode)
                 val ageEditText = findViewById<EditText>(R.id.age)
+                val fullNameEditText = findViewById<EditText>(R.id.name)
 
+                val fullName = fullNameEditText.text.toString().trim()
                 val email = emailEditText.text.toString().trim()
                 val phoneNumber = phoneNumberEditText.text.toString().trim()
                 val ageText = ageEditText.text.toString().trim()
@@ -111,6 +114,8 @@ class SignUpActivity : AppCompatActivity() {
                             createUser()
                         }
                         createUserJob.await()
+
+                        DbHelper.UserData.name = getFirstName(fullName)
 
                         logInUser()
                     }
@@ -228,5 +233,13 @@ class SignUpActivity : AppCompatActivity() {
     fun isValidEmail(email: String): Boolean {
         val emailRegex = Regex(getString(R.string.email_check))
         return email.matches(emailRegex)
+    }
+
+    private fun getFirstName(fullName: String): String {
+        val parts = fullName.split(" ")
+        if (parts.isNotEmpty()) {
+            return parts[0]
+        }
+        return fullName
     }
 }

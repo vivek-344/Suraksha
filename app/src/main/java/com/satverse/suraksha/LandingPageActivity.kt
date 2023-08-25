@@ -11,7 +11,6 @@ import android.media.MediaPlayer
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
@@ -33,7 +32,6 @@ import com.satverse.suraksha.sos.shake.SensorService
 import com.satverse.suraksha.userlogin.LoginActivity
 import io.appwrite.Client
 import io.appwrite.services.Account
-import io.appwrite.services.Databases
 import kotlinx.coroutines.launch
 import pl.droidsonroids.gif.GifDrawable
 import pl.droidsonroids.gif.GifImageView
@@ -191,8 +189,7 @@ class LandingPageActivity : AppCompatActivity() {
         super.onResume()
         if (!isOnCreateRunning) {
             lifecycleScope.launch {
-                val name = fetchName()
-                val firstName = getFirstName(name)
+                val firstName = DbHelper.UserData.name
                 val welcomeTextView = findViewById<TextView>(R.id.welcome)
                 val welcomeMessage = "Hello, $firstName!"
                 startTypingAnimation(welcomeTextView, welcomeMessage)
@@ -341,43 +338,6 @@ class LandingPageActivity : AppCompatActivity() {
         val editor = sharedPref.edit()
         editor.putBoolean("LoggedIn", false)
         editor.apply()
-    }
-
-    private fun getFirstName(fullName: String): String {
-        val parts = fullName.split(" ")
-        if (parts.isNotEmpty()) {
-            return parts[0]
-        }
-        return fullName
-    }
-
-    private suspend fun fetchName(): String {
-        val client = Client(this)
-            .setEndpoint("https://cloud.appwrite.io/v1")
-            .setProject("64bb859f2d53d0d44e9c")
-            .setSelfSigned(true)
-
-        val account = Account(client)
-        val userDatabase = Databases(client)
-
-        try {
-            val userData = account.listSessions()
-            val userId = userData.sessions.firstOrNull()?.userId
-
-            if (userId != null) {
-                val data = userDatabase.getDocument(
-                    databaseId = "64bc1e13ca662cd39b95",
-                    collectionId = "64bc1e1e7465e6d3e4c2",
-                    documentId = userId
-                )
-
-                return data.data["fullName"].toString().trim()
-            }
-        } catch (e: Exception) {
-            Log.e("LandingPageActivity", "Error while fetching user's name", e)
-        }
-
-        return "User"
     }
 
     private fun isServiceRunning(): Boolean {

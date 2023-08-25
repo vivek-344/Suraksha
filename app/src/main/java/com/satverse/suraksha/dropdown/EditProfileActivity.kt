@@ -2,22 +2,20 @@ package com.satverse.suraksha.dropdown
 
 import android.annotation.SuppressLint
 import android.app.ProgressDialog
-import android.content.Intent
-import android.media.MediaPlayer
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.textfield.TextInputEditText
-import com.satverse.suraksha.LandingPageActivity
 import com.satverse.suraksha.R
+import com.satverse.suraksha.sos.contacts.DbHelper
 import io.appwrite.Client
 import io.appwrite.services.Account
 import io.appwrite.services.Databases
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
 
@@ -42,7 +40,9 @@ class EditProfileActivity : AppCompatActivity() {
             val phoneNumberEditText = findViewById<TextInputEditText>(R.id.phone_no)
             val pincodeEditText = findViewById<TextInputEditText>(R.id.pincode)
             val ageEditText = findViewById<TextInputEditText>(R.id.age)
+            val fullNameEditText = findViewById<EditText>(R.id.name)
 
+            val fullName = fullNameEditText.text.toString().trim()
             val phoneNumber = phoneNumberEditText.text.toString().trim()
             val pincode = pincodeEditText.text.toString().trim()
             val ageString = ageEditText.text.toString().trim()
@@ -56,6 +56,8 @@ class EditProfileActivity : AppCompatActivity() {
             } else if (pincode.length < 6) {
                 Toast.makeText(this, "Invalid Pin Code", Toast.LENGTH_SHORT).show()
             } else {
+                DbHelper.UserData.name = getFirstName(fullName)
+
                 lifecycleScope.launch {
                     updateProfile()
                 }
@@ -180,5 +182,13 @@ class EditProfileActivity : AppCompatActivity() {
         } finally {
             progressDialog.dismiss()
         }
+    }
+
+    private fun getFirstName(fullName: String): String {
+        val parts = fullName.split(" ")
+        if (parts.isNotEmpty()) {
+            return parts[0]
+        }
+        return fullName
     }
 }
