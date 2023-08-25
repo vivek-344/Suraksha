@@ -79,8 +79,4 @@ class DbHelper(context: Context?) :
         private const val NAME = "Name"
         private const val PHONENO = "PhoneNo"
     }
-
-    object UserData {
-        var name: String = ""
-    }
 }

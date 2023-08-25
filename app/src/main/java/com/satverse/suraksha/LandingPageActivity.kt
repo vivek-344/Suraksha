@@ -188,12 +188,12 @@ class LandingPageActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         if (!isOnCreateRunning) {
-            lifecycleScope.launch {
-                val firstName = DbHelper.UserData.name
-                val welcomeTextView = findViewById<TextView>(R.id.welcome)
-                val welcomeMessage = "Hello, $firstName!"
-                startTypingAnimation(welcomeTextView, welcomeMessage)
-            }
+            val sharedPreferences = getSharedPreferences("Name", Context.MODE_PRIVATE)
+            val firstName = sharedPreferences.getString("Name", "")
+
+            val welcomeTextView = findViewById<TextView>(R.id.welcome)
+            val welcomeMessage = "Hello, $firstName!"
+            startTypingAnimation(welcomeTextView, welcomeMessage)
         }
 
         val sosImageView = findViewById<ImageView>(R.id.sosImage)

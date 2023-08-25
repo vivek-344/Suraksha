@@ -76,8 +76,13 @@ class LoginActivity : AppCompatActivity() {
 
             val response = users.get()
 
-            val name = response.name
-            DbHelper.UserData.name = getFirstName(name)
+            val fullName = response.name
+            val name = getFirstName(fullName)
+
+            val sharedPreferences = getSharedPreferences("Name", Context.MODE_PRIVATE)
+            val editor = sharedPreferences.edit()
+            editor.putString("Name", name)
+            editor.apply()
 
             val isEmailVerified = response.emailVerification
 

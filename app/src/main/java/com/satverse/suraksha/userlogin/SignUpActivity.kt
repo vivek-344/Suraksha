@@ -1,6 +1,7 @@
 package com.satverse.suraksha.userlogin
 
 import android.app.ProgressDialog
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -115,7 +116,12 @@ class SignUpActivity : AppCompatActivity() {
                         }
                         createUserJob.await()
 
-                        DbHelper.UserData.name = getFirstName(fullName)
+                        val name = getFirstName(fullName)
+
+                        val sharedPreferences = getSharedPreferences("Name", Context.MODE_PRIVATE)
+                        val editor = sharedPreferences.edit()
+                        editor.putString("Name", name)
+                        editor.apply()
 
                         logInUser()
                     }

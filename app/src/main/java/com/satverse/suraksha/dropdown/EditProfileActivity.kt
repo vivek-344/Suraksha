@@ -2,6 +2,7 @@ package com.satverse.suraksha.dropdown
 
 import android.annotation.SuppressLint
 import android.app.ProgressDialog
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -56,7 +57,12 @@ class EditProfileActivity : AppCompatActivity() {
             } else if (pincode.length < 6) {
                 Toast.makeText(this, "Invalid Pin Code", Toast.LENGTH_SHORT).show()
             } else {
-                DbHelper.UserData.name = getFirstName(fullName)
+                val name = getFirstName(fullName)
+
+                val sharedPreferences = getSharedPreferences("Name", Context.MODE_PRIVATE)
+                val editor = sharedPreferences.edit()
+                editor.putString("Name", name)
+                editor.apply()
 
                 lifecycleScope.launch {
                     updateProfile()
