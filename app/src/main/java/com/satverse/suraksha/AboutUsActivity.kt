@@ -35,6 +35,16 @@ class AboutUsActivity : AppCompatActivity() {
                 intent.addCategory(Intent.CATEGORY_BROWSABLE)
             }
 
+            if (url.contains("instagram.com")) {
+                intent.setDataAndType(uri, "text/html")
+                intent.addCategory(Intent.CATEGORY_BROWSABLE)
+            }
+
+            if (url.contains("twitter.com")) {
+                intent.setDataAndType(uri, "text/html")
+                intent.addCategory(Intent.CATEGORY_BROWSABLE)
+            }
+
             val chooser = Intent.createChooser(intent, "Open with")
             if (intent.resolveActivity(packageManager) != null) {
                 startActivity(chooser)
@@ -101,6 +111,18 @@ class AboutUsActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.yashGitHubButton).setOnClickListener {
             openURL("https://www.github.com/yashdarbar")
+        }
+
+        findViewById<Button>(R.id.vanshiLinkedinButton).setOnClickListener {
+            openURL("https://linkedin.com/in/vanshii24")
+        }
+
+        findViewById<Button>(R.id.vanshiGitHubButton).setOnClickListener {
+            openURL("https://www.github.com/vanshi24")
+        }
+
+        findViewById<ImageView>(R.id.vanshi_image).setOnClickListener {
+            openURL("https://www.instagram.com/_vanshi._24/")
         }
     }
 
