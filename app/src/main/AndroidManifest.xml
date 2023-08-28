@@ -167,14 +167,13 @@
             android:name=".sos.shake.ReactivateService"
             android:enabled="true"
             android:exported="true"
-            android:permission="TODO"
             tools:ignore="ExportedReceiver" />
 
         <service
             android:name=".sos.shake.SensorService"
             android:enabled="true"
             android:exported="false"
-            android:permission="TODO" />
+            android:foregroundServiceType="dataSync"/>
 
         <activity
             android:name=".sos.CurrentLocation"

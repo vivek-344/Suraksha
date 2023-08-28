@@ -30,10 +30,10 @@ class ScreenOnOffBackgroundService : Service() {
         }
 
 //        val intentFilter = IntentFilter()
-//
+
 //        intentFilter.addAction("android.intent.action.SCREEN_ON")
 //        intentFilter.addAction("android.intent.action.SCREEN_OFF")
-//
+
 //        intentFilter.priority = 100
 //        screenOnOffReceiver = ScreenOnOffReceiver()
 

@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class AboutUsActivity : AppCompatActivity() {
@@ -27,29 +26,30 @@ class AboutUsActivity : AppCompatActivity() {
 
         fun openURL(url: String) {
             val uri = Uri.parse(url)
+
             val intent = Intent(Intent.ACTION_VIEW, uri)
 
-            // Special handling for LinkedIn URLs
-            if (url.contains("linkedin.com")) {
-                intent.setDataAndType(uri, "text/html")
-                intent.addCategory(Intent.CATEGORY_BROWSABLE)
+            // Special handling for specific apps
+            when {
+                url.contains("linkedin.com") -> {
+                    intent.setPackage("com.linkedin.android")
+                }
+                url.contains("instagram.com") -> {
+                    intent.setPackage("com.instagram.android")
+                }
+                url.contains("twitter.com") -> {
+                    intent.setPackage("com.twitter.android")
+                }
             }
 
-            if (url.contains("instagram.com")) {
-                intent.setDataAndType(uri, "text/html")
-                intent.addCategory(Intent.CATEGORY_BROWSABLE)
-            }
-
-            if (url.contains("twitter.com")) {
-                intent.setDataAndType(uri, "text/html")
-                intent.addCategory(Intent.CATEGORY_BROWSABLE)
-            }
-
-            val chooser = Intent.createChooser(intent, "Open with")
-            if (intent.resolveActivity(packageManager) != null) {
+            val resolveInfo = packageManager.queryIntentActivities(intent, 0)
+            if (resolveInfo.isNotEmpty()) {
+                // At least one app is available, let the user choose
+                val chooser = Intent.createChooser(intent, "Open with")
                 startActivity(chooser)
             } else {
-                Toast.makeText(this, "No application available to handle the request", Toast.LENGTH_SHORT).show()
+                // No app available, open in browser
+                startActivity(Intent(Intent.ACTION_VIEW, uri))
             }
         }
 

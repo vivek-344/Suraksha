@@ -156,23 +156,24 @@ class LandingPageActivity : AppCompatActivity() {
 
     private fun toggleSensorService() {
         val intent = Intent(this, SensorService::class.java)
-
         val locationEnabled = isLocationEnabled()
         val internetConnected = isInternetConnected()
         val boolean = locationEnabled && internetConnected
 
         if (isServiceRunning()) {
-            stopService(intent)
+//            Toast.makeText(this, "Service deactivated!", Toast.LENGTH_SHORT).show()
             val imageView = findViewById<ImageView>(R.id.sosImage)
             imageView.visibility = View.GONE
             val sosTextView = findViewById<TextView>(R.id.sosText)
             sosTextView.text = getString(R.string.sos)
+            stopService(intent)
             servicePaused()
+            Toast.makeText(this, "Service deactivated!", Toast.LENGTH_SHORT).show()
         } else {
             val db = DbHelper(this)
             if (db.count() > 0) {
+                startService(intent)
                 ContextCompat.startForegroundService(this, intent)
-                Toast.makeText(this, "Service activated!", Toast.LENGTH_SHORT).show()
                 if (!boolean)
                     Toast.makeText(this, "Turn on location and internet to send SOS message with location!", Toast.LENGTH_LONG).show()
                 val imageView = findViewById<ImageView>(R.id.sosImage)
@@ -180,6 +181,7 @@ class LandingPageActivity : AppCompatActivity() {
                 val sosTextView = findViewById<TextView>(R.id.sosText)
                 sosTextView.text = ""
                 serviceRunning()
+                Toast.makeText(this, "Service activated!", Toast.LENGTH_SHORT).show()
             } else
                 Toast.makeText(this, "Add contacts to start the SOS service!", Toast.LENGTH_SHORT).show()
         }
@@ -373,7 +375,7 @@ class LandingPageActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         mediaPlayer?.release()
-        mediaPlayer?.stop()
+//        mediaPlayer?.stop()
         super.onDestroy()
     }
 }
