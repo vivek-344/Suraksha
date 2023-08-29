@@ -12,6 +12,7 @@ class TermsAndConditionsActivity : AppCompatActivity() {
 
         val back = findViewById<ImageView>(R.id.back)
         back.setOnClickListener {
+            @Suppress("DEPRECATION")
             onBackPressed()
         }
     }

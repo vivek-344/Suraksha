@@ -2,12 +2,11 @@ package com.satverse.suraksha.onboarding
 
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.lifecycle.Lifecycle
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.satverse.suraksha.R
@@ -24,7 +23,7 @@ class ViewPagerFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_view_pager, container, false)
 
-        val fragmentList = arrayListOf<Fragment>(
+        val fragmentList = arrayListOf(
             FirstScreen(),
             SecondScreen(),
             ThirdScreen()

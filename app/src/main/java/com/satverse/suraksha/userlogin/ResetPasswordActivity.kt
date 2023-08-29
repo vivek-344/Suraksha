@@ -2,13 +2,12 @@ package com.satverse.suraksha.userlogin
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.satverse.suraksha.R
-import com.satverse.suraksha.sos.EmergencyContactsActivity
 import io.appwrite.Client
 import io.appwrite.exceptions.AppwriteException
 import io.appwrite.services.Account
@@ -36,7 +35,7 @@ class ResetPasswordActivity : AppCompatActivity() {
         }
     }
 
-    suspend fun changePassword() {
+    private suspend fun changePassword() {
         val client = Client(this)
             .setEndpoint("https://cloud.appwrite.io/v1")
             .setProject("64bb859f2d53d0d44e9c")

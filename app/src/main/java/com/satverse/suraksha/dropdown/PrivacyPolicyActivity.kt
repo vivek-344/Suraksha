@@ -9,7 +9,7 @@ import com.satverse.suraksha.R
 
 class PrivacyPolicyActivity : AppCompatActivity() {
 
-    var mediaPlayer: MediaPlayer? = null
+    private var mediaPlayer: MediaPlayer? = null
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,12 +17,15 @@ class PrivacyPolicyActivity : AppCompatActivity() {
 
         val back = findViewById<ImageView>(R.id.back)
         back.setOnClickListener {
+            @Suppress("DEPRECATION")
             onBackPressed()
         }
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         mediaPlayer?.stop()
+        @Suppress("DEPRECATION")
         super.onBackPressed()
     }
 }

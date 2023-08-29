@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.satverse.suraksha.userlogin
 
 import android.app.ProgressDialog
@@ -12,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.satverse.suraksha.LandingPageActivity
 import com.satverse.suraksha.R
-import com.satverse.suraksha.sos.contacts.DbHelper
 import io.appwrite.Client
 import io.appwrite.exceptions.AppwriteException
 import io.appwrite.services.Account
@@ -119,7 +120,7 @@ class LoginActivity : AppCompatActivity() {
         editor.apply()
     }
 
-    fun isValidEmail(email: String): Boolean {
+    private fun isValidEmail(email: String): Boolean {
         val emailRegex = Regex(getString(R.string.email_check))
         return email.matches(emailRegex)
     }

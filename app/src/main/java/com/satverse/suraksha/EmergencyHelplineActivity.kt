@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 
 class EmergencyHelplineActivity : AppCompatActivity() {
 
-    var mediaPlayer: MediaPlayer? = null
+    private var mediaPlayer: MediaPlayer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,6 +17,7 @@ class EmergencyHelplineActivity : AppCompatActivity() {
 
         val back = findViewById<ImageView>(R.id.back)
         back.setOnClickListener {
+            @Suppress("DEPRECATION")
             onBackPressed()
         }
 
@@ -40,8 +41,10 @@ class EmergencyHelplineActivity : AppCompatActivity() {
         }
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         mediaPlayer?.stop()
+        @Suppress("DEPRECATION")
         super.onBackPressed()
     }
 }

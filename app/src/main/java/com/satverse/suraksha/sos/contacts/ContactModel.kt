@@ -1,8 +1,8 @@
 package com.satverse.suraksha.sos.contacts
 
 class ContactModel(val id: Int, initialName: String, initialPhoneNo: String) {
-    val phoneNo: String
-    var contactName: String
+    private val phoneNo: String
+    private var contactName: String
 
     // Constructor
     init {

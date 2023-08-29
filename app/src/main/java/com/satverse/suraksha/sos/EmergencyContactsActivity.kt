@@ -1,18 +1,14 @@
 package com.satverse.suraksha.sos
 
 import android.annotation.SuppressLint
-import android.app.ActivityManager
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.media.MediaPlayer
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.os.PowerManager
 import android.provider.ContactsContract
 import android.provider.Settings
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.ListView
@@ -37,14 +33,13 @@ class EmergencyContactsActivity : AppCompatActivity() {
 
         val back = findViewById<ImageView>(R.id.back)
         back.setOnClickListener {
+            @Suppress("DEPRECATION")
             onBackPressed()
         }
 
         val pm = getSystemService(Context.POWER_SERVICE) as PowerManager
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (pm != null && !pm.isIgnoringBatteryOptimizations(packageName)) {
-                askIgnoreOptimization()
-            }
+        if (!pm.isIgnoringBatteryOptimizations(packageName)) {
+            askIgnoreOptimization()
         }
 
         button = findViewById(R.id.add_contact)
@@ -57,6 +52,7 @@ class EmergencyContactsActivity : AppCompatActivity() {
         button?.setOnClickListener {
             if (db!!.count() != 5) {
                 val intent = Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI)
+                @Suppress("DEPRECATION")
                 startActivityForResult(intent, PICK_CONTACT)
             } else {
                 Toast.makeText(
@@ -91,8 +87,10 @@ class EmergencyContactsActivity : AppCompatActivity() {
         }
     }
 
+    @Deprecated("Deprecated in Java")
     @SuppressLint("Range")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        @Suppress("DEPRECATION")
         super.onActivityResult(requestCode, resultCode, data)
         when (requestCode) {
             PICK_CONTACT -> if (resultCode == RESULT_OK) {
@@ -137,12 +135,12 @@ class EmergencyContactsActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("BatteryLife")
     private fun askIgnoreOptimization() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            val intent = Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS)
-            intent.data = Uri.parse("package:$packageName")
-            startActivityForResult(intent, IGNORE_BATTERY_OPTIMIZATION_REQUEST)
-        }
+        val intent = Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS)
+        intent.data = Uri.parse("package:$packageName")
+        @Suppress("DEPRECATION")
+        startActivityForResult(intent, IGNORE_BATTERY_OPTIMIZATION_REQUEST)
     }
 
     companion object {

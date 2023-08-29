@@ -1,9 +1,10 @@
+@file:Suppress("DEPRECATION")
+
 package com.satverse.suraksha.userlogin
 
 import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.TextPaint
@@ -14,12 +15,12 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.checkbox.MaterialCheckBox
 import com.satverse.suraksha.R
 import com.satverse.suraksha.dropdown.PrivacyPolicyActivity
-import com.satverse.suraksha.sos.contacts.DbHelper
 import io.appwrite.Client
 import io.appwrite.exceptions.AppwriteException
 import io.appwrite.services.Account
@@ -236,7 +237,7 @@ class SignUpActivity : AppCompatActivity() {
         }
     }
 
-    fun isValidEmail(email: String): Boolean {
+    private fun isValidEmail(email: String): Boolean {
         val emailRegex = Regex(getString(R.string.email_check))
         return email.matches(emailRegex)
     }

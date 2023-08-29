@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 
 class AboutUsActivity : AppCompatActivity() {
 
-    var mediaPlayer: MediaPlayer? = null
+    private var mediaPlayer: MediaPlayer? = null
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,6 +21,7 @@ class AboutUsActivity : AppCompatActivity() {
 
         val back = findViewById<ImageView>(R.id.back)
         back.setOnClickListener {
+            @Suppress("DEPRECATION")
             onBackPressed()
         }
 
@@ -42,7 +43,7 @@ class AboutUsActivity : AppCompatActivity() {
                 }
             }
 
-            val resolveInfo = packageManager.queryIntentActivities(intent, 0)
+            @Suppress("DEPRECATION") val resolveInfo = packageManager.queryIntentActivities(intent, 0)
             if (resolveInfo.isNotEmpty()) {
                 // At least one app is available, let the user choose
                 val chooser = Intent.createChooser(intent, "Open with")
@@ -129,6 +130,7 @@ class AboutUsActivity : AppCompatActivity() {
     @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         mediaPlayer?.stop()
+        @Suppress("DEPRECATION")
         super.onBackPressed()
     }
 }

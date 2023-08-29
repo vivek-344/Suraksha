@@ -1,5 +1,6 @@
 package com.satverse.suraksha.sos.contacts
 
+import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
@@ -30,6 +31,7 @@ class DbHelper(context: Context?) :
 
     val allContacts: List<ContactModel>
         //method to retrieve all the contacts in List
+        @SuppressLint("Recycle")
         get() {
             val list: MutableList<ContactModel> = ArrayList()
             val query = "SELECT * FROM " + TABLE_NAME
@@ -60,7 +62,7 @@ class DbHelper(context: Context?) :
     // Deleting single country
     fun deleteContact(contact: ContactModel) {
         val db = this.writableDatabase
-        val i = db.delete(TABLE_NAME, KEY_ID + " = ?", arrayOf(contact.id.toString()))
+        db.delete(TABLE_NAME, KEY_ID + " = ?", arrayOf(contact.id.toString()))
         db.close()
     }
 
