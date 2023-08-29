@@ -316,34 +316,33 @@
 
     </androidx.cardview.widget.CardView>
 
+    <TextView
+        android:id="@+id/developed_by"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="14dp"
+        android:fontFamily="@font/productsans_black"
+        android:text="@string/developed_by"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/app_info"/>
+
     <ScrollView
         android:id="@+id/developers"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="330dp"
+        android:layout_marginTop="396dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/developed_by">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/developed_by"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="30dp"
-                android:fontFamily="@font/productsans_black"
-                android:text="@string/developed_by"
-                android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-            </TextView>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/about_vivek"
@@ -351,14 +350,13 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="8dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginBottom="4dp"
                 app:cardCornerRadius="16dp"
                 app:layout_constraintBottom_toTopOf="@id/about_satyam"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/developed_by">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
                     android:id="@+id/vbackground"
@@ -1260,8 +1258,8 @@
                         android:id="@+id/vanshilinkedin_image"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:cardCornerRadius="3dp"
                         app:cardBackgroundColor="@android:color/transparent"
+                        app:cardCornerRadius="3dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/vanshilinkedin_text"
                         app:layout_constraintStart_toStartOf="parent"
@@ -1365,10 +1363,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="12dp"
                 android:backgroundTint="@color/transparent"
-                app:layout_constraintTop_toBottomOf="@id/about_vanshi"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/about_vanshi" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
