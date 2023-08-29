@@ -28,6 +28,11 @@ class EmergencyHelplineActivity : AppCompatActivity() {
             R.id.childButton to "1098",
             R.id.ambulanceButton to "102",
             R.id.fireBrigadeButton to "101",
+            R.id.accidentButton to "1073",
+            R.id.LPGButton to "1906",
+            R.id.railwayButton to "1072",
+            R.id.touristButton to "1363",
+            R.id.cyberButton to "155620",
             R.id.seniorButton to "14567"
         )
 

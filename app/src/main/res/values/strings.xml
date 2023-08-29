@@ -139,4 +139,9 @@
     <string name="checkboxText"><![CDATA[I agree with all Terms of Use & Privacy Policy.]]></string>
     <string name="vanshika_malviya">Vanshika Malviya</string>
     <string name="graphic_designer">Graphic Designer</string>
+    <string name="road_accident">Road Accident</string>
+    <string name="lpg_leak_helpline">LPG Leak Helpline</string>
+    <string name="railway_accident">Railway Accident</string>
+    <string name="tourist_helpline">Tourist Helpline</string>
+    <string name="cyber_crime_helpline">Cyber Crime Helpline</string>
 </resources>

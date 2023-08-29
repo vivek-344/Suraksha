@@ -45,7 +45,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginTop="72dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/bar">
@@ -384,21 +385,21 @@
 
                     <ImageView
                         android:id="@+id/fireBrigadeImage"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:elevation="12dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.35"
+                        app:layout_constraintVertical_bias="0.38"
                         app:srcCompat="@drawable/fire_brigade" />
 
                     <TextView
                         android:id="@+id/fireBrigadeText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="12dp"
                         android:elevation="12dp"
                         android:fontFamily="@font/productsans_regular"
                         android:text="@string/fire_brigade"
@@ -415,18 +416,315 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/accident"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_gravity="center"
+                android:elevation="4dp"
+                app:cardCornerRadius="16dp"
+                android:layout_marginTop="35dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/LPG"
+                app:layout_constraintTop_toBottomOf="@id/ambulance">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageButton
+                        android:id="@+id/accidentButton"
+                        android:layout_width="130dp"
+                        android:layout_height="130dp"
+                        android:elevation="8dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:src="@drawable/background"
+                        tools:ignore="SpeakableTextPresentCheck" />
+
+                    <ImageView
+                        android:id="@+id/accidentImage"
+                        android:layout_width="72dp"
+                        android:layout_height="72dp"
+                        android:elevation="12dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.35"
+                        app:srcCompat="@drawable/accident" />
+
+                    <TextView
+                        android:id="@+id/accidentText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:elevation="12dp"
+                        android:layout_marginTop="-4dp"
+                        android:fontFamily="@font/productsans_regular"
+                        android:text="@string/road_accident"
+                        android:textColor="@color/gray"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/accidentImage"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/LPG"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_gravity="center"
+                android:elevation="4dp"
+                app:cardCornerRadius="16dp"
+                android:layout_marginTop="35dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/accident"
+                app:layout_constraintTop_toBottomOf="@id/fireBrigade">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageButton
+                        android:id="@+id/LPGButton"
+                        android:layout_width="130dp"
+                        android:layout_height="130dp"
+                        android:elevation="8dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:src="@drawable/background"
+                        tools:ignore="SpeakableTextPresentCheck" />
+
+                    <ImageView
+                        android:id="@+id/LPGImage"
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:elevation="12dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.35"
+                        app:srcCompat="@drawable/lpg" />
+
+                    <TextView
+                        android:id="@+id/LPGText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:elevation="12dp"
+                        android:fontFamily="@font/productsans_regular"
+                        android:text="@string/lpg_leak_helpline"
+                        android:textColor="@color/gray"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/LPGImage"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/railway"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_gravity="center"
+                android:elevation="4dp"
+                app:cardCornerRadius="16dp"
+                android:layout_marginTop="35dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/tourist"
+                app:layout_constraintTop_toBottomOf="@id/accident">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageButton
+                        android:id="@+id/railwayButton"
+                        android:layout_width="130dp"
+                        android:layout_height="130dp"
+                        android:elevation="8dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:src="@drawable/background"
+                        tools:ignore="SpeakableTextPresentCheck" />
+
+                    <ImageView
+                        android:id="@+id/railwayImage"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:elevation="12dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.35"
+                        app:srcCompat="@drawable/railway" />
+
+                    <TextView
+                        android:id="@+id/railwayText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:elevation="12dp"
+                        android:fontFamily="@font/productsans_regular"
+                        android:text="@string/railway_accident"
+                        android:textColor="@color/gray"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/railwayImage"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/tourist"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_gravity="center"
+                android:elevation="4dp"
+                app:cardCornerRadius="16dp"
+                android:layout_marginTop="35dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/railway"
+                app:layout_constraintTop_toBottomOf="@id/LPG">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageButton
+                        android:id="@+id/touristButton"
+                        android:layout_width="130dp"
+                        android:layout_height="130dp"
+                        android:elevation="8dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:src="@drawable/background"
+                        tools:ignore="SpeakableTextPresentCheck" />
+
+                    <ImageView
+                        android:id="@+id/touristImage"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:elevation="12dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.35"
+                        app:srcCompat="@drawable/tourist" />
+
+                    <TextView
+                        android:id="@+id/touristText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:elevation="12dp"
+                        android:fontFamily="@font/productsans_regular"
+                        android:text="@string/tourist_helpline"
+                        android:textColor="@color/gray"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/touristImage"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cyber"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_gravity="center"
+                android:elevation="4dp"
+                app:cardCornerRadius="16dp"
+                android:layout_marginTop="35dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/senior"
+                app:layout_constraintTop_toBottomOf="@id/railway">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageButton
+                        android:id="@+id/cyberButton"
+                        android:layout_width="130dp"
+                        android:layout_height="130dp"
+                        android:elevation="8dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:src="@drawable/background"
+                        tools:ignore="SpeakableTextPresentCheck" />
+
+                    <ImageView
+                        android:id="@+id/cyberImage"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:elevation="12dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.35"
+                        app:srcCompat="@drawable/cyber" />
+
+                    <TextView
+                        android:id="@+id/cyberText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:elevation="12dp"
+                        android:fontFamily="@font/productsans_regular"
+                        android:text="@string/cyber_crime_helpline"
+                        android:textColor="@color/gray"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/cyberImage"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
                 android:id="@+id/senior"
                 android:layout_width="130dp"
                 android:layout_height="130dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="35dp"
-                android:layout_marginBottom="8dp"
                 android:elevation="4dp"
                 app:cardCornerRadius="16dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@id/ambulance"
-                app:layout_constraintStart_toStartOf="@id/ambulance"
-                app:layout_constraintTop_toBottomOf="@id/ambulance">
+                android:layout_marginTop="35dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/cyber"
+                app:layout_constraintTop_toBottomOf="@id/tourist">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -475,6 +773,15 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.cardview.widget.CardView>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:backgroundTint="@color/transparent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/senior" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
