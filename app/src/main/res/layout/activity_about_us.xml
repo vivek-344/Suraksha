@@ -29,7 +29,6 @@
         app:srcCompat="@drawable/chevron_left" />
 
     <TextView
-        android:id="@+id/suraksha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
@@ -56,7 +55,6 @@
         app:layout_constraintTop_toBottomOf="@id/bar" >
 
         <ImageView
-            android:id="@+id/background"
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:elevation="12dp"
@@ -135,7 +133,6 @@
         app:layout_constraintTop_toBottomOf="@id/version"/>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/twitter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:cardBackgroundColor="@android:color/transparent"
@@ -159,7 +156,6 @@
                 app:layout_constraintEnd_toStartOf="@id/twitter_text">
 
                 <ImageView
-                    android:id="@+id/twitter_icon"
                     android:layout_width="18dp"
                     android:layout_height="18dp"
                     android:elevation="12dp"
@@ -223,7 +219,6 @@
                 app:layout_constraintEnd_toStartOf="@id/website_text">
 
                 <ImageView
-                    android:id="@+id/website_image"
                     android:layout_width="18dp"
                     android:layout_height="18dp"
                     android:layout_margin="2dp"
@@ -263,7 +258,6 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/rateus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:cardBackgroundColor="@android:color/transparent"
@@ -331,7 +325,6 @@
         app:layout_constraintTop_toBottomOf="@+id/app_info"/>
 
     <ScrollView
-        android:id="@+id/developers"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="396dp"
@@ -359,7 +352,6 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
-                    android:id="@+id/vbackground"
                     android:layout_width="match_parent"
                     android:layout_height="96dp"
                     android:elevation="12dp"
@@ -369,7 +361,6 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/vivek"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -428,7 +419,6 @@
                 app:layout_constraintVertical_bias="0.0" />
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/vtwitter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
@@ -453,7 +443,6 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <ImageView
-                            android:id="@+id/vtwitter_icon"
                             android:layout_width="18dp"
                             android:layout_height="18dp"
                             android:elevation="12dp"
@@ -562,7 +551,6 @@
                 app:layout_constraintTop_toBottomOf="@id/about_vivek">
 
                 <ImageView
-                    android:id="@+id/sbackground"
                     android:layout_width="match_parent"
                     android:layout_height="96dp"
                     android:elevation="12dp"
@@ -572,7 +560,6 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/satyam"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -631,7 +618,6 @@
                 app:layout_constraintVertical_bias="0.0" />
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/slinkedin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
@@ -657,7 +643,6 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <ImageView
-                            android:id="@+id/slinkedin_icon"
                             android:layout_width="18dp"
                             android:layout_height="18dp"
                             android:elevation="12dp"
@@ -766,7 +751,6 @@
                 app:layout_constraintTop_toBottomOf="@id/about_satyam">
 
                 <ImageView
-                    android:id="@+id/shbackground"
                     android:layout_width="match_parent"
                     android:layout_height="96dp"
                     android:elevation="12dp"
@@ -776,7 +760,6 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/shreya"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -789,7 +772,6 @@
                 app:layout_constraintTop_toTopOf="@id/about_shreya">
 
                 <ImageView
-                    android:id="@+id/shreya_image"
                     android:layout_width="64dp"
                     android:layout_height="64dp"
                     android:elevation="12dp"
@@ -835,7 +817,6 @@
                 app:layout_constraintVertical_bias="0.0" />
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/shlinkedin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
@@ -861,7 +842,6 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <ImageView
-                            android:id="@+id/shlinkedin_icon"
                             android:layout_width="18dp"
                             android:layout_height="18dp"
                             android:elevation="12dp"
@@ -969,7 +949,6 @@
                 app:layout_constraintTop_toBottomOf="@id/about_shreya">
 
                 <ImageView
-                    android:id="@+id/yashbackground"
                     android:layout_width="match_parent"
                     android:layout_height="96dp"
                     android:elevation="12dp"
@@ -979,7 +958,6 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/yash"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -992,7 +970,6 @@
                 app:layout_constraintTop_toTopOf="@id/about_yash">
 
                 <ImageView
-                    android:id="@+id/yash_image"
                     android:layout_width="64dp"
                     android:layout_height="64dp"
                     android:elevation="12dp"
@@ -1038,7 +1015,6 @@
                 app:layout_constraintVertical_bias="0.0" />
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/yashtwitter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
@@ -1063,7 +1039,6 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <ImageView
-                            android:id="@+id/yashtwitter_icon"
                             android:layout_width="18dp"
                             android:layout_height="18dp"
                             android:elevation="12dp"
@@ -1171,7 +1146,6 @@
                 app:layout_constraintTop_toBottomOf="@id/about_yash">
 
                 <ImageView
-                    android:id="@+id/vanshibackground"
                     android:layout_width="match_parent"
                     android:layout_height="96dp"
                     android:elevation="12dp"
@@ -1181,7 +1155,6 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/vanshi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -1240,7 +1213,6 @@
                 app:layout_constraintVertical_bias="0.0" />
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/vanshilinkedin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
@@ -1266,7 +1238,6 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <ImageView
-                            android:id="@+id/vanshilinkedin_icon"
                             android:layout_width="18dp"
                             android:layout_height="18dp"
                             android:elevation="12dp"

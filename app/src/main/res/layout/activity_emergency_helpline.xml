@@ -30,7 +30,6 @@
         app:srcCompat="@drawable/chevron_left" />
 
     <TextView
-        android:id="@+id/suraksha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
@@ -96,7 +95,6 @@
                         app:srcCompat="@drawable/women" />
 
                     <TextView
-                        android:id="@+id/womenText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
@@ -156,7 +154,6 @@
                         app:srcCompat="@drawable/abuse" />
 
                     <TextView
-                        android:id="@+id/abuseText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
@@ -216,7 +213,6 @@
                         app:srcCompat="@drawable/police" />
 
                     <TextView
-                        android:id="@+id/policeText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
@@ -276,7 +272,6 @@
                         app:srcCompat="@drawable/child" />
 
                     <TextView
-                        android:id="@+id/childText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
@@ -336,7 +331,6 @@
                         app:srcCompat="@drawable/ambulance" />
 
                     <TextView
-                        android:id="@+id/ambulanceText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
@@ -396,7 +390,6 @@
                         app:srcCompat="@drawable/fire_brigade" />
 
                     <TextView
-                        android:id="@+id/fireBrigadeText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
@@ -456,7 +449,6 @@
                         app:srcCompat="@drawable/accident" />
 
                     <TextView
-                        android:id="@+id/accidentText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:elevation="12dp"
@@ -516,7 +508,6 @@
                         app:srcCompat="@drawable/lpg" />
 
                     <TextView
-                        android:id="@+id/LPGText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:elevation="12dp"
@@ -575,7 +566,6 @@
                         app:srcCompat="@drawable/railway" />
 
                     <TextView
-                        android:id="@+id/railwayText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
@@ -635,7 +625,6 @@
                         app:srcCompat="@drawable/tourist" />
 
                     <TextView
-                        android:id="@+id/touristText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
@@ -695,7 +684,6 @@
                         app:srcCompat="@drawable/cyber" />
 
                     <TextView
-                        android:id="@+id/cyberText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
@@ -755,7 +743,6 @@
                         app:srcCompat="@drawable/senior" />
 
                     <TextView
-                        android:id="@+id/seniorText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"

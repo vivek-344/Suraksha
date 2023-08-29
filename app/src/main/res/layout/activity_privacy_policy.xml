@@ -344,7 +344,6 @@
                 app:layout_constraintTop_toBottomOf="@id/contact_us_instruction" />
 
             <TextView
-                android:id="@+id/conclusion_instruction"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/productsans_regular"

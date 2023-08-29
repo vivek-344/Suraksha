@@ -1,7 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Suraksha</string>
     <string name="login">Log In</string>
-    <string name="finish">Finish</string>
     <string name="onboard1">Shake your phone 5 times\nto activate SOS and share\nyour location with your\nemergency contacts.</string>
     <string name="onboard2">Get instant help from the\nemergency government\nhelpline numbers.</string>
     <string name="onboard3">Police siren to deter potential\nattackers by creating the\nillusion that the user has\nactivated an alarm or signal.</string>
@@ -13,9 +12,7 @@
     <string name="new_user_sign_up_now">New User? Sign Up Now!</string>
     <string name="go">LOG IN!</string>
     <string name="forget_password">Forgot Password?</string>
-    <string name="title_activity_sign_up">SignUp</string>
     <string name="welcome">Welcome!\nYou are safe with us.</string>
-    <string name="username">Username</string>
     <string name="full_name">Full Name</string>
     <string name="phone_number">Phone Number</string>
     <string name="city">City/Town</string>
@@ -27,17 +24,13 @@
     <string name="area">Area, Street, Sector, Village</string>
     <string name="apartment">Flat, House, Building, Apartment</string>
     <string name="change_password">Change Password</string>
-    <string name="call_100">Call 100</string>
-    <string name="gender">Gender</string>
     <string name="name">Name</string>
     <string name="save_changes">Save Changes</string>
     <string name="suraksha">SURAKSHA</string>
-    <string name="hi_welcome_to_suraksha">Hi, Welcome to SURAKSHA.</string>
     <string name="stay_fearless">“Stay fearless and confident with Suraksha\n- your personal safety guardian.”</string>
     <string name="fake_siren">Fake Siren</string>
     <string name="emergency_helpline">Emergency Helpline</string>
     <string name="about_us">About Us</string>
-    <string name="textview">TextView</string>
     <string name="emergency_contacts">Emergency Contacts</string>
     <string name="how_to_use">How to use?</string>
     <string name="edit_profile">Edit Profile</string>
@@ -76,10 +69,6 @@
     <string name="ui_ux_designer">UI/UX Designer</string>
     <string name="yash_darbar">Yash Darbar</string>
     <string name="web_developer">Web Developer</string>
-    <string name="warning">Warning to accept permission!</string>
-    <string name="settings">Settings</string>
-    <string name="ok">OK</string>
-    <string name="add_emergency_contact">Add Emergency Contact</string>
     <string name="phone">Phone</string>
     <string name="google_maps_api_key">AIzaSyD1o_WmNskKB8qjN8LE_IlTzfJmu86IIok</string>
     <string name="email_check">^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$</string>

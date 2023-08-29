@@ -18,7 +18,6 @@
         app:srcCompat="@drawable/pink_logo" />
 
     <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/wait"
         android:layout_width="300dp"
         android:layout_height="300dp"
         app:layout_constraintBottom_toBottomOf="parent"

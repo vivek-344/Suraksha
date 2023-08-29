@@ -29,7 +29,6 @@
         app:srcCompat="@drawable/trans_shield" />
 
     <TextView
-        android:id="@+id/suraksha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -66,7 +65,6 @@
         app:layout_constraintVertical_bias="0.4"/>
 
     <TextView
-        android:id="@+id/urSafe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
@@ -129,7 +127,6 @@
         app:srcCompat="@drawable/emergency_contacts_button" />
 
     <TextView
-        android:id="@+id/emergency_contacts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/emergency_contacts"
@@ -154,7 +151,6 @@
         app:srcCompat="@drawable/landing_page_buttons" />
 
     <TextView
-        android:id="@+id/emergency"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
@@ -186,7 +182,6 @@
     </androidx.cardview.widget.CardView>
 
     <TextView
-        android:id="@+id/fakeSiren"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
@@ -211,7 +206,6 @@
         app:srcCompat="@drawable/landing_page_buttons" />
 
     <TextView
-        android:id="@+id/aboutUs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
@@ -225,7 +219,6 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
-        android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@+id/sirenButton"
@@ -235,7 +228,6 @@
         app:srcCompat="@drawable/shadow" />
 
     <ImageView
-        android:id="@+id/imageView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@+id/helplineButton"
@@ -245,7 +237,6 @@
         app:srcCompat="@drawable/shadow" />
 
     <ImageView
-        android:id="@+id/imageView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@+id/aboutButton"
@@ -255,7 +246,6 @@
         app:srcCompat="@drawable/shadow" />
 
     <ImageView
-        android:id="@+id/imageView6"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:elevation="12dp"
@@ -266,7 +256,6 @@
         app:srcCompat="@drawable/emergency_helpline_numbers" />
 
     <ImageView
-        android:id="@+id/imageView7"
         android:layout_width="56dp"
         android:layout_height="56dp"
         android:elevation="12dp"
