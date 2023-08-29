@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.satverse.suraksha
 
 import android.Manifest
@@ -26,7 +28,6 @@ import com.satverse.suraksha.dropdown.EditProfileActivity
 import com.satverse.suraksha.dropdown.HowToUseActivity
 import com.satverse.suraksha.dropdown.PrivacyPolicyActivity
 import com.satverse.suraksha.sos.EmergencyContactsActivity
-import com.satverse.suraksha.sos.ScreenOnOffBackgroundService
 import com.satverse.suraksha.sos.contacts.DbHelper
 import com.satverse.suraksha.sos.shake.SensorService
 import com.satverse.suraksha.userlogin.LoginActivity
@@ -75,9 +76,6 @@ class LandingPageActivity : AppCompatActivity() {
             sosTextView.text = getString(R.string.sos)
         }
 
-        val backgroundService = Intent(applicationContext, ScreenOnOffBackgroundService::class.java)
-        startService(backgroundService)
-
         val permissionCheck = ContextCompat.checkSelfPermission(this@LandingPageActivity, Manifest.permission.SEND_SMS)
         if (permissionCheck != PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(
                 this@LandingPageActivity,
@@ -86,7 +84,7 @@ class LandingPageActivity : AppCompatActivity() {
         ) {
             ActivityCompat.requestPermissions(
                 this@LandingPageActivity,
-                arrayOf<String>(
+                arrayOf(
                     Manifest.permission.SEND_SMS,
                     Manifest.permission.ACCESS_FINE_LOCATION,
                     Manifest.permission.ACCESS_COARSE_LOCATION,
@@ -161,7 +159,6 @@ class LandingPageActivity : AppCompatActivity() {
         val boolean = locationEnabled && internetConnected
 
         if (isServiceRunning()) {
-//            Toast.makeText(this, "Service deactivated!", Toast.LENGTH_SHORT).show()
             val imageView = findViewById<ImageView>(R.id.sosImage)
             imageView.visibility = View.GONE
             val sosTextView = findViewById<TextView>(R.id.sosText)
@@ -294,6 +291,7 @@ class LandingPageActivity : AppCompatActivity() {
         }
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         stopSiren()
         mediaPlayer?.stop()
@@ -313,7 +311,7 @@ class LandingPageActivity : AppCompatActivity() {
 
     private fun startSiren() {
         audioManager.isSpeakerphoneOn = true
-        audioManager.setMode(AudioManager.MODE_IN_COMMUNICATION)
+        audioManager.mode = AudioManager.MODE_IN_COMMUNICATION
 
         val maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC)
         audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, maxVolume, 0)
@@ -324,7 +322,6 @@ class LandingPageActivity : AppCompatActivity() {
     }
 
     private fun stopSiren() {
-
         mediaPlayer?.apply {
             if (isPlaying) {
                 pause()

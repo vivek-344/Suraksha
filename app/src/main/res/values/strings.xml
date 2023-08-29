@@ -52,7 +52,7 @@
     <string name="fire_brigade">Fire Brigade</string>
     <string name="senior_citizen">Senior Citizen</string>
     <string name="version_1_0_0">Version 1.0.0</string>
-    <string name="about_suraksha">An Android app for instant SOS alerts\nwith location, enhancing women\'s safety in India</string>
+    <string name="about_suraksha">An open-source Android app for instant SOS alerts\nwith location, enhancing women\'s safety in India</string>
     <string name="twitter">Twitter</string>
     <string name="github">GitHub</string>
     <string name="rate_us">Rate Us!</string>
@@ -82,7 +82,7 @@
     <string name="add_emergency_contact">Add Emergency Contact</string>
     <string name="phone">Phone</string>
     <string name="google_maps_api_key">AIzaSyD1o_WmNskKB8qjN8LE_IlTzfJmu86IIok</string>
-    <string name="email_check">^[A-Za-z0-9+_.-]+@([A-Za-z0-9.-]+\\.[A-Za-z]{2,})$</string>
+    <string name="email_check" tools:ignore="TypographyDashes">^[A–Za–z0-9+_.-]+@([A-Za-z0-9.-]+\\.[A-Za-z]{2,})$</string>
     <string name="configuring_emergency_contacts_instruction">• Navigate to \'Emergency Contacts\'. \n• Add up to 5 trusted contacts. \n• Ensure they are informed and understand their role.</string>
     <string name="configuring_emergency_contacts">1. Configuring Emergency Contacts</string>
     <string name="sos_activation">2. SOS Activation</string>
@@ -101,7 +101,7 @@
     <string name="how_we_use_use_your_data">2. How We Use Your Data</string>
     <string name="how_do_we_use_your_data_instruction">• To enable the core features of Suraksha, such as sending SOS alerts and GPS status during emergencies.\n  \n• To dispatch email notifications, reminders, updates, and newsletters pertinent to Suraksha.\n  \n• For internal analysis and enhancement of app functionalities.</string>
     <string name="data_sharing">3. Data Sharing</string>
-    <string name="data_sharing_instruction">Emergency Situations: In emergent situations, your location coordinates (if GPS is on) or GPS status (if off) are communicated to your emergency contacts.\n  \nThird-party Service Providers: We employ the third-party database "Firebase Firestore" for saving emergency contact details. They access this specific data solely for this purpose and are contractually bound not to disclose or use it otherwise.</string>
+    <string name="data_sharing_instruction">Emergency Situations: In emergent situations, your location coordinates (if GPS is on) or GPS status (if off) are communicated to your emergency contacts.</string>
     <string name="data_security">4. Data Security</string>
     <string name="data_security_instruction">• We adopt best-in-class security protocols to shield your data from unauthorized intrusion, modification, or eradication.\n  \n• Both Suraksha and "Appwrite" uphold stringent security standards to guarantee data protection.\n  \n• Users are urged to maintain the confidentiality of their Suraksha account passwords.</string>
     <string name="data_retention">5. Data Retention</string>

@@ -16,33 +16,26 @@ import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import com.google.android.gms.location.*
-import com.google.android.gms.location.FusedLocationProviderClient
 import com.satverse.suraksha.R
 import com.satverse.suraksha.sos.contacts.ContactModel
 import com.satverse.suraksha.sos.contacts.DbHelper
 
+@Suppress("DEPRECATION")
 class SensorService : Service() {
     private lateinit var mSensorManager: SensorManager
     private lateinit var mAccelerometer: Sensor
     private lateinit var mShakeDetector: ShakeDetector
-    private lateinit var fusedLocationClient: FusedLocationProviderClient
-    private var isGpsEnabled = false
-    private var isServiceRunning = false // Track service state
-    private var isShakeDetectionEnabled = false // Track shake detection state
+    private var fusedLocationProviderClient: FusedLocationProviderClient? = null
+    private var isShakeDetectionEnabled = false
+    private lateinit var locationCallback: LocationCallback
+    private var currentLocation: Location? = null
 
-    override fun onBind(intent: Intent): IBinder? {
-        return null
-    }
-
-    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        // Set the flag to indicate that the service is running
-        isServiceRunning = true
-        return START_STICKY
-    }
+    override fun onBind(intent: Intent): IBinder? = null
 
     override fun onCreate() {
         super.onCreate()
 
+        // For foreground notification
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             startMyOwnForeground()
         } else {
@@ -58,66 +51,7 @@ class SensorService : Service() {
             override fun onShake(count: Int) {
                 if (isShakeDetectionEnabled && count == 5) {
                     vibrate()
-                    val locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
-                    isGpsEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
-                    if (isGpsEnabled) {
-                        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this@SensorService)
-                        val locationRequest = LocationRequest.create()
-                            .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
-                            .setNumUpdates(1)
-                            .setInterval(1000)
-
-                        fusedLocationClient.requestLocationUpdates(locationRequest, object : LocationCallback() {
-                            override fun onLocationResult(locationResult: LocationResult) {
-                                val location = locationResult.lastLocation
-                                if (location != null) {
-                                    sendEmergencySMS(location)
-                                } else {
-                                    sendEmergencySMSWithoutLocation()
-                                }
-                                fusedLocationClient.removeLocationUpdates(this)
-                            }
-                        }, Looper.getMainLooper())
-                    } else {
-                        sendEmergencySMSWithoutLocation()
-                    }
-                }
-            }
-
-            private fun sendEmergencySMS(location: Location) {
-                val smsManager = SmsManager.getDefault()
-                val db = DbHelper(this@SensorService)
-                val contacts: List<ContactModel> = db.allContacts
-
-                val locationUrl = "http://maps.google.com/?q=${location.latitude},${location.longitude}"
-
-                for (contact in contacts) {
-                    val message = "Hey ${contact.getContact()}, I am in danger and need help. Please urgently reach me out. Here are my coordinates:\n$locationUrl"
-                    smsManager.sendTextMessage(contact.getPhoneNumber(), null, message, null, null)
-                }
-            }
-
-            private fun sendEmergencySMSWithoutLocation() {
-                val smsManager = SmsManager.getDefault()
-                val db = DbHelper(this@SensorService)
-                val contacts: List<ContactModel> = db.allContacts
-
-                val message = "I am in danger and need help. Please urgently reach me out. GPS was turned off. Couldn't find location. Call your nearest Police Station."
-
-                for (contact in contacts) {
-                    smsManager.sendTextMessage(contact.getPhoneNumber(), null, message, null, null)
-                }
-            }
-
-            private fun vibrate() {
-                val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    if (ActivityCompat.checkSelfPermission(this@SensorService, Manifest.permission.VIBRATE) == PackageManager.PERMISSION_GRANTED) {
-                        val vibrationEffect = VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE)
-                        vibrator.vibrate(vibrationEffect)
-                    }
-                } else {
-                    vibrator.vibrate(500)
+                    sendEmergencyMessage()
                 }
             }
         })
@@ -128,26 +62,132 @@ class SensorService : Service() {
             SensorManager.SENSOR_DELAY_UI
         )
 
-        // Enable shake detection
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
+
+        locationCallback = object : LocationCallback() {
+            override fun onLocationResult(locationResult: LocationResult) {
+                currentLocation = locationResult.lastLocation
+            }
+        }
+
         enableShakeDetection()
+        startLocationUpdates()
     }
 
     private fun enableShakeDetection() {
-        isShakeDetectionEnabled = true // Enable shake detection
+        isShakeDetectionEnabled = true
     }
 
-    private fun disableShakeDetection() {
-        isShakeDetectionEnabled = false // Disable shake detection
+    private fun isGPSEnabled(): Boolean {
+        val locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
     }
 
-    companion object {
-        /*
-        * Shake detection configuration constants
-        */
-        private const val SHAKE_THRESHOLD_GRAVITY = 2.7f
-        private const val SHAKE_SLOP_TIME_MS = 500
-        private const val SHAKE_COUNT_RESET_TIME_MS = 3000
+    private fun sendEmergencyMessage() {
+        if (isGPSEnabled()) {
+            if (currentLocation != null) {
+                sendEmergencySMS(currentLocation!!)
+            } else {
+                sendEmergencySMSWithLastKnownLocation()
+            }
+        } else {
+            sendEmergencySMSWhenGPSOff()
+        }
     }
+
+    @SuppressLint("MissingPermission")
+    private fun startLocationUpdates() {
+        val locationRequest = LocationRequest.create().apply {
+            interval = 10000
+            fastestInterval = 5000
+            priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+        }
+
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED ||
+            ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
+            fusedLocationProviderClient?.requestLocationUpdates(
+                locationRequest,
+                locationCallback,
+                Looper.getMainLooper()
+            )
+        }
+    }
+
+    @SuppressLint("MissingPermission")
+    private fun sendEmergencySMSWithLastKnownLocation() {
+        fusedLocationProviderClient?.lastLocation?.addOnSuccessListener { lastLocation ->
+            if (lastLocation != null) {
+                sendEmergencySMS(lastLocation)
+            } else {
+                sendEmergencySMSWithoutLocation()
+            }
+        }
+    }
+
+    @SuppressLint("MissingPermission")
+    private fun sendEmergencySMSWhenGPSOff() {
+        fusedLocationProviderClient?.lastLocation?.addOnSuccessListener { lastLocation ->
+            val db = DbHelper(this@SensorService)
+            val contacts: List<ContactModel> = db.allContacts
+
+            val message: String = if (lastLocation != null) {
+                val locationUrl = "http://maps.google.com/?q=${lastLocation.latitude},${lastLocation.longitude}"
+                "GPS is off. But this is the last known location of the device:\n$locationUrl"
+            } else {
+                "I am in danger and need help. Please urgently reach me out. GPS was turned off. Couldn't find location. Call your nearest Police Station."
+            }
+
+            for (contact in contacts) {
+                sendSMS(contact.getPhoneNumber(), message)
+            }
+        }
+    }
+
+    private fun sendEmergencySMS(location: Location) {
+        val db = DbHelper(this@SensorService)
+        val contacts: List<ContactModel> = db.allContacts
+
+        val locationUrl = "http://maps.google.com/?q=${location.latitude},${location.longitude}"
+
+        for (contact in contacts) {
+            val message = "Hey ${contact.getContact()}, I am in danger and need help. Please urgently reach me out. Here are my coordinates:\n$locationUrl"
+            sendSMS(contact.getPhoneNumber(), message)
+        }
+    }
+
+    private fun sendEmergencySMSWithoutLocation() {
+        val db = DbHelper(this@SensorService)
+        val contacts: List<ContactModel> = db.allContacts
+
+        val message = "I am in danger and need help. Please urgently reach me out. GPS was turned off. Couldn't find location. Call your nearest Police Station."
+
+        for (contact in contacts) {
+            sendSMS(contact.getPhoneNumber(), message)
+        }
+    }
+
+    private fun sendSMS(phoneNumber: String, message: String) {
+        val smsManager = SmsManager.getDefault()
+        smsManager.sendTextMessage(phoneNumber, null, message, null, null)
+    }
+
+    private fun vibrate() {
+        val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val vibrationEffect = VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE)
+            vibrator.vibrate(vibrationEffect)
+        } else {
+            vibrator.vibrate(500)
+        }
+    }
+
     @RequiresApi(Build.VERSION_CODES.O)
     private fun startMyOwnForeground() {
         val channelId = "MyServiceChannel"
@@ -170,13 +210,12 @@ class SensorService : Service() {
     }
 
     override fun onDestroy() {
-        disableShakeDetection() // Disable shake detection when the service is destroyed
-        // Set the flag to indicate that the service is no longer running
-        isServiceRunning = false
-//        val broadcastIntent = Intent()
-//        broadcastIntent.action = "restartservice"
-//        broadcastIntent.setClass(this, ReactivateService::class.java)
-//        sendBroadcast(broadcastIntent)
+        mSensorManager.unregisterListener(mShakeDetector)
+        stopLocationUpdates()
         super.onDestroy()
+    }
+
+    private fun stopLocationUpdates() {
+        fusedLocationProviderClient?.removeLocationUpdates(locationCallback)
     }
 }
