@@ -92,7 +92,7 @@
     <string name="emergency_helplines">4. Emergency Helplines</string>
     <string name="emergency_helplines_instruction">• Go to \'Emergency Helplines\'. \n• Tap on helpline to call immediately.</string>
     <string name="continuous_safety_feature">5. Continuous Safety Feature</string>
-    <string name="continuous_safety_feature_instruction">• After activating SOS, a notification appears indicating the active safety mode. \n• This works even if the app is in the background.</string>
+    <string name="continuous_safety_feature_instruction">• After activating SOS, a notification appears indicating the active safety mode. \n• This works even if the app is not running in the background.</string>
     <string name="best_practices">6. Best Practices</string>
     <string name="best_practices_instruction">• Always be familiar with the app’s layout. \n• Keep the GPS active for precise location sharing. \n• Regularly update Suraksha for the latest features.</string>
     <string name="suraksha_introduction">At Suraksha, our utmost priority is your safety along with the protection of your personal data. This Privacy Policy elucidates how Suraksha collects, uses, shares, and safeguards your information. By using our app, you consent to the practices detailed herein.</string>
