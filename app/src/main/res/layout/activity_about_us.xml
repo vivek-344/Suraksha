@@ -1361,6 +1361,15 @@
 
             </androidx.cardview.widget.CardView>
 
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="12dp"
+                android:backgroundTint="@color/transparent"
+                app:layout_constraintTop_toBottomOf="@id/about_vanshi"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
