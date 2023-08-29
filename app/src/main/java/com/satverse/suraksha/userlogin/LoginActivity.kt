@@ -121,7 +121,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun isValidEmail(email: String): Boolean {
-        val emailRegex = Regex(getString(R.string.email_check))
+        val emailRegex = Regex(this.getString(R.string.email_check))
         return email.matches(emailRegex)
     }
 

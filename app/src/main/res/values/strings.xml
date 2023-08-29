@@ -82,7 +82,7 @@
     <string name="add_emergency_contact">Add Emergency Contact</string>
     <string name="phone">Phone</string>
     <string name="google_maps_api_key">AIzaSyD1o_WmNskKB8qjN8LE_IlTzfJmu86IIok</string>
-    <string name="email_check" tools:ignore="TypographyDashes">^[A–Za–z0-9+_.-]+@([A-Za-z0-9.-]+\\.[A-Za-z]{2,})$</string>
+    <string name="email_check">^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$</string>
     <string name="configuring_emergency_contacts_instruction">• Navigate to \'Emergency Contacts\'. \n• Add up to 5 trusted contacts. \n• Ensure they are informed and understand their role.</string>
     <string name="configuring_emergency_contacts">1. Configuring Emergency Contacts</string>
     <string name="sos_activation">2. SOS Activation</string>
@@ -97,17 +97,17 @@
     <string name="best_practices_instruction">• Always be familiar with the app’s layout. \n• Keep the GPS active for precise location sharing. \n• Regularly update Suraksha for the latest features.</string>
     <string name="suraksha_introduction">At Suraksha, our utmost priority is your safety along with the protection of your personal data. This Privacy Policy elucidates how Suraksha collects, uses, shares, and safeguards your information. By using our app, you consent to the practices detailed herein.</string>
     <string name="data_we_collect">1. Data We Collect</string>
-    <string name="data_we_collect_instruction">Personal Information: This encompasses details like your name, email address, phone number, age, address, pin code, city, and state.\n  \nLocation Data: When the GPS is activated, your location coordinates are fetched for immediate response during SOS activations. If the GPS is off, we do not capture location but notify your emergency contacts regarding its status.\n  \nEmergency Contacts: These details are stored both in your phone\'s memory and the third-party database \"Appwrite.\" For emergency alerts, the app utilizes contacts from your phone memory.</string>
+    <string name="data_we_collect_instruction">Personal Information: This encompasses details like your name, email address, phone number, age, address, pin code, city, and state.\n  \nLocation Data: When the GPS is activated, your location coordinates are fetched for immediate response during SOS activations. If the GPS is off, we do not capture location but notify your emergency contacts regarding its status.\n  \nEmergency Contacts: These details are stored in your phone\'s memory. For emergency alerts, the app utilizes contacts from your phone memory.</string>
     <string name="how_we_use_use_your_data">2. How We Use Your Data</string>
     <string name="how_do_we_use_your_data_instruction">• To enable the core features of Suraksha, such as sending SOS alerts and GPS status during emergencies.\n  \n• To dispatch email notifications, reminders, updates, and newsletters pertinent to Suraksha.\n  \n• For internal analysis and enhancement of app functionalities.</string>
     <string name="data_sharing">3. Data Sharing</string>
     <string name="data_sharing_instruction">Emergency Situations: In emergent situations, your location coordinates (if GPS is on) or GPS status (if off) are communicated to your emergency contacts.</string>
     <string name="data_security">4. Data Security</string>
-    <string name="data_security_instruction">• We adopt best-in-class security protocols to shield your data from unauthorized intrusion, modification, or eradication.\n  \n• Both Suraksha and "Appwrite" uphold stringent security standards to guarantee data protection.\n  \n• Users are urged to maintain the confidentiality of their Suraksha account passwords.</string>
+    <string name="data_security_instruction">• We adopt best-in-class security protocols to shield your data from unauthorized intrusion, modification, or eradication.\n  \n• Both Suraksha and Appwrite uphold stringent security standards to guarantee data protection.\n  \n• Users are urged to maintain the confidentiality of their Suraksha account passwords.</string>
     <string name="data_retention">5. Data Retention</string>
     <string name="data_retention_instruction">• We sustain your personal data only for the duration necessary to serve the purposes for which it was collected, inclusive of any legal, accounting, or reporting prerequisites.</string>
     <string name="your_rights">6. Your Rights</string>
-    <string name="your_rights_instruction">Access: You possess the right to request a copy of the personal data we retain about you.\n  \nCorrection**: Upon identifying any inaccuracies in the data we hold about you, you have the right to ask for corrections.\n  \nDeletion: Under specific conditions, you can seek the deletion of your personal data.</string>
+    <string name="your_rights_instruction">Access: You possess the right to request a copy of the personal data we retain about you.\n  \nCorrection: Upon identifying any inaccuracies in the data we hold about you, you have the right to ask for corrections.\n  \nDeletion: Under specific conditions, you can seek the deletion of your personal data.</string>
     <string name="changes_to_the_privacy_policy">7. Changes to the Privacy Policy</string>
     <string name="changes_to_the_privacy_policy_instruction" tools:ignore="StringEscaping">• Periodically, this Privacy Policy might undergo revisions. Such changes take effect immediately upon posting. It is advisable for users to frequently revisit this section to stay abreast of any updates.</string>
     <string name="contact_us">8. Contact Us</string>
