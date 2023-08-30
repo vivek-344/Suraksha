@@ -1,4 +1,4 @@
-# Suraksha: Your Personal Safety Companion
+# Suraksha: Stay one step ahead of danger
 
 ![Suraksha Logo](https://github.com/vivek-344/Suraksha/blob/master/app/src/main/res/drawable/Suraksha%20Banner.png)
 
@@ -74,7 +74,7 @@ Suraksha is licensed under the [MIT License](https://github.com/vivek-344/Suraks
 
 ## Contact
 
-For any queries or feedback related to Suraksha, send us and email or get in touch with:
+For any queries or feedback related to Suraksha, send us an email or get in touch with:
 - [Vivekraj Singh Sisodiya](mailto:vivekrajsinghsisodiya344@gmail.com)
 - [Satyam Sharma](mailto:satyamsharma1725@email.com)
 
