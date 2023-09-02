@@ -75,7 +75,7 @@ Suraksha is licensed under the [MIT License](https://github.com/vivek-344/Suraks
 ## Contact
 
 For any queries or feedback related to Suraksha, send us an email or get in touch with:
-- [Vivekraj Singh Sisodiya](mailto:vivekrajsinghsisodiya344@gmail.com)
+- [Vivekraj Singh Sisodiya](mailto:vivekrajsinghsisodiya2226@gmail.com)
 - [Satyam Sharma](mailto:satyamsharma1725@email.com)
 
 Stay safe with Suraksha!
