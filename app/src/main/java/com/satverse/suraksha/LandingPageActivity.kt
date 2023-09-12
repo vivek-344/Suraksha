@@ -6,6 +6,7 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.app.ProgressDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.LocationManager
@@ -39,6 +40,7 @@ import pl.droidsonroids.gif.GifImageView
 import android.media.AudioManager
 import android.net.ConnectivityManager
 import android.view.KeyEvent
+import androidx.appcompat.app.AlertDialog
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
@@ -76,22 +78,32 @@ class LandingPageActivity : AppCompatActivity() {
             sosTextView.text = getString(R.string.sos)
         }
 
-        val permissionCheck = ContextCompat.checkSelfPermission(this@LandingPageActivity, Manifest.permission.SEND_SMS)
-        if (permissionCheck != PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(
-                this@LandingPageActivity,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(
-                this@LandingPageActivity,
-                arrayOf(
-                    Manifest.permission.SEND_SMS,
-                    Manifest.permission.ACCESS_FINE_LOCATION,
-                    Manifest.permission.ACCESS_COARSE_LOCATION,
-                    Manifest.permission.READ_CONTACTS
-                ),
-                0
-            )
+        val smsPermission = ContextCompat.checkSelfPermission(this@LandingPageActivity, Manifest.permission.SEND_SMS)
+        val contactPermission = ContextCompat.checkSelfPermission(this@LandingPageActivity, Manifest.permission.READ_CONTACTS)
+        val locationPermission = ContextCompat.checkSelfPermission(this@LandingPageActivity, Manifest.permission.ACCESS_FINE_LOCATION)
+        if (smsPermission != PackageManager.PERMISSION_GRANTED && contactPermission != PackageManager.PERMISSION_GRANTED && locationPermission != PackageManager.PERMISSION_GRANTED) {
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Location Permission")
+            builder.setMessage("This app requires permission to access your location, contacts, and send SMS messages in the background for sharing your current location with emergency contacts.\n\nWe do not store any of your data!")
+            builder.setCancelable(false)
+            builder.setPositiveButton("Accept") { dialog, which ->
+                ActivityCompat.requestPermissions(
+                    this@LandingPageActivity,
+                    arrayOf(
+                        Manifest.permission.ACCESS_FINE_LOCATION,
+                        Manifest.permission.ACCESS_COARSE_LOCATION,
+                        Manifest.permission.READ_CONTACTS,
+                        Manifest.permission.SEND_SMS),
+                    0
+                )
+            }
+            builder.setNegativeButton("Decline") { dialog, which ->
+                dialog.dismiss()
+                finishAffinity()
+            }
+
+            val alert = builder.create()
+            alert.show()
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
