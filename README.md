@@ -1,6 +1,6 @@
 # Suraksha: Stay one step ahead of danger
 
-![Suraksha Logo](https://github.com/vivek-344/Suraksha/blob/master/app/src/main/res/drawable/Suraksha%20Banner.png)
+![Suraksha Logo](https://github.com/satyamsharma17/Suraksha/blob/master/app/src/main/res/drawable/Suraksha%20Banner.png)
 
 Suraksha is an open-source personal safety app designed to ensure your safety efficiently through intuitive features. From SOS alerts to fake siren sounds, Suraksha aims to be your go-to application for personal safety.
 
@@ -25,7 +25,7 @@ Suraksha is an open-source personal safety app designed to ensure your safety ef
 # Clone the Repository
 
 ```
-git clone https://github.com/vivek-344/Suraksha.git
+git clone https://github.com/satyamsharma17/Suraksha.git
 ```
 
 Navigate to the cloned directory and follow platform-specific guidelines for setting up the app.
@@ -70,7 +70,7 @@ Ensure your code follows the project's coding conventions.
 
 ## License
 
-Suraksha is licensed under the [MIT License](https://github.com/vivek-344/Suraksha/blob/master/LICENSE). Check out the `MIT LICENSE` file for more information.
+Suraksha is licensed under the [MIT License](https://github.com/satyamsharma17/Suraksha/blob/master/LICENSE). Check out the `MIT LICENSE` file for more information.
 
 ## Contact
 
