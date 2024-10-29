@@ -139,7 +139,7 @@ class SignUpActivity : AppCompatActivity() {
 
         val client = Client(this)
             .setEndpoint("https://cloud.appwrite.io/v1")
-            .setProject("64bb859f2d53d0d44e9c")
+            .setProject("65fa760fe93c38713a0f")
             .setSelfSigned(true)
 
         val fullName = findViewById<EditText>(R.id.name).text.toString().trim()
@@ -158,8 +158,8 @@ class SignUpActivity : AppCompatActivity() {
 
         try {
             val document = Databases(client).createDocument(
-                databaseId = "64bc1e13ca662cd39b95",
-                collectionId = "64bc1e1e7465e6d3e4c2",
+                databaseId = "65fa7775b4fd1085e3e6",
+                collectionId = "65fa77f362e01ec73987",
                 documentId = uID,
                 data = mapOf(
                     "fullName" to fullName,
@@ -205,7 +205,7 @@ class SignUpActivity : AppCompatActivity() {
 
         val client = Client(this)
             .setEndpoint("https://cloud.appwrite.io/v1")
-            .setProject("64bb859f2d53d0d44e9c")
+            .setProject("65fa760fe93c38713a0f")
             .setSelfSigned(true)
 
         val email = findViewById<EditText>(R.id.email).text.toString().trim()

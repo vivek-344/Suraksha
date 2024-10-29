@@ -60,7 +60,7 @@ class LoginActivity : AppCompatActivity() {
 
         val client = Client(this)
             .setEndpoint("https://cloud.appwrite.io/v1")
-            .setProject("64bb859f2d53d0d44e9c")
+            .setProject("65fa760fe93c38713a0f")
             .setSelfSigned(true)
 
         val email = findViewById<EditText>(R.id.email).text.toString().trim()
